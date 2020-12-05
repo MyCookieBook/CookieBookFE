@@ -5,11 +5,11 @@ const path = require('path');
 const app = express();
 
 // Serve only the static files form the dist directory
-app.use(express.static( 'MyCookieBook/src/Frontend/FE_ProfilePage/dist/angular-de-tutorial'));
+app.use(express.static( __dirname + '/dist/angular-de-tutorial'));
 
 app.get('/*', function(req,res) {
     
-res.sendFile(path.join('MyCookieBook/src/Frontend/FE_ProfilePage/dist/angular-de-tutorial/index.html'));
+res.sendFile(path.join(__dirname+'/dist/angular-de-tutorial/index.html'));
 });
 
 // Start the app by listening on the default Heroku port
