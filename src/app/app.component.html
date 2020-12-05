@@ -1,0 +1,40 @@
+<mat-grid-list cols="3" rowHeight="100px">
+  <mat-grid-tile colspan="3" rowspan="1">
+    <mat-toolbar color="primary">
+
+      <button mat-icon-button class="favorite-icon" aria-label="Example icon-button with menu icon">
+        <mat-icon>home</mat-icon>
+      </button>
+      <span>MyCookieBook</span>
+      <span class="example-spacer"></span>
+      <div><button mat-button class="button-font">Recipes</button></div>
+      <div>
+        <mat-form-field apperance="none" floatLabel="never"><input matInput placeholder="Search" class="input-font"></mat-form-field>
+      </div>
+      <div class="example-button-container">
+        <button mat-icon-button>
+          <mat-icon>account_circle</mat-icon>
+        </button>
+      </div>
+      <div class="example-button-container">
+        <button mat-icon-button>
+          <mat-icon>logout</mat-icon>
+        </button>
+      </div>
+    </mat-toolbar>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="2" rowspan="3">
+    <app-profile-data></app-profile-data>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="1" rowspan="3">
+    Bild
+  </mat-grid-tile>
+  <mat-grid-tile colspan="3" rowspan="2">
+    <div class="div-margin">
+      <button mat-raised-button color="primary">Save</button>
+    </div>
+    <div class="div-margin">
+      <button mat-raised-button>Cancel</button>
+    </div>
+  </mat-grid-tile>
+</mat-grid-list>
