@@ -20,11 +20,14 @@ import {FormBuilder, FormGroup} from '@angular/forms';
   styleUrls: ['./profile-data.component.scss']
 })
 
-export class ProfileDataComponent {
+export class ProfileDataComponent /*implements OnInit*/ {
+
+  variable = "Variabler Text, der vom BE kommt";
+  hidden = true;
 
   constructor() { }
 
-  //ngOnInit(): void {
-  //}
+  /*ngOnInit() {
+  }*/
 
 }

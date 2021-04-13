@@ -21,3 +21,5 @@
   </button>
 </mat-card-content>
 </mat-card>
+<button (click)="hidden=!hidden">Text anzeigen</button>
+<p [hidden]="hidden">{{variable}}</p>

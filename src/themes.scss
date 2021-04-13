@@ -1,0 +1,15 @@
+/* You can add global styles to this file, and also import other style files */
+@import '@angular/material/theming';
+@include mat-core();
+
+$cb-app-primary: mat-palette($mat-brown);
+$cb-app-accent:  mat-palette($mat-orange);
+$cb-app-warn:    mat-palette($mat-red);
+
+$cb-app-theme: mat-theme((
+  color: (
+    primary: $cb-app-primary,
+    accent: $cb-app-accent,
+    warn: $cb-app-warn,
+  )
+));
