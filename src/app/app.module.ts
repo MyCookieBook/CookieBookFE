@@ -19,12 +19,16 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
+import { ProfilePageComponent } from './profile-page/profile-page.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    ProfileDataComponent
+    ProfileDataComponent,
+    ProfilePageComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,19 @@
+<mat-grid-list cols="2" rowHeight="6:1">
+  <mat-grid-tile colspan="1" rowspan="3">
+    <app-profile-data></app-profile-data>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="1" rowspan="3">
+    <mat-card>
+      <img mat-card-image src="{{picturescr}}">
+    </mat-card>
+    Picture
+  </mat-grid-tile>
+  <mat-grid-tile colspan="2" rowspan="1">
+    <div class="div-margin">
+      <button mat-raised-button color="primary">Save</button>
+    </div>
+    <div class="div-margin">
+      <button mat-raised-button>Cancel</button>
+    </div>
+  </mat-grid-tile>
+</mat-grid-list>
