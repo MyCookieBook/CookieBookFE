@@ -6,3 +6,22 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/*
+//<link rel="stylesheet" href="styles/styles.scss>"
+//@import './variables'
+//File _variables.scss
+$colorPrimary: green
+//@import './header'
+//Filie _header.scss
+header{
+  background: $colorPrimary;
+  display: flex;
+  button{
+    background: red;
+    &:hover{
+      background: blue;
+    }
+  }
+}
+*/
