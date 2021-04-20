@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+//import { app.component.ts } from './app.component.ts'
 
 @Component({
   selector: 'app-navbar',
@@ -8,6 +9,10 @@ import { Component, OnInit } from '@angular/core';
 export class NavbarComponent /*implements OnInit*/ {
 
   constructor() { }
+
+  clickLogin() {
+    //showLoginPage();
+  }
 
   /*ngOnInit(): void {
   }*/

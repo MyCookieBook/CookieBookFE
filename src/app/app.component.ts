@@ -7,4 +7,22 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'myCookieBook';
+
+  hideProfilePage;
+  hideLoginPage;
+
+  constructor() {
+    this.hideProfilePage = true;
+    this.hideLoginPage = false;
+  }
+
+  showProfilePage() {
+    this.hideProfilePage = false;
+    this.hideLoginPage = true;
+  }
+
+  showLoginPage() {
+    this.hideProfilePage = true;
+    this.hideLoginPage = false;
+  }
 }
