@@ -1,5 +1,27 @@
 /* You can add global styles to this file, and also import other style files */
 @import '@angular/material/theming';
 @import "@angular/material/prebuilt-themes/deeppurple-amber.css";
+@include mat-core();
+//@include angular-material-themes(cb-app-theme);
+
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/*
+//<link rel="stylesheet" href="styles/styles.scss>"
+//@import './variables'
+//File _variables.scss
+$colorPrimary: green
+//@import './header'
+//Filie _header.scss
+header{
+  background: $colorPrimary;
+  display: flex;
+  button{
+    background: red;
+    &:hover{
+      background: blue;
+    }
+  }
+}
+*/

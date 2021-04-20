@@ -6,5 +6,23 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'angular-de-tutorial';
+  title = 'myCookieBook';
+
+  hideProfilePage;
+  hideLoginPage;
+
+  constructor() {
+    this.hideProfilePage = false;
+    this.hideLoginPage = true;
+  }
+
+  showProfilePage() {
+    this.hideProfilePage = false;
+    this.hideLoginPage = true;
+  }
+
+  showLoginPage() {
+    this.hideProfilePage = true;
+    this.hideLoginPage = false;
+  }
 }
