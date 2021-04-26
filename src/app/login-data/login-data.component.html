@@ -2,18 +2,21 @@
 <p>
   <mat-form-field hideRequiredMarker="true" floatLabel="auto">
     <mat-label>E-Mail</mat-label>
-    <input matInput required>
+    <input matInput placeholder="Enter your Mail address" required>
   </mat-form-field>
 </p>
 <p>
   <mat-form-field hideRequiredMarker="true" floatLabel="auto">
     <mat-label>Password</mat-label>
-    <input matInput [type]="hidePassword ? 'password' : 'text'">
-    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+    <input matInput [type]="hidePassword ? 'password' : 'text'" placeholder="Enter your Password">
+    <button mat-icon-button
+            matSuffix (click)="hidePassword = !hidePassword"
+            [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hidePassword">
+      <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
     </button>
   </mat-form-field>
 </p>
 <div class="div-margin">
-  <button mat-raised-button color="primary">Login</button>
+  <button mat-raised-button color="primary">Log in</button>
 </div>
