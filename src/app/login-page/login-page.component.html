@@ -12,16 +12,14 @@
     <mat-card>
       <mat-tab-group
         mat-align-tabs="start"
-        animationDuration="0ms"
-        [color]="basic"
-        [backgroundColor]="basic">
-        <mat-tab>
-          <ng-template mat-tab-label>Test</ng-template>
-          Test
-        </mat-tab>
+        animationDuration="0ms">
         <mat-tab>
           <ng-template mat-tab-label><b>Log in</b> &nbsp; to your Cookiebook</ng-template>
           <app-login-data></app-login-data>
+        </mat-tab>
+        <mat-tab>
+          <ng-template mat-tab-label><b>Register</b> &nbsp; for your Cookiebook</ng-template>
+          <app-login-register></app-login-register>
         </mat-tab>
       </mat-tab-group>
     </mat-card>
