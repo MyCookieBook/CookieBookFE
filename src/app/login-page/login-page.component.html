@@ -7,19 +7,23 @@
   </div>
 </div>
 
-<mat-card>
-  <mat-tab-group
-    mat-align-tabs="start"
-    animationDuration="0ms"
-    [color]="basic"
-    [backgroundColor]="basic">
-    <mat-tab>
-      <ng-template mat-tab-label>Test</ng-template>
-      Test
-    </mat-tab>
-    <mat-tab>
-      <ng-template mat-tab-label>Login</ng-template>
-      <app-login-data></app-login-data>
-    </mat-tab>
-  </mat-tab-group>
-</mat-card>
+<mat-grid-list cols="1" rows="1" rowHeight="5:2">
+  <mat-grid-tile>
+    <mat-card>
+      <mat-tab-group
+        mat-align-tabs="start"
+        animationDuration="0ms"
+        [color]="basic"
+        [backgroundColor]="basic">
+        <mat-tab>
+          <ng-template mat-tab-label>Test</ng-template>
+          Test
+        </mat-tab>
+        <mat-tab>
+          <ng-template mat-tab-label>Login</ng-template>
+          <app-login-data></app-login-data>
+        </mat-tab>
+      </mat-tab-group>
+    </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>

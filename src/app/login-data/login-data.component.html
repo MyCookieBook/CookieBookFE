@@ -1,51 +1,19 @@
-<div class="login-form-align">
-  <form onSubmit={handleSubmit} id="login-form">
-    <h1 class="login-header">MyCookieBook</h1>
-    <label for="emailInput" class="label login-label">
-      E-Mail
-    </label>
-
-    <input
-      id="emailInput"
-      class="input login-input"
-      type="text"
-      onChange={handleEmailChanged}
-    />
-
-    <label for="passwordInput" class="label login-label">
-      Passwort
-    </label>
-    <input
-      id="passwordInput"
-      class="input login-input"
-      type="password"
-      onChange={handlePasswordChanged}
-    />
-    <div>
-      <input
-        class="button button-on-primary-color"
-        id="login-button"
-        type="submit"
-        value="Login"
-      />
-    </div>
-  </form>
-</div>
-
-
-    <p>
-      <mat-form-field hideRequiredMarker="false" floatLabel="auto">
-        <mat-label>Username</mat-label>
-        <input matInput required>
-      </mat-form-field>
-    </p>
-    <p>
-      <mat-form-field hideRequiredMarker="false" floatLabel="auto">
-        <mat-label>E-Mail</mat-label>
-        <input matInput required>
-      </mat-form-field>
-    </p>
-    <button mat-button>
-      Change Password
-      <mat-icon>edit</mat-icon>
+<p></p><p></p>
+<p>
+  <mat-form-field hideRequiredMarker="true" floatLabel="auto">
+    <mat-label>E-Mail</mat-label>
+    <input matInput required>
+  </mat-form-field>
+</p>
+<p>
+  <mat-form-field hideRequiredMarker="true" floatLabel="auto">
+    <mat-label>Password</mat-label>
+    <input matInput [type]="hidePassword ? 'password' : 'text'">
+    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
     </button>
+  </mat-form-field>
+</p>
+<div class="div-margin">
+  <button mat-raised-button color="primary">Login</button>
+</div>
