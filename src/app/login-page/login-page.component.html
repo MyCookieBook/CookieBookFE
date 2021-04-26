@@ -1,27 +1,20 @@
 <div class="login-background">
-  <div class="login-backgroundimage-align">
-    <img
-      src="https://raw.githubusercontent.com/MyCookieBook/CookieBookFE/master/src/pictures/loginPage-background.png)"
-      class="login-img"
-    />
-  </div>
+  <mat-grid-list cols="1" rows="1" rowHeight="5:2">
+    <mat-grid-tile>
+      <mat-card>
+        <mat-tab-group
+          mat-align-tabs="start"
+          animationDuration="0ms">
+          <mat-tab>
+            <ng-template mat-tab-label><b>Log in</b> &nbsp; to your Cookiebook</ng-template>
+            <app-login-data></app-login-data>
+          </mat-tab>
+          <mat-tab>
+            <ng-template mat-tab-label><b>Register</b> &nbsp; for your Cookiebook</ng-template>
+            <app-login-register></app-login-register>
+          </mat-tab>
+        </mat-tab-group>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
 </div>
-
-<mat-grid-list cols="1" rows="1" rowHeight="5:2">
-  <mat-grid-tile>
-    <mat-card>
-      <mat-tab-group
-        mat-align-tabs="start"
-        animationDuration="0ms">
-        <mat-tab>
-          <ng-template mat-tab-label><b>Log in</b> &nbsp; to your Cookiebook</ng-template>
-          <app-login-data></app-login-data>
-        </mat-tab>
-        <mat-tab>
-          <ng-template mat-tab-label><b>Register</b> &nbsp; for your Cookiebook</ng-template>
-          <app-login-register></app-login-register>
-        </mat-tab>
-      </mat-tab-group>
-    </mat-card>
-  </mat-grid-tile>
-</mat-grid-list>
