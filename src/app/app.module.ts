@@ -22,6 +22,7 @@ import {MatCardModule} from '@angular/material/card';
 import { ProfilePageComponent } from './profile-page/profile-page.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { LoginPageComponent } from './login-page/login-page.component';
+import { LoginDataComponent } from './login-data/login-data.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { LoginPageComponent } from './login-page/login-page.component';
     ProfileDataComponent,
     ProfilePageComponent,
     NavbarComponent,
-    LoginPageComponent
+    LoginPageComponent,
+    LoginDataComponent
   ],
   imports: [
     BrowserModule,

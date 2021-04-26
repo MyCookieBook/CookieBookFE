@@ -1,3 +1,19 @@
+<img
+  src={background}
+  class="login-img"
+/>
+<mat-card>
+  <mat-tab-group
+    mat-align-tabs="start"
+    animationDuration="0ms"
+    [color]="basic"
+    [backgroundColor]="basic">
+    <mat-tab lable="Login">
+      <login-data.component></login-data.component>
+    </mat-tab>
+  </mat-tab-group>
+</mat-card>
+
 <div class="login-background">
   <div class="login-backgroundimage-align">
     <img
@@ -6,37 +22,5 @@
       class="login-img"
     />
   </div>
-  <div class="login-form-align">
-    <form onSubmit={handleSubmit} id="login-form">
-      <h1 class="login-header">MyCookieBook</h1>
-      <label for="emailInput" class="label login-label">
-        E-Mail
-      </label>
 
-      <input
-        id="emailInput"
-        class="input login-input"
-        type="text"
-        onChange={handleEmailChanged}
-      />
-
-      <label for="passwordInput" class="label login-label">
-        Passwort
-      </label>
-      <input
-        id="passwordInput"
-        class="input login-input"
-        type="password"
-        onChange={handlePasswordChanged}
-      />
-      <div>
-        <input
-          class="button button-on-primary-color"
-          id="login-button"
-          type="submit"
-          value="Login"
-        />
-      </div>
-    </form>
-  </div>
 </div>
