@@ -12,8 +12,8 @@ export class AppComponent {
   hideLoginPage;
 
   constructor() {
-    this.hideProfilePage = false;
-    this.hideLoginPage = true;
+    this.hideProfilePage = true;
+    this.hideLoginPage = false;
   }
 
   showProfilePage() {

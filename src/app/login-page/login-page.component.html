@@ -1,26 +1,41 @@
-<img
-  src={background}
-  class="login-img"
-/>
-<mat-card>
-  <mat-tab-group
-    mat-align-tabs="start"
-    animationDuration="0ms"
-    [color]="basic"
-    [backgroundColor]="basic">
-    <mat-tab lable="Login">
-      <login-data.component></login-data.component>
-    </mat-tab>
-  </mat-tab-group>
-</mat-card>
-
 <div class="login-background">
   <div class="login-backgroundimage-align">
     <img
-      src={background}
-      alt="Hintergrundbild Login - Cookies"
+      src="https://raw.githubusercontent.com/MyCookieBook/CookieBookFE/master/src/pictures/loginPage-background.png)"
       class="login-img"
     />
   </div>
-
 </div>
+
+<mat-tab-group
+  mat-align-tabs="start"
+  animationDuration="0ms"
+  [color]="primary"
+  [backgroundColor]="primary">
+  <mat-tab lable="Test">
+    Test
+  </mat-tab>
+  <mat-tab lable="Login">
+    <app-login-data></app-login-data>
+  </mat-tab>
+</mat-tab-group>
+
+
+<mat-grid-list cols="1" rowHeight="1:1">
+  <mat-grid-tile colspan="1" rowspan="1">
+    <mat-card>
+      <mat-card-content>
+      <mat-tab-group
+        mat-align-tabs="start"
+        animationDuration="0ms">
+        <mat-tab lable="Test">
+          Test
+        </mat-tab>
+        <mat-tab lable="Login">
+          <app-login-data></app-login-data>
+        </mat-tab>
+      </mat-tab-group>
+      </mat-card-content>
+    </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>
