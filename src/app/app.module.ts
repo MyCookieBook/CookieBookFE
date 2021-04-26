@@ -19,6 +19,7 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
+import {MatTabsModule} from '@angular/material/tabs';
 import { ProfilePageComponent } from './profile-page/profile-page.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { LoginPageComponent } from './login-page/login-page.component';
@@ -44,9 +45,10 @@ import { LoginDataComponent } from './login-data/login-data.component';
     MatGridListModule,
     MatIconModule,
     MatButtonModule,
-    MatCardModule
+    MatCardModule,
+    MatTabsModule
   ],
-  exports: [MatFormFieldModule, MatInputModule, FormsModule, MatToolbarModule, MatGridListModule, MatIconModule, MatButtonModule,MatCardModule],
+  exports: [MatFormFieldModule, MatInputModule, FormsModule, MatToolbarModule, MatGridListModule, MatIconModule, MatButtonModule,MatCardModule, MatTabsModule],
   providers: [],
   bootstrap: [AppComponent]
 })

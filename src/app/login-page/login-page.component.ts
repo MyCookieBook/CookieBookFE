@@ -8,6 +8,8 @@ import {FormsModule} from '@angular/forms';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
+import { MatFormFieldModule, MatFormField, MatLabel } from '@angular/material/form-field';
+import {MatTabsModule} from '@angular/material/tabs';
 
 @Component({
   selector: 'app-login-page',
