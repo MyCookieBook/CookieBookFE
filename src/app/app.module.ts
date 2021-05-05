@@ -19,9 +19,13 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatTabsModule} from '@angular/material/tabs';
 import { ProfilePageComponent } from './profile-page/profile-page.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { LoginPageComponent } from './login-page/login-page.component';
+import { LoginDataComponent } from './login-data/login-data.component';
+import { LoginRegisterComponent } from './login-register/login-register.component';
 
 
 @NgModule({
@@ -30,7 +34,9 @@ import { LoginPageComponent } from './login-page/login-page.component';
     ProfileDataComponent,
     ProfilePageComponent,
     NavbarComponent,
-    LoginPageComponent
+    LoginPageComponent,
+    LoginDataComponent,
+    LoginRegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -42,9 +48,11 @@ import { LoginPageComponent } from './login-page/login-page.component';
     MatGridListModule,
     MatIconModule,
     MatButtonModule,
-    MatCardModule
+    MatCardModule,
+    MatTabsModule,
+    MatCheckboxModule
   ],
-  exports: [MatFormFieldModule, MatInputModule, FormsModule, MatToolbarModule, MatGridListModule, MatIconModule, MatButtonModule,MatCardModule],
+  exports: [MatFormFieldModule, MatInputModule, FormsModule, MatToolbarModule, MatGridListModule, MatIconModule, MatButtonModule,MatCardModule, MatTabsModule, MatCheckboxModule],
   providers: [],
   bootstrap: [AppComponent]
 })

@@ -1,42 +1,20 @@
 <div class="login-background">
-  <div class="login-backgroundimage-align">
-    <img
-      src={background}
-      alt="Hintergrundbild Login - Cookies"
-      class="login-img"
-    />
-  </div>
-  <div class="login-form-align">
-    <form onSubmit={handleSubmit} id="login-form">
-      <h1 class="login-header">MyCookieBook</h1>
-      <label for="emailInput" class="label login-label">
-        E-Mail
-      </label>
-
-      <input
-        id="emailInput"
-        class="input login-input"
-        type="text"
-        onChange={handleEmailChanged}
-      />
-
-      <label for="passwordInput" class="label login-label">
-        Passwort
-      </label>
-      <input
-        id="passwordInput"
-        class="input login-input"
-        type="password"
-        onChange={handlePasswordChanged}
-      />
-      <div>
-        <input
-          class="button button-on-primary-color"
-          id="login-button"
-          type="submit"
-          value="Login"
-        />
-      </div>
-    </form>
-  </div>
+  <mat-grid-list cols="1" rows="1" rowHeight="5:2">
+    <mat-grid-tile>
+      <mat-card>
+        <mat-tab-group
+          mat-align-tabs="start"
+          animationDuration="0ms">
+          <mat-tab>
+            <ng-template mat-tab-label><b>Log in</b> &nbsp; to your Cookiebook</ng-template>
+            <app-login-data></app-login-data>
+          </mat-tab>
+          <mat-tab>
+            <ng-template mat-tab-label><b>Register</b> &nbsp; for your Cookiebook</ng-template>
+            <app-login-register></app-login-register>
+          </mat-tab>
+        </mat-tab-group>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
 </div>
