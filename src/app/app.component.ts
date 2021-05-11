@@ -8,6 +8,16 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'myCookieBook';
 
+  /*constructor(private router: ActivatedRoute) {
+
+  }
+  ngOnInit() {
+    this.route.queryParams.subscribe(params => {
+      this.id = params['userId']
+      });
+  }*/
+
+  /*
   hideProfilePage;
   hideLoginPage;
   hideMainPage;
@@ -35,4 +45,5 @@ export class AppComponent {
     this.hideLoginPage = true;
     this.hideMainPage = false;
   }
+  */
 }
