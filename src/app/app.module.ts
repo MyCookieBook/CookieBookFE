@@ -9,6 +9,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { FormControl } from '@angular/forms';
 import { Validators } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { FormsModule } from '@angular/forms';
 import { MatGridListModule } from '@angular/material/grid-list';
@@ -43,6 +44,7 @@ import { AppRoutingModule } from './app-routing.module';
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
     BrowserAnimationsModule,
@@ -53,12 +55,25 @@ import { AppRoutingModule } from './app-routing.module';
     MatCardModule,
     MatTabsModule,
     MatCheckboxModule,
-    AppRoutingModule,
-    FormControl,
-    Validators
+    AppRoutingModule
   ],
-  exports: [MatFormFieldModule, MatInputModule, FormsModule, MatToolbarModule, MatGridListModule, MatIconModule, MatButtonModule,MatCardModule, MatTabsModule, MatCheckboxModule, FormControl],
-  providers: [],
+  exports: [
+    MatFormFieldModule,
+    MatInputModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatToolbarModule,
+    MatGridListModule,
+    MatIconModule,
+    MatButtonModule,
+    MatCardModule,
+    MatTabsModule,
+    MatCheckboxModule
+  ],
+  providers: [
+    Validators,
+    FormControl
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
