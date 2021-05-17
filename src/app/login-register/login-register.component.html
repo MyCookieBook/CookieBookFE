@@ -2,14 +2,16 @@
 <p>
   <mat-form-field hideRequiredMarker="true" floatLabel="auto">
     <mat-label>E-Mail</mat-label>
-    <input matInput placeholder="Enter your Mail address" required>
+    <input matInput placeholder="Enter your Mail address" [formControl]="email" required>
+    <mat-error *ngIf="email.invalid">{{getErrorMessageMail()}}</mat-error>
   </mat-form-field>
 </p>
 
 <p>
   <mat-form-field hideRequiredMarker="true" floatLabel="auto">
     <mat-label>Password</mat-label>
-    <input matInput [type]="hidePassword ? 'password' : 'text'" placeholder="Enter your Password">
+    <input matInput [type]="hidePassword ? 'password' : 'text'" placeholder="Enter your Password" [formControl]="password" required>
+    <mat-error *ngIf="password.invalid">{{getErrorMessagePassword()}}</mat-error>
     <button mat-icon-button
             matSuffix (click)="hidePassword = !hidePassword"
             [attr.aria-label]="'Hide password'"
@@ -32,15 +34,21 @@
   </mat-form-field>
 </p>
 
-<p>
-  <mat-checkbox
-    required
-    [checked]="false"
-    color="primary">
-    Confirm the DSGVO
-  </mat-checkbox>
-</p>
+  <div>
+    <mat-checkbox [formControl]="acceptDSGVO" required color="primary">
+      Confirm the DSGVO
+      <!--<mat-error *ngIf="acceptDSGVO.invalid">{{getErrorMessageDSGVO()}}</mat-error>-->
+    </mat-checkbox>
+  </div>
+<p></p>
 
-<div class="div-margin">
-  <button mat-raised-button color="primary">Register</button>
+<div class="div-margin" [hidden]="getError()">
+  <button mat-raised-button color="primary" (click)="checkRegister()">
+    <a routerLink="/" routerLinkActive="active" style="text-decoration:none; color:white">Register</a>
+  </button>
+</div>
+<div class="div-margin" [hidden]="!getError()">
+  <button mat-raised-button disabled>
+    Register
+  </button>
 </div>
