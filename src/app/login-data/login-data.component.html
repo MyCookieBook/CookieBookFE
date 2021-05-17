@@ -1,6 +1,6 @@
 <p></p>
 <p>
-  <mat-form-field hideRequiredMarker="true" floatLabel="auto" appearance="fill">
+  <mat-form-field hideRequiredMarker="true" floatLabel="auto">
     <mat-label>E-Mail</mat-label>
     <input matInput placeholder="Enter your E-Mail" [formControl]="email" required>
     <mat-error *ngIf="email.invalid">{{getErrorMessageMail()}}</mat-error>
