@@ -16,8 +16,8 @@ export class LoginRegisterComponent /*implements OnInit*/ {
   hideConfirmPassword = true;
   email = new FormControl('', [Validators.required, Validators.email]);
   password = new FormControl('', [Validators.minLength(8), Validators.required]);
-  confirmPassword = new FormControl('');
-  //passwordEquals = false;
+  confirmPassword = new FormControl('', [Validators.required]);
+  passwordEquals = false;
   acceptDSGVO = new FormControl(false, [Validators.requiredTrue]);
   hasError = true;
   registerSuccess = false;
@@ -55,14 +55,17 @@ export class LoginRegisterComponent /*implements OnInit*/ {
 
   getErrorMessageConfirmPassword() {
     var isEqual = this.getEqualPassword();
-    if(isEqual) {
-      return '';
-    } else {
+    if(this.confirmPassword.hasError('required')) {
+      return 'Please confirm your Password!';
+    } else if(isEqual == false) {
       return 'Enter the same password!';
+    } else {
+      return '';
     }
   }
 
   getEqualPassword() {
+  console.log(this.password.value);
     if(this.password.value.equals(this.confirmPassword.value)) {
       return true;
     } else {
@@ -82,6 +85,8 @@ export class LoginRegisterComponent /*implements OnInit*/ {
     if(this.hasError == false) {
       this.registerSuccess = true;
       //this.activeLink = 'active';
+    } else {
+      this.registerSuccess = false;
     }
   }
 
