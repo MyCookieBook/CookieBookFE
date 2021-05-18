@@ -1,14 +1,16 @@
 <p></p>
 <p>
-  <mat-form-field hideRequiredMarker="true" floatLabel="auto">
+  <mat-form-field hideRequiredMarker="true" floatLabel="auto" appearance="fill">
     <mat-label>E-Mail</mat-label>
-    <input matInput placeholder="Enter your Mail address" required>
+    <input matInput placeholder="Enter your E-Mail" [formControl]="email" required>
+    <mat-error *ngIf="email.invalid">{{getErrorMessageMail()}}</mat-error>
   </mat-form-field>
 </p>
 <p>
   <mat-form-field hideRequiredMarker="true" floatLabel="auto">
     <mat-label>Password</mat-label>
-    <input matInput [type]="hidePassword ? 'password' : 'text'" placeholder="Enter your Password">
+    <input matInput [type]="hidePassword ? 'password' : 'text'" placeholder="Enter your Password" [formControl]="password" required>
+    <mat-error *ngIf="password.invalid">{{getErrorMessagePassword()}}</mat-error>
     <button mat-icon-button
             matSuffix (click)="hidePassword = !hidePassword"
             [attr.aria-label]="'Hide password'"
@@ -20,6 +22,13 @@
 <p>
   <a href="https://dhbw-karlsruhe.myjetbrains.com/youtrack/dashboard">Forgot your password?</a>
 </p>
-<div class="div-margin">
-  <button mat-raised-button color="primary">Log in</button>
+<div class="div-margin" [hidden]="getError()">
+  <button mat-raised-button color="primary" (click)="checkLogin()">
+    <a routerLink="/" routerLinkActive="active" style="text-decoration:none; color:white">Log in</a>
+  </button>
+</div>
+<div class="div-margin" [hidden]="!getError()">
+  <button mat-raised-button color="basic">
+    Log in
+  </button>
 </div>

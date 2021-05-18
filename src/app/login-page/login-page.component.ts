@@ -10,6 +10,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import { MatFormFieldModule, MatFormField, MatLabel } from '@angular/material/form-field';
 import {MatTabsModule} from '@angular/material/tabs';
+//import { AppRoutingModule } from './app-routing.module';
 
 @Component({
   selector: 'app-login-page',

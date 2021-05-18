@@ -4,23 +4,20 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { ProfileDataComponent } from './profile-data/profile-data.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {
-  MatFormFieldModule
-} from '@angular/material/form-field';
-import {
-  MatInputModule
-} from '@angular/material/input';
-import {
-  MatToolbarModule
-} from '@angular/material/toolbar';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { FormControl } from '@angular/forms';
+import { Validators } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { FormsModule } from '@angular/forms';
-import {MatGridListModule} from '@angular/material/grid-list';
-import {MatIconModule} from '@angular/material/icon';
-import {MatButtonModule} from '@angular/material/button';
-import {MatCardModule} from '@angular/material/card';
-import {MatCheckboxModule} from '@angular/material/checkbox';
-import {MatTabsModule} from '@angular/material/tabs';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatCheckboxModule} from '@angular/material/checkbox';
+import { MatTabsModule } from '@angular/material/tabs';
 import { ProfilePageComponent } from './profile-page/profile-page.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { LoginPageComponent } from './login-page/login-page.component';
@@ -29,6 +26,8 @@ import { LoginRegisterComponent } from './login-register/login-register.componen
 import { FooterComponent } from './footer/footer.component';
 import { MainPageComponent } from './main-page/main-page.component';
 
+//Routing
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -45,6 +44,7 @@ import { MainPageComponent } from './main-page/main-page.component';
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
     BrowserAnimationsModule,
@@ -54,10 +54,26 @@ import { MainPageComponent } from './main-page/main-page.component';
     MatButtonModule,
     MatCardModule,
     MatTabsModule,
+    MatCheckboxModule,
+    AppRoutingModule
+  ],
+  exports: [
+    MatFormFieldModule,
+    MatInputModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatToolbarModule,
+    MatGridListModule,
+    MatIconModule,
+    MatButtonModule,
+    MatCardModule,
+    MatTabsModule,
     MatCheckboxModule
   ],
-  exports: [MatFormFieldModule, MatInputModule, FormsModule, MatToolbarModule, MatGridListModule, MatIconModule, MatButtonModule,MatCardModule, MatTabsModule, MatCheckboxModule],
-  providers: [],
+  providers: [
+    Validators,
+    FormControl
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
