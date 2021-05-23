@@ -3,6 +3,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {FormControl, Validators, ReactiveFormsModule} from '@angular/forms';
+import { AbstractControl, NG_VALIDATORS, ValidationErrors, Validator, ValidatorFn } from '@angular/forms';
 
 @Component({
   selector: 'app-login-register',
@@ -16,8 +17,7 @@ export class LoginRegisterComponent /*implements OnInit*/ {
   hideConfirmPassword = true;
   email = new FormControl('', [Validators.required, Validators.email]);
   password = new FormControl('', [Validators.minLength(8), Validators.required]);
-  confirmPassword = new FormControl('', [Validators.required]);
-  passwordEquals = false;
+  confirmPassword = new FormControl('', [Validators.required, this.equalPassword('password')]);
   acceptDSGVO = new FormControl(false, [Validators.requiredTrue]);
   hasError = true;
   registerSuccess = false;
@@ -25,7 +25,7 @@ export class LoginRegisterComponent /*implements OnInit*/ {
   constructor() { }
 
   getError() {
-    if(this.email.invalid || this.password.invalid || !this.getEqualPassword()) {
+    if(this.email.invalid || this.password.invalid || this.confirmPassword.invalid || this.acceptDSGVO.invalid) {
       this.hasError = true;
     } else {
       this.hasError = false;
@@ -54,22 +54,22 @@ export class LoginRegisterComponent /*implements OnInit*/ {
   }
 
   getErrorMessageConfirmPassword() {
-    var isEqual = this.getEqualPassword();
     if(this.confirmPassword.hasError('required')) {
       return 'Please confirm your Password!';
-    } else if(isEqual == false) {
+    } else if(this.confirmPassword.invalid) {
       return 'Enter the same password!';
     } else {
       return '';
     }
   }
 
-  getEqualPassword() {
-  console.log(this.password.value);
-    if(this.password.value.equals(this.confirmPassword.value)) {
-      return true;
-    } else {
-      return false;
+  equalPassword(matchTo): (AbstractControl) => ValidationErrors | null {
+    return (control: AbstractControl): ValidationErrors | null => {
+      return !!control.parent &&
+        !!control.parent.value &&
+        control.value === control.parent.controls[matchTo].value
+        ? null
+        : {isMatching: false};
     }
   }
 
@@ -84,7 +84,6 @@ export class LoginRegisterComponent /*implements OnInit*/ {
   checkRegister() {
     if(this.hasError == false) {
       this.registerSuccess = true;
-      //this.activeLink = 'active';
     } else {
       this.registerSuccess = false;
     }

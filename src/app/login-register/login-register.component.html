@@ -10,7 +10,7 @@
 <p>
   <mat-form-field hideRequiredMarker="true" floatLabel="auto">
     <mat-label>Password</mat-label>
-    <input matInput [type]="hidePassword ? 'password' : 'text'" placeholder="Enter your Password" [formControl]="password" required>
+    <input matInput id="pw" [type]="hidePassword ? 'password' : 'text'" placeholder="Enter your Password" [formControl]="password" required>
     <mat-error *ngIf="password.invalid">{{getErrorMessagePassword()}}</mat-error>
     <button mat-icon-button
             matSuffix (click)="hidePassword = !hidePassword"
@@ -24,9 +24,9 @@
 <p>
   <mat-form-field hideRequiredMarker="true" floatLabel="auto">
     <mat-label>Confirm Password</mat-label>
-    <input matInput [type]="hideConfirmPassword ? 'password' : 'text'" placeholder="Confirm your Password" [formControl]="confirmPassword" required>
+    <input matInput id="cpw" [type]="hideConfirmPassword ? 'password' : 'text'" placeholder="Confirm your Password" [formControl]="confirmPassword" required>
     <!--[formControl]="confirmPassword"-->
-    <mat-error *ngIf="false">{{getErrorMessageConfirmPassword()}}</mat-error>
+    <mat-error *ngIf="confirmPassword.invalid">{{getErrorMessageConfirmPassword()}}</mat-error>
     <!--!getEqualPassword()-->
     <button mat-icon-button
             matSuffix (click)="hideConfirmPassword = !hideConfirmPassword"
@@ -38,8 +38,7 @@
 </p>
 
 <div>
-  <mat-checkbox color="primary">
-    <!--[formControl]="acceptDSGVO" required-->
+  <mat-checkbox color="primary" [formControl]="acceptDSGVO" required>
     Confirm the DSGVO
     <!--<mat-error *ngIf="acceptDSGVO.invalid">{{getErrorMessageDSGVO()}}</mat-error>-->
   </mat-checkbox>
