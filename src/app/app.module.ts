@@ -27,6 +27,7 @@ import { MainPageComponent } from './main-page/main-page.component';
 
 //Routing
 import { AppRoutingModule } from './app-routing.module';
+import { RecipeDetailPageComponent } from './recipe-detail-page/recipe-detail-page.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { AppRoutingModule } from './app-routing.module';
     LoginDataComponent,
     LoginRegisterComponent,
     FooterComponent,
-    MainPageComponent
+    MainPageComponent,
+    RecipeDetailPageComponent
   ],
   imports: [
     BrowserModule,
@@ -53,7 +55,7 @@ import { AppRoutingModule } from './app-routing.module';
     MatCardModule,
     MatTabsModule,
     MatCheckboxModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
   exports: [
     MatFormFieldModule,
@@ -66,7 +68,7 @@ import { AppRoutingModule } from './app-routing.module';
     MatButtonModule,
     MatCardModule,
     MatTabsModule,
-    MatCheckboxModule
+    MatCheckboxModule,
   ],
   providers: [
     Validators,

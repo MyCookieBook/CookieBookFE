@@ -4,24 +4,11 @@
 <body>
 <mat-grid-list cols="2" rowHeight="6:1">
   <mat-grid-tile colspan="1" rowspan="3">
-    <!--<app-profile-data></app-profile-data>-->
-
     <mat-card>
       <mat-card-header>
-        <mat-card-title>My Profile</mat-card-title>
+        <mat-card-title><b>My Profile</b></mat-card-title>
       </mat-card-header>
       <mat-card-content>
-        <!--<mat-grid-list cols="2" rowHeight="80px">
-          <mat-grid-tile colspan="1" rowspan="1">
-            <b>Username</b>
-          </mat-grid-tile>
-          <mat-grid-tile colspan="1" rowspan="1">
-            <mat-form-field hideRequiredMarker="false" floatLabel="auto">
-              <mat-label>Username</mat-label>
-              <input matInput required>
-            </mat-form-field>
-          </mat-grid-tile>
-        </mat-grid-list>-->
         <p></p>
         <div [hidden]="edit">
           <b>Username</b> &nbsp; {{username_old}}
@@ -56,8 +43,6 @@
         </div>
       </mat-card-content>
     </mat-card>
-    <!--<button (click)="hidden=!hidden">Text anzeigen</button>
-    <p [hidden]="hidden">{{variable}}</p>-->
 
   </mat-grid-tile>
   <mat-grid-tile colspan="1" rowspan="3">
