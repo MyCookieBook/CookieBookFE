@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 //import { app.component.ts } from './app.component.ts'
+import {MatExpansionModule} from '@angular/material/expansion';
 
 @Component({
   selector: 'app-navbar',

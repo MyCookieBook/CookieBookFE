@@ -9,6 +9,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { FormControl } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 import { FormsModule } from '@angular/forms';
 import { MatGridListModule } from '@angular/material/grid-list';
@@ -28,6 +29,7 @@ import { MainPageComponent } from './main-page/main-page.component';
 //Routing
 import { AppRoutingModule } from './app-routing.module';
 import { RecipeDetailPageComponent } from './recipe-detail-page/recipe-detail-page.component';
+import { RecipeOverviewPageComponent } from './recipe-overview-page/recipe-overview-page.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,8 @@ import { RecipeDetailPageComponent } from './recipe-detail-page/recipe-detail-pa
     LoginRegisterComponent,
     FooterComponent,
     MainPageComponent,
-    RecipeDetailPageComponent
+    RecipeDetailPageComponent,
+    RecipeOverviewPageComponent
   ],
   imports: [
     BrowserModule,
@@ -56,6 +59,7 @@ import { RecipeDetailPageComponent } from './recipe-detail-page/recipe-detail-pa
     MatTabsModule,
     MatCheckboxModule,
     AppRoutingModule,
+    MatExpansionModule
   ],
   exports: [
     MatFormFieldModule,
@@ -69,6 +73,7 @@ import { RecipeDetailPageComponent } from './recipe-detail-page/recipe-detail-pa
     MatCardModule,
     MatTabsModule,
     MatCheckboxModule,
+    MatExpansionModule
   ],
   providers: [
     Validators,
