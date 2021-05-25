@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {MatIconModule} from '@angular/material/icon';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {FormControl, Validators, ReactiveFormsModule} from '@angular/forms';
+import {USerLoginService} from './service/user-login.service';
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-login-data',
@@ -16,8 +18,13 @@ export class LoginDataComponent /*implements OnInit*/ {
   hasError = true;
   loginSuccess = false;
 
+  // ngOnInit(){}
+
+  constructor(private userLoginService: USerLoginService, private router: Router, private route: ActivatedRoute) {
+  }
+
   getError() {
-    if(this.email.invalid || this.password.invalid) {
+    if (this.email.invalid || this.password.invalid) {
       this.hasError = true;
     } else {
       this.hasError = false;
@@ -25,12 +32,10 @@ export class LoginDataComponent /*implements OnInit*/ {
     return this.hasError;
   }
 
-  //constructor() { }
-
   getErrorMessageMail() {
-    if(this.email.hasError('required')) {
+    if (this.email.hasError('required')) {
       return 'Please enter your mail address!';
-    } else if(this.email.hasError('email')) {
+    } else if (this.email.hasError('email')) {
       return 'It is not a valid email!';
     } else {
       return '';
@@ -38,9 +43,9 @@ export class LoginDataComponent /*implements OnInit*/ {
   }
 
   getErrorMessagePassword() {
-    if(this.password.hasError('required')) {
+    if (this.password.hasError('required')) {
       return 'Please enter your password!';
-    } else if(this.password.hasError('minlength')) {
+    } else if (this.password.hasError('minlength')) {
       return 'The password is to short! (min length 8)';
     } else {
       return '';
@@ -48,10 +53,20 @@ export class LoginDataComponent /*implements OnInit*/ {
   }
 
   checkLogin() {
-    if(this.hasError == false) {
+    if (this.hasError == false) {
       this.loginSuccess = true;
       //this.activeLink = 'active';
     }
   }
+
+  handleLogin() {
+    this.userLoginService.loginUser(this.email, this.password).subscribe((res) => {
+      if (this.hasError == false) {
+        this.loginSuccess = true;
+        this.router.navigate(['/']);
+      }
+    }, () => {
+      this.loginSuccess = false;
+    });
+  }
 }
-/*ngOnInit(): void {}*/

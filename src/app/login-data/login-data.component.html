@@ -23,8 +23,9 @@
   <a href="https://dhbw-karlsruhe.myjetbrains.com/youtrack/dashboard">Forgot your password?</a>
 </p>
 <div class="div-margin" [hidden]="getError()">
-  <button mat-raised-button color="primary" (click)="checkLogin()">
-    <a routerLink="/" routerLinkActive="active" style="text-decoration:none; color:white">Log in</a>
+  <button mat-raised-button color="primary" (click)="handleLogin()">
+<!--    <a routerLink="/" routerLinkActive="active" style="text-decoration:none; color:white">Log in</a>-->
+    Log In
   </button>
 </div>
 <div class="div-margin" [hidden]="!getError()">
