@@ -1,34 +1,34 @@
 import {Component, OnInit} from '@angular/core';
-import {MatIconModule} from '@angular/material/icon';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {FormControl, Validators, ReactiveFormsModule} from '@angular/forms';
-import {USerLoginService} from './service/user-login.service';
-import {ActivatedRoute, Router} from "@angular/router";
+import {FormControl, Validators} from '@angular/forms';
+import {Router} from "@angular/router";
+
+import {UserLoginService} from "./service/user-login.service";
 
 @Component({
   selector: 'app-login-data',
   templateUrl: './login-data.component.html',
   styleUrls: ['./login-data.component.scss']
 })
-export class LoginDataComponent /*implements OnInit*/ {
+export class LoginDataComponent implements OnInit {
 
   hidePassword = true;
   email = new FormControl('', [Validators.required, Validators.email]);
   password = new FormControl('', [Validators.minLength(8), Validators.required]);
   hasError = true;
   loginSuccess = false;
+  userId: Number;
+  error40: Number;
 
-  // ngOnInit(){}
+  ngOnInit() {
+  }
 
-  constructor(private userLoginService: USerLoginService, private router: Router, private route: ActivatedRoute) {
+  constructor(private userLoginService: UserLoginService, private router: Router) {
+    this.error40 = 40;
+    this.error40 = +this.error40;
   }
 
   getError() {
-    if (this.email.invalid || this.password.invalid) {
-      this.hasError = true;
-    } else {
-      this.hasError = false;
-    }
+    this.hasError = this.email.invalid || this.password.invalid;
     return this.hasError;
   }
 
@@ -52,18 +52,16 @@ export class LoginDataComponent /*implements OnInit*/ {
     }
   }
 
-  checkLogin() {
-    if (this.hasError == false) {
-      this.loginSuccess = true;
-      //this.activeLink = 'active';
-    }
-  }
-
   handleLogin() {
-    this.userLoginService.loginUser(this.email, this.password).subscribe((res) => {
+    this.userLoginService.loginUser(this.email.value, this.password.value).subscribe((result) => {
       if (this.hasError == false) {
         this.loginSuccess = true;
-        this.router.navigate(['/']);
+        this.userId = +result;
+        console.log(this.userId)
+        if (this.userId >= 60) {
+          localStorage.setItem('UserID', JSON.stringify(this.userId));
+          this.router.navigate(['/']);
+        }
       }
     }, () => {
       this.loginSuccess = false;

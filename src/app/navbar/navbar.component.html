@@ -30,9 +30,10 @@
     </button>
   </div>
   <div class="example-button-container">
-    <button mat-icon-button>
+    <button mat-icon-button (click)="handleLogout()">
       <mat-icon>
-        <a routerLink="/login" routerLinkActive="active" style="text-decoration:none; color:white">logout</a>
+<!--        <a routerLink="/login" routerLinkActive="active" style="text-decoration:none; color:white">logout</a>-->
+        <a style="text-decoration:none; color:white">logout</a>
       </mat-icon>
     </button>
   </div>

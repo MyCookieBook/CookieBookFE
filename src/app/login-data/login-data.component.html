@@ -25,8 +25,12 @@
 <div class="div-margin" [hidden]="getError()">
   <button mat-raised-button color="primary" (click)="handleLogin()">
 <!--    <a routerLink="/" routerLinkActive="active" style="text-decoration:none; color:white">Log in</a>-->
-    Log In
+    Log in
   </button>
+</div>
+<div>
+  <p>test{{error40}}</p>
+  <p *ngIf="userId === error40">Hier ist ein Fehler 40 beim Login aufgetaucht.</p>
 </div>
 <div class="div-margin" [hidden]="!getError()">
   <button mat-raised-button color="basic">
