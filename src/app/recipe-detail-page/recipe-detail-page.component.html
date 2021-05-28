@@ -12,24 +12,43 @@
     <mat-grid-tile colspan="1" rowspan="3">
       <mat-card>
         <mat-card-header>
-          <mat-card-title><b>Recipe Title</b> &nbsp; by Recipe Author</mat-card-title>
+          <div [hidden]="edit">
+            <mat-card-title><b>{{recipe_title}}</b> &nbsp; by {{recipe_author}}</mat-card-title>
+          </div>
+          <div [hidden]="!edit">
+            <mat-card-title>
+              <mat-form-field hideRequiredMarker="false" floatLabel="always">
+                <mat-label><b>{{recipe_title}}</b></mat-label>
+                <input matInput (keyup)="inputTitle($event)" [formControl]="title" required>
+                <mat-error *ngIf="title.invalid">{{getErrorMessageTitle()}}</mat-error>
+              </mat-form-field>
+              &nbsp; by &nbsp;
+              <mat-form-field hideRequiredMarker="false" floatLabel="always">
+                <mat-label><b>{{recipe_author}}</b></mat-label>
+                <input matInput (keyup)="inputAuthor($event)" [formControl]="author" required>
+                <mat-error *ngIf="author.invalid">{{getErrorMessageAuthor()}}</mat-error>
+              </mat-form-field>
+            </mat-card-title>
+          </div>
         </mat-card-header>
         <mat-card-content>
           <p></p>
           <div>
             <mat-icon>schedule</mat-icon> &nbsp;
-            duration min
+            {{recipe_duration}} min
           </div>
           <div>
             <mat-icon>bug_report</mat-icon> &nbsp;
-            nutritional values
+            {{recipe_values}}
           </div>
           <div>
             <mat-icon>leaderboard</mat-icon> &nbsp;
-            cookies
+            <b *ngFor="let x of getNumber(5)">
+              <img mat-card-image text-align="inline" align="textbottom" src="https://raw.githubusercontent.com/MyCookieBook/CookieBookFE/master/src/pictures/Logo.jpg" alt="Cookie">
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </b>
           </div>
-          <p></p>
-          <p></p>
+          <br>
           <div>
             <p>
               <b>Ingredients</b>
@@ -75,12 +94,15 @@
     <mat-grid-tile colspan="1" rowspan="3">
       <mat-card>
         <div>
+          <img class="image" mat-card-image src="{{picture_src}}" alt="Image">
+        </div>
+        <div [hidden]="!edit">
           <button mat-icon-button>
+            Change picture &nbsp;
             <mat-icon color="primary">
               add_box
             </mat-icon>
           </button>
-          <img mat-card-image src="https://raw.githubusercontent.com/MyCookieBook/CookieBookFE/master/src/pictures/avatar.jpg">
         </div>
         <p></p>
         <div>
