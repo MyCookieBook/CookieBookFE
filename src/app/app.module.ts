@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { ProfileDataComponent } from './profile-data/profile-data.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -28,18 +27,19 @@ import { MainPageComponent } from './main-page/main-page.component';
 
 //Routing
 import { AppRoutingModule } from './app-routing.module';
+import { RecipeDetailPageComponent } from './recipe-detail-page/recipe-detail-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ProfileDataComponent,
     ProfilePageComponent,
     NavbarComponent,
     LoginPageComponent,
     LoginDataComponent,
     LoginRegisterComponent,
     FooterComponent,
-    MainPageComponent
+    MainPageComponent,
+    RecipeDetailPageComponent
   ],
   imports: [
     BrowserModule,
@@ -55,7 +55,7 @@ import { AppRoutingModule } from './app-routing.module';
     MatCardModule,
     MatTabsModule,
     MatCheckboxModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
   exports: [
     MatFormFieldModule,
@@ -68,7 +68,7 @@ import { AppRoutingModule } from './app-routing.module';
     MatButtonModule,
     MatCardModule,
     MatTabsModule,
-    MatCheckboxModule
+    MatCheckboxModule,
   ],
   providers: [
     Validators,
