@@ -8,8 +8,8 @@
       Category
     </button>
   </div>
-  <mat-grid-list cols="2" rowHeight="4:1">
-    <mat-grid-tile colspan="1" rowspan="3">
+  <mat-grid-list cols="2" rowHeight="5:1">
+    <mat-grid-tile colspan="1" rowspan="4">
       <mat-card>
         <mat-card-header>
           <div [hidden]="edit">
@@ -18,8 +18,7 @@
           <div [hidden]="!edit">
             <mat-card-title>
               <mat-form-field hideRequiredMarker="false" floatLabel="always">
-                <mat-label><b>{{recipe_title}}</b></mat-label>
-                <input matInput (keyup)="inputTitle($event)" [formControl]="title" required>
+                <input matInput (keyup)="inputTitle($event)" placeholder="{{recipe_title}}" [formControl]="title" required>
                 <mat-error *ngIf="title.invalid">{{getErrorMessageTitle()}}</mat-error>
               </mat-form-field>
               &nbsp; by &nbsp;
@@ -91,7 +90,7 @@
       </mat-card>
 
     </mat-grid-tile>
-    <mat-grid-tile colspan="1" rowspan="3">
+    <mat-grid-tile colspan="1" rowspan="4">
       <mat-card>
         <div>
           <img class="image" mat-card-image src="{{picture_src}}" alt="Image">
@@ -119,23 +118,20 @@
       </mat-card>
     </mat-grid-tile>
   </mat-grid-list>
-    <!--<mat-grid-tile colspan="2" rowspan="1">-->
-      <div class="div-margin" align="center" [hidden]="edit">
-        <button mat-raised-button color="primary">Bake</button>
-        &nbsp; &nbsp; &nbsp;
-        <!--<button mat-raised-button>Share</button>
-        &nbsp; &nbsp; &nbsp;-->
-        <button mat-raised-button (click)="edit=true">Edit</button>
-        &nbsp; &nbsp; &nbsp;
-        <button mat-raised-button>Delete</button>
-      </div>
-      <div class="div-margin" [hidden]="!edit">
-        <button mat-raised-button color="{{color}}" (click)="clickSave()">Save</button>
-        &nbsp; &nbsp; &nbsp;
-        <button mat-raised-button (click)="clickCancel()">Cancel</button>
-      </div>
-    <!--</mat-grid-tile>
-  </mat-grid-list>-->
+  <div class="div-margin" align="center" [hidden]="edit">
+    <button mat-raised-button color="primary">Bake</button>
+    &nbsp; &nbsp; &nbsp;
+    <!--<button mat-raised-button>Share</button>
+    &nbsp; &nbsp; &nbsp;-->
+    <button mat-raised-button (click)="edit=true">Edit</button>
+    &nbsp; &nbsp; &nbsp;
+    <button mat-raised-button>Delete</button>
+  </div>
+  <div class="div-margin" align="center" [hidden]="!edit">
+    <button mat-raised-button color="{{color}}" (click)="clickSave()">Save</button>
+     &nbsp; &nbsp; &nbsp;
+    <button mat-raised-button (click)="clickCancel()">Cancel</button>
+  </div>
 </body>
 <footer>
   <app-footer></app-footer>

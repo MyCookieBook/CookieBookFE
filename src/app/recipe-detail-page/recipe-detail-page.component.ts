@@ -9,7 +9,7 @@ import {FormControl, Validators, ReactiveFormsModule} from '@angular/forms';
   templateUrl: './recipe-detail-page.component.html',
   styleUrls: ['./recipe-detail-page.component.scss']
 })
-export class RecipeDetailPageComponent /*implements OnInit*/ {
+export class RecipeDetailPageComponent implements OnInit {
 
   edit = false;
   color = "basic";
@@ -39,8 +39,12 @@ export class RecipeDetailPageComponent /*implements OnInit*/ {
     }
   }
 
-  /*ngOnInit(): void {
-  }*/
+  ngOnInit(): void {
+    this.recipe_id = 0;
+    if(this.recipe_id === 0) {
+      this.createEmptyRecipe();
+    }
+  }
 
   createEmptyRecipe() {
     this.recipe_title = "Recipe Title";
