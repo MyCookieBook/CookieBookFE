@@ -8,7 +8,7 @@
       Category
     </button>
   </div>
-  <mat-grid-list cols="2" rowHeight="6:1">
+  <mat-grid-list cols="2" rowHeight="4:1">
     <mat-grid-tile colspan="1" rowspan="3">
       <mat-card>
         <mat-card-header>
@@ -118,9 +118,9 @@
 
       </mat-card>
     </mat-grid-tile>
-
-    <mat-grid-tile colspan="2" rowspan="1">
-      <div class="div-margin" [hidden]="edit">
+  </mat-grid-list>
+    <!--<mat-grid-tile colspan="2" rowspan="1">-->
+      <div class="div-margin" align="center" [hidden]="edit">
         <button mat-raised-button color="primary">Bake</button>
         &nbsp; &nbsp; &nbsp;
         <!--<button mat-raised-button>Share</button>
@@ -134,8 +134,8 @@
         &nbsp; &nbsp; &nbsp;
         <button mat-raised-button (click)="clickCancel()">Cancel</button>
       </div>
-    </mat-grid-tile>
-  </mat-grid-list>
+    <!--</mat-grid-tile>
+  </mat-grid-list>-->
 </body>
 <footer>
   <app-footer></app-footer>
