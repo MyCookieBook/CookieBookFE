@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-//import { app.component.ts } from './app.component.ts'
-import {MatExpansionModule} from '@angular/material/expansion';
+import {MatMenuModule} from '@angular/material/menu';
 
 @Component({
   selector: 'app-navbar',
@@ -10,12 +9,5 @@ import {MatExpansionModule} from '@angular/material/expansion';
 export class NavbarComponent /*implements OnInit*/ {
 
   constructor() { }
-
-  clickLogin() {
-    //showLoginPage();
-  }
-
-  /*ngOnInit(): void {
-  }*/
 
 }

@@ -9,7 +9,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { FormControl } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
-import {MatExpansionModule} from '@angular/material/expansion';
+//import {MatExpansionModule} from '@angular/material/expansion';
+import {MatMenuModule} from '@angular/material/menu';
 
 import { FormsModule } from '@angular/forms';
 import { MatGridListModule } from '@angular/material/grid-list';
@@ -59,7 +60,7 @@ import { RecipeOverviewPageComponent } from './recipe-overview-page/recipe-overv
     MatTabsModule,
     MatCheckboxModule,
     AppRoutingModule,
-    MatExpansionModule
+    MatMenuModule
   ],
   exports: [
     MatFormFieldModule,
@@ -73,7 +74,7 @@ import { RecipeOverviewPageComponent } from './recipe-overview-page/recipe-overv
     MatCardModule,
     MatTabsModule,
     MatCheckboxModule,
-    MatExpansionModule
+    MatMenuModule
   ],
   providers: [
     Validators,
