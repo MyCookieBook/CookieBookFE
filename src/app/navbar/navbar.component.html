@@ -22,7 +22,36 @@
     </button>
   </div>
   <div>
-    <button mat-button class="button-font">Recipes</button>
+    <button mat-button class="button-font" [matMenuTriggerFor]="category">Recipes</button>
+    <mat-menu #category="matMenu">
+      <button mat-menu-item [matMenuTriggerFor]="appetizer">Appetizer</button>
+      <button mat-menu-item [matMenuTriggerFor]="mainDish">Main Dish</button>
+      <button mat-menu-item [matMenuTriggerFor]="dessert">Dessert</button>
+      <button mat-menu-item>Drinks</button>
+      <button mat-menu-item>Basic Recipes</button>
+      <button mat-menu-item>Other</button>
+    </mat-menu>
+    <mat-menu #appetizer="matMenu">
+      <button mat-menu-item>Salad</button>
+      <button mat-menu-item>Soup</button>
+      <button mat-menu-item>Morsel</button>
+    </mat-menu>
+    <mat-menu #mainDish="matMenu">
+      <button mat-menu-item>Salad</button>
+      <button mat-menu-item>Soup</button>
+      <button mat-menu-item>Meat</button>
+      <button mat-menu-item>Fish</button>
+      <button mat-menu-item>Vegan</button>
+      <button mat-menu-item>Vegetarian</button>
+      <button mat-menu-item>Casserole</button>
+      <button mat-menu-item>Side Dishes</button>
+    </mat-menu>
+    <mat-menu #dessert="matMenu">
+      <button mat-menu-item>Dough</button>
+      <button mat-menu-item>Pastries</button>
+      <button mat-menu-item>Cold Dishes</button>
+      <button mat-menu-item>Fruit Salad</button>
+    </mat-menu>
   </div>
   <div>
     <mat-form-field apperance="none" floatLabel="never"><input matInput placeholder="Search" class="input-font"></mat-form-field>

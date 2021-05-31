@@ -1,5 +1,4 @@
-import {Component, OnInit} from '@angular/core';
-
+import { Component, OnInit } from '@angular/core';
 //import { app.component.ts } from './app.component.ts'
 
 @Component({
@@ -7,15 +6,15 @@ import {Component, OnInit} from '@angular/core';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss']
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent /*implements OnInit*/ {
 
-  constructor() {
-  }
+  constructor() { }
 
   clickLogin() {
     //showLoginPage();
   }
 
-  ngOnInit() {
-  }
+  /*ngOnInit(): void {
+  }*/
+
 }
