@@ -2,11 +2,44 @@
   <app-navbar></app-navbar>
 </header>
 <body>
-  <div>
-    <p></p> &nbsp;&nbsp;
+  <div [hidden]="edit">
+    <br> &nbsp;&nbsp;
     <button mat-raised-button color="basic">
-      Category
+      {{recipe_category}}
     </button>
+  </div>
+  <div [hidden]="!edit">
+    <br> &nbsp;&nbsp;
+    <button mat-raised-button [matMenuTriggerFor]="category">Bug: {{recipe_category_new}}</button>
+    <mat-menu #category="matMenu">
+      <button mat-menu-item [matMenuTriggerFor]="appetizer" (click)="setCategory('Appetizer')">Appetizer</button>
+      <button mat-menu-item [matMenuTriggerFor]="mainDish" (click)="setCategory('MainDish')">Main Dish</button>
+      <button mat-menu-item [matMenuTriggerFor]="dessert" (click)="setCategory('Dessert')">Dessert</button>
+      <button mat-menu-item (click)="setCategory('Drinks')">Drinks</button>
+      <button mat-menu-item (click)="setCategory('Basic Recipes')">Basic Recipes</button>
+      <button mat-menu-item (click)="setCategory('Other')">Other</button>
+    </mat-menu>
+    <mat-menu #appetizer="matMenu">
+      <button mat-menu-item (click)="setCategory('Appetizer/Salad')">Salad</button>
+      <button mat-menu-item (click)="setCategory('Appetizer/Soup')">Soup</button>
+      <button mat-menu-item (click)="setCategory('Appetizer/Morsel')">Morsel</button>
+    </mat-menu>
+    <mat-menu #mainDish="matMenu">
+      <button mat-menu-item (click)="setCategory('MainDish/Salad')">Salad</button>
+      <button mat-menu-item (click)="setCategory('MainDish/Soup')">Soup</button>
+      <button mat-menu-item (click)="setCategory('MainDish/Meat')">Meat</button>
+      <button mat-menu-item (click)="setCategory('MainDish/Fish')">Fish</button>
+      <button mat-menu-item (click)="setCategory('MainDish/Vegan')">Vegan</button>
+      <button mat-menu-item (click)="setCategory('MainDish/Vegetarian')">Vegetarian</button>
+      <button mat-menu-item (click)="setCategory('MainDish/Casserole')">Casserole</button>
+      <button mat-menu-item (click)="setCategory('MainDish/SideDishes')">Side Dishes</button>
+    </mat-menu>
+    <mat-menu #dessert="matMenu">
+      <button mat-menu-item (click)="setCategory('Dessert/Dough')">Dough</button>
+      <button mat-menu-item (click)="setCategory('Dessert/Pasteries')">Pastries</button>
+      <button mat-menu-item (click)="setCategory('Dessert/ColdDishes')">Cold Dishes</button>
+      <button mat-menu-item (click)="setCategory('Dessert/FruitSalad')">Fruit Salad</button>
+    </mat-menu>
   </div>
   <mat-grid-list cols="2" rowHeight="5:1">
     <mat-grid-tile colspan="1" rowspan="4">

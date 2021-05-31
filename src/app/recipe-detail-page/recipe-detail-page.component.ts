@@ -4,6 +4,7 @@ import { MatFormFieldModule, MatFormField, MatLabel } from '@angular/material/fo
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {FormControl, Validators, ReactiveFormsModule} from '@angular/forms';
 import {MatDialog} from '@angular/material/dialog';
+import {MatMenuModule} from '@angular/material/menu';
 
 @Component({
   selector: 'app-recipe-detail-page',
@@ -16,12 +17,14 @@ export class RecipeDetailPageComponent implements OnInit {
   color = "primary";
   recipe_id: number;
 
+  recipe_category = "";
   recipe_title = "";
   recipe_author = "";
   recipe_duration = 0;
   recipe_values = "";
   recipe_difficulty = 0;
 
+  recipe_category_new = this.recipe_category;
   recipe_title_new = this.recipe_title;
   recipe_author_new = this.recipe_author;
   recipe_duration_new = this.recipe_duration;
@@ -53,6 +56,7 @@ export class RecipeDetailPageComponent implements OnInit {
   }
 
   createEmptyRecipe() {
+    this.recipe_category = "Category/Other";
     this.recipe_title = "Recipe Title";
     this.recipe_author = "Recipe Author";
     this.recipe_duration = 0;
@@ -60,6 +64,10 @@ export class RecipeDetailPageComponent implements OnInit {
     this.recipe_difficulty = 0;
     this.picture_src = "https://raw.githubusercontent.com/MyCookieBook/CookieBookFE/master/src/pictures/DefaultRecipePicture.jpg";
     this.color = "basic";
+  }
+
+  setCategory(category: string) {
+    this.recipe_category_new = 'Category/' + category;
   }
 
   inputTitle(event) {
@@ -141,6 +149,7 @@ export class RecipeDetailPageComponent implements OnInit {
   clickSave() {
     if(this.color === "primary") {
       this.edit = false;
+      this.recipe_category = this.recipe_category_new;
       this.recipe_title = this.recipe_title_new;
       this.recipe_author = this.recipe_author_new;
       this.recipe_duration = this.recipe_duration_new;
@@ -151,6 +160,7 @@ export class RecipeDetailPageComponent implements OnInit {
 
   clickCancel() {
     this.edit = false;
+    this.recipe_category_new = this.recipe_category;
     this.recipe_title_new = this.recipe_title;
     this.recipe_author_new = this.recipe_author;
     this.recipe_duration_new = this.recipe_duration;

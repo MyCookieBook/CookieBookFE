@@ -24,12 +24,12 @@
   <div>
     <button mat-button class="button-font" [matMenuTriggerFor]="category">Recipes</button>
     <mat-menu #category="matMenu">
-      <button mat-menu-item [matMenuTriggerFor]="appetizer">Appetizer</button>
-      <button mat-menu-item [matMenuTriggerFor]="mainDish">Main Dish</button>
-      <button mat-menu-item [matMenuTriggerFor]="dessert">Dessert</button>
-      <button mat-menu-item>Drinks</button>
-      <button mat-menu-item>Basic Recipes</button>
-      <button mat-menu-item>Other</button>
+      <button mat-menu-item [matMenuTriggerFor]="appetizer"><b>Appetizer</b></button>
+      <button mat-menu-item [matMenuTriggerFor]="mainDish"><b>Main Dish</b></button>
+      <button mat-menu-item [matMenuTriggerFor]="dessert"><b>Dessert</b></button>
+      <button mat-menu-item><b>Drinks</b></button>
+      <button mat-menu-item><b>Basic Recipes</b></button>
+      <button mat-menu-item><b>Other</b></button>
     </mat-menu>
     <mat-menu #appetizer="matMenu">
       <button mat-menu-item>Salad</button>
