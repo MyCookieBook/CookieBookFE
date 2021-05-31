@@ -17,13 +17,14 @@
           </div>
           <div [hidden]="!edit">
             <mat-card-title>
-              <mat-form-field hideRequiredMarker="false" floatLabel="always">
+              <mat-form-field hideRequiredMarker="false" floatLabel="auto">
+                <mat-label><b>Recipe Title</b></mat-label>
                 <input matInput (keyup)="inputTitle($event)" placeholder="{{recipe_title}}" [formControl]="title" required>
                 <mat-error *ngIf="title.invalid">{{getErrorMessageTitle()}}</mat-error>
               </mat-form-field>
               &nbsp; by &nbsp;
-              <mat-form-field hideRequiredMarker="false" floatLabel="always">
-                <mat-label><b>{{recipe_author}}</b></mat-label>
+              <mat-form-field hideRequiredMarker="false" floatLabel="auto">
+                <mat-label><b>Recipe Author</b></mat-label>
                 <input matInput (keyup)="inputAuthor($event)" [formControl]="author" required>
                 <mat-error *ngIf="author.invalid">{{getErrorMessageAuthor()}}</mat-error>
               </mat-form-field>
@@ -32,20 +33,52 @@
         </mat-card-header>
         <mat-card-content>
           <p></p>
-          <div>
-            <mat-icon>schedule</mat-icon> &nbsp;
-            {{recipe_duration}} min
-          </div>
-          <div>
-            <mat-icon>bug_report</mat-icon> &nbsp;
-            {{recipe_values}}
-          </div>
-          <div>
-            <mat-icon>leaderboard</mat-icon> &nbsp;
-            <b *ngFor="let x of getNumber(5)">
-              <img mat-card-image text-align="inline" align="textbottom" src="https://raw.githubusercontent.com/MyCookieBook/CookieBookFE/master/src/pictures/Logo.jpg" alt="Cookie">
+          <div [hidden]="edit">
+            <p>
+              <mat-icon>schedule</mat-icon> &nbsp;
+              {{recipe_duration}} min
+            </p>
+            <p>
+              <mat-icon>bug_report</mat-icon> &nbsp;
+              {{recipe_values}}
+            </p>
+            <p>
+              <mat-icon>leaderboard</mat-icon> &nbsp;
+              <b *ngFor="let x of getDifficulty()">
+                <img mat-card-image text-align="inline" align="textbottom" src="https://raw.githubusercontent.com/MyCookieBook/CookieBookFE/master/src/pictures/Logo.jpg" alt="{{x}}">
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            </b>
+              </b>
+            </p>
+          </div>
+          <div [hidden]="!edit">
+            <p>
+              <mat-icon>schedule</mat-icon> &nbsp;
+              <mat-form-field hideRequiredMarker="true" floatLabel="auto">
+                <mat-label>Duration</mat-label>
+                <input matInput (keyup)="inputDuration($event)" [formControl]="duration">
+                <span matSuffix>min</span>
+                <mat-error *ngIf="duration.invalid">{{getErrorMessageDuration()}}</mat-error>
+              </mat-form-field>
+            </p>
+            <p>
+              <mat-icon>bug_report</mat-icon> &nbsp;
+              <mat-form-field hideRequiredMarker="true" floatLabel="auto">
+                <mat-label>Nutritional Values</mat-label>
+                <input matInput (keyup)="inputValues($event)" [formControl]="values">
+                <mat-error *ngIf="values.invalid">{{getErrorMessageValues()}}</mat-error>
+              </mat-form-field>
+            </p>
+            <p>
+              <mat-icon>leaderboard</mat-icon> &nbsp;
+              <button mat-icon-button *ngFor="let x of getDifficultyNew()" (click)="recipe_difficulty_new = x">
+                <img mat-card-image text-align="inline" align="textbottom" src="https://raw.githubusercontent.com/MyCookieBook/CookieBookFE/master/src/pictures/Logo.jpg">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              </button>
+              <button mat-icon-button *ngFor="let x of getGrayCookies()" (click)="recipe_difficulty_new = recipe_difficulty_new+x">
+                <img mat-card-image text-align="inline" align="textbottom" src="https://raw.githubusercontent.com/MyCookieBook/CookieBookFE/master/src/pictures/LogoGray.jpg">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              </button>
+            </p>
           </div>
           <br>
           <div>
@@ -96,7 +129,8 @@
           <img class="image" mat-card-image src="{{picture_src}}" alt="Image">
         </div>
         <div [hidden]="!edit">
-          <button mat-icon-button>
+          <!--<button mat-button (click)="openDialog()">Open dialog</button>-->
+          <button mat-raised-button> <!--(click)="openDialogPicture()"-->
             Change picture &nbsp;
             <mat-icon color="primary">
               add_box
