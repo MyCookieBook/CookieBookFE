@@ -1,6 +1,6 @@
 <p></p>
 <p>
-  <mat-form-field hideRequiredMarker="true" floatLabel="auto" appearance="fill">
+  <mat-form-field hideRequiredMarker="true" floatLabel="auto">
     <mat-label>E-Mail</mat-label>
     <input matInput placeholder="Enter your E-Mail" [formControl]="email" required>
     <mat-error *ngIf="email.invalid">{{getErrorMessageMail()}}</mat-error>
@@ -33,7 +33,7 @@
   <p *ngIf="userId === error40">Hier ist ein Fehler 40 beim Login aufgetaucht.</p>
 </div>
 <div class="div-margin" [hidden]="!getError()">
-  <button mat-raised-button color="basic">
+  <button mat-raised-button disabled>
     Log in
   </button>
 </div>
