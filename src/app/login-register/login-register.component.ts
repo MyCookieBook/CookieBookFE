@@ -9,7 +9,7 @@ import {FormControl, Validators} from "@angular/forms";
   templateUrl: './login-register.component.html',
   styleUrls: ['./login-register.component.scss']
 })
-export class LoginRegisterComponent implements OnInit {
+export class LoginRegisterComponent /*implements OnInit*/ {
 
   hidePassword = true;
   hideConfirmPassword = true;
@@ -21,8 +21,8 @@ export class LoginRegisterComponent implements OnInit {
 
   constructor(private userRegisterService: UserRegisterService, private router: Router) { }
 
-  ngOnInit() {
-  }
+  // ngOnInit() {
+  // }
 
   handleRegister() {
     this.userRegisterService.registerUser(this.email.value, this.password.value).subscribe((res) => {
