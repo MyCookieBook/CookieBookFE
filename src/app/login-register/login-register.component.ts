@@ -6,7 +6,6 @@ import {FormControl, Validators, ReactiveFormsModule} from '@angular/forms';
 import { AbstractControl, NG_VALIDATORS, ValidationErrors, Validator, ValidatorFn } from '@angular/forms';
 import {Router} from "@angular/router";
 import {UserRegisterService} from "./service/user-register.service";
-import {FormControl, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-login-register',
@@ -29,7 +28,7 @@ export class LoginRegisterComponent /*implements OnInit*/ {
   constructor(private userRegisterService: UserRegisterService, private router: Router) { }
 
   getError() {
-    if(this.email.invalid || this.password.invalid || this.confirmPassword.invalid || this.acceptDSGVO.invalid) {
+    if(this.email.invalid || this.password.invalid /*|| this.confirmPassword.invalid*/ || this.acceptDSGVO.invalid) {
       this.hasError = true;
     } else {
       this.hasError = false;
@@ -85,13 +84,13 @@ export class LoginRegisterComponent /*implements OnInit*/ {
     }
   }
 
-  checkRegister() {
-    if(this.hasError == false) {
-      this.registerSuccess = true;
-    } else {
-      this.registerSuccess = false;
-    }
-  }
+  // checkRegister() {
+  //   if(this.hasError == false) {
+  //     this.registerSuccess = true;
+  //   } else {
+  //     this.registerSuccess = false;
+  //   }
+  // }
 
   /*ngOnInit(): void {
   }*/
