@@ -7,64 +7,64 @@
   <div [hidden]="edit">
     <br> &nbsp;&nbsp;
     <button mat-raised-button color="basic">
-      {{recipe_category}}
+      Category/{{recipe_old.getCategoryFE()}}
     </button>
   </div>
   <div [hidden]="!edit">
     <br> &nbsp;&nbsp;
-    <button mat-raised-button [matMenuTriggerFor]="category">Bug: {{recipe_category_new}}</button>
+    <button mat-raised-button [matMenuTriggerFor]="category">Category/{{recipe_category_new.getCategoryFE()}}</button>
     <mat-menu #category="matMenu">
-      <button mat-menu-item [matMenuTriggerFor]="appetizer" (click)="setCategory('Appetizer')">Appetizer</button>
-      <button mat-menu-item [matMenuTriggerFor]="mainDish" (click)="setCategory('MainDish')">Main Dish</button>
-      <button mat-menu-item [matMenuTriggerFor]="dessert" (click)="setCategory('Dessert')">Dessert</button>
-      <button mat-menu-item (click)="setCategory('Drinks')">Drinks</button>
-      <button mat-menu-item (click)="setCategory('Basic Recipes')">Basic Recipes</button>
-      <button mat-menu-item (click)="setCategory('Other')">Other</button>
+      <button mat-menu-item [matMenuTriggerFor]="appetizer" (click)="recipe_new.setCategoryFE('Appetizer')">Appetizer</button>
+      <button mat-menu-item [matMenuTriggerFor]="mainDish" (click)="recipe_new.setCategoryFE('MainDish')">Main Dish</button>
+      <button mat-menu-item [matMenuTriggerFor]="dessert" (click)="recipe_new.setCategoryFE('Dessert')">Dessert</button>
+      <button mat-menu-item (click)="recipe_new.setCategoryFE('Drinks')">Drinks</button>
+      <button mat-menu-item (click)="recipe_new.setCategoryFE('BasicRecipes')">Basic Recipes</button>
+      <button mat-menu-item (click)="recipe_new.setCategoryFE('Other')">Other</button>
     </mat-menu>
     <mat-menu #appetizer="matMenu">
-      <button mat-menu-item (click)="setCategory('Appetizer/Salad')">Salad</button>
-      <button mat-menu-item (click)="setCategory('Appetizer/Soup')">Soup</button>
-      <button mat-menu-item (click)="setCategory('Appetizer/Morsel')">Morsel</button>
+      <button mat-menu-item (click)="recipe_new.setCategoryFE('Appetizer/Salad')">Salad</button>
+      <button mat-menu-item (click)="recipe_new.setCategoryFE('Appetizer/Soup')">Soup</button>
+      <button mat-menu-item (click)="recipe_new.setCategoryFE('Appetizer/Morsel')">Morsel</button>
     </mat-menu>
     <mat-menu #mainDish="matMenu">
-      <button mat-menu-item (click)="setCategory('MainDish/Salad')">Salad</button>
-      <button mat-menu-item (click)="setCategory('MainDish/Soup')">Soup</button>
-      <button mat-menu-item (click)="setCategory('MainDish/Meat')">Meat</button>
-      <button mat-menu-item (click)="setCategory('MainDish/Fish')">Fish</button>
-      <button mat-menu-item (click)="setCategory('MainDish/Vegan')">Vegan</button>
-      <button mat-menu-item (click)="setCategory('MainDish/Vegetarian')">Vegetarian</button>
-      <button mat-menu-item (click)="setCategory('MainDish/Casserole')">Casserole</button>
-      <button mat-menu-item (click)="setCategory('MainDish/SideDishes')">Side Dishes</button>
+      <button mat-menu-item (click)="recipe_new.setCategoryFE('MainDish/Salad')">Salad</button>
+      <button mat-menu-item (click)="recipe_new.setCategoryFE('MainDish/Soup')">Soup</button>
+      <button mat-menu-item (click)="recipe_new.setCategoryFE('MainDish/Meat')">Meat</button>
+      <button mat-menu-item (click)="recipe_new.setCategoryFE('MainDish/Fish')">Fish</button>
+      <button mat-menu-item (click)="recipe_new.setCategoryFE('MainDish/Vegan')">Vegan</button>
+      <button mat-menu-item (click)="recipe_new.setCategoryFE('MainDish/Vegetarian')">Vegetarian</button>
+      <button mat-menu-item (click)="recipe_new.setCategoryFE('MainDish/Casserole')">Casserole</button>
+      <button mat-menu-item (click)="recipe_new.setCategoryFE('MainDish/SideDishes')">Side Dishes</button>
     </mat-menu>
     <mat-menu #dessert="matMenu">
-      <button mat-menu-item (click)="setCategory('Dessert/Dough')">Dough</button>
-      <button mat-menu-item (click)="setCategory('Dessert/Pasteries')">Pastries</button>
-      <button mat-menu-item (click)="setCategory('Dessert/ColdDishes')">Cold Dishes</button>
-      <button mat-menu-item (click)="setCategory('Dessert/FruitSalad')">Fruit Salad</button>
+      <button mat-menu-item (click)="recipe_new.setCategoryFE('Dessert/Dough')">Dough</button>
+      <button mat-menu-item (click)="recipe_new.setCategoryFE('Dessert/Pastries')">Pastries</button>
+      <button mat-menu-item (click)="recipe_new.setCategoryFE('Dessert/ColdDishes')">Cold Dishes</button>
+      <button mat-menu-item (click)="recipe_new.setCategoryFE('Dessert/FruitSalad')">Fruit Salad</button>
     </mat-menu>
   </div>
 
 
   <mat-grid-list cols="2" rowHeight="7:1">
-    <mat-grid-tile colspan="1" rowspan="4">
+    <mat-grid-tile colspan="1" rowspan="{{high}}">
       <mat-card>
 
 
         <mat-card-header>
           <div [hidden]="edit">
-            <mat-card-title><b>{{recipe_title}}</b> &nbsp; by {{recipe_author}}</mat-card-title>
+            <mat-card-title><b>{{recipe_old.title}}</b> &nbsp; by {{recipe_old.author}}</mat-card-title>
           </div>
           <div [hidden]="!edit">
             <mat-card-title>
               <mat-form-field hideRequiredMarker="false" floatLabel="auto">
                 <mat-label><b>Recipe Title</b></mat-label>
-                <input matInput (keyup)="inputTitle($event)" placeholder="{{recipe_title}}" [formControl]="title" required>
+                <input matInput (keyup)="inputTitle($event)" placeholder="{{recipe_new.title}}" [formControl]="title" required>
                 <mat-error *ngIf="title.invalid">{{getErrorMessageTitle()}}</mat-error>
               </mat-form-field>
               &nbsp; by &nbsp;
               <mat-form-field hideRequiredMarker="false" floatLabel="auto">
                 <mat-label><b>Recipe Author</b></mat-label>
-                <input matInput (keyup)="inputAuthor($event)" [formControl]="author" required>
+                <input matInput (keyup)="inputAuthor($event)" placeholder="{{recipe_new.author}}" [formControl]="author" required>
                 <mat-error *ngIf="author.invalid">{{getErrorMessageAuthor()}}</mat-error>
               </mat-form-field>
             </mat-card-title>
@@ -77,11 +77,11 @@
           <div [hidden]="edit">
             <p>
               <mat-icon>schedule</mat-icon> &nbsp;
-              {{recipe_duration}} min
+              {{recipe_old.duration}} min
             </p>
             <p>
               <mat-icon>bug_report</mat-icon> &nbsp;
-              {{recipe_values}}
+              {{recipe_old.nutritional}}
             </p>
             <p>
               <mat-icon>leaderboard</mat-icon> &nbsp;
@@ -106,8 +106,8 @@
               <mat-icon>bug_report</mat-icon> &nbsp;
               <mat-form-field hideRequiredMarker="true" floatLabel="auto">
                 <mat-label>Nutritional Values</mat-label>
-                <input matInput (keyup)="inputValues($event)" [formControl]="values">
-                <mat-error *ngIf="values.invalid">{{getErrorMessageValues()}}</mat-error>
+                <input matInput (keyup)="inputNutritional($event)" [formControl]="nutritional">
+                <mat-error *ngIf="nutritional.invalid">{{getErrorMessageNutritional()}}</mat-error>
               </mat-form-field>
             </p>
             <p>
@@ -115,11 +115,11 @@
               <mat-form-field>
                 <mat-label>Difficulty Level</mat-label>
                 <mat-select>
-                  <mat-option value="1" (click)="recipe_difficulty_new = 1">1</mat-option>
-                  <mat-option value="2" (click)="recipe_difficulty_new = 2">2</mat-option>
-                  <mat-option value="3" (click)="recipe_difficulty_new = 3">3</mat-option>
-                  <mat-option value="4" (click)="recipe_difficulty_new = 4">4</mat-option>
-                  <mat-option value="5" (click)="recipe_difficulty_new = 5">5</mat-option>
+                  <mat-option value="1" (click)="recipe_new.difficulty = 1">1</mat-option>
+                  <mat-option value="2" (click)="recipe_new.difficulty = 2">2</mat-option>
+                  <mat-option value="3" (click)="recipe_new.difficulty = 3">3</mat-option>
+                  <mat-option value="4" (click)="recipe_new.difficulty = 4">4</mat-option>
+                  <mat-option value="5" (click)="recipe_new.difficulty = 5">5</mat-option>
                 </mat-select>
               </mat-form-field>
             </p>
@@ -167,23 +167,27 @@
       </mat-card>
 
     </mat-grid-tile>
-    <mat-grid-tile colspan="1" rowspan="4">
+    <mat-grid-tile colspan="1" rowspan="{{high}}">
       <mat-card>
-        <div>
-          <img class="image" mat-card-image src="{{picture_src}}" alt="Image">
+        <div [hidden]="edit">
+          <p><img class="image" mat-card-image src="{{recipe_old.picture}}" alt="Image"></p>
+          <a href="{{recipe_old.link}}">More information</a>
+          <p>{{recipe_old.other}}</p>
         </div>
         <div [hidden]="!edit">
           <!--<button mat-button (click)="openDialog()">Open dialog</button>-->
+          <p><img class="image" mat-card-image src="{{recipe_new.picture}}" alt="Image"></p>
           <button mat-raised-button> <!--(click)="openDialogPicture()"-->
             Change picture &nbsp;
             <mat-icon color="primary">
               add_box
             </mat-icon>
           </button>
+          <a href="{{recipe_new.link}}">More information</a>
+          <p>{{recipe_new.other}}</p>
         </div>
         <p></p>
         <div>
-          <a href="https://dhbw-karlsruhe.myjetbrains.com/youtrack/dashboard">More information</a>
         </div>
 
       </mat-card>
@@ -195,7 +199,7 @@
       &nbsp; &nbsp; &nbsp;
       <!--<button mat-raised-button>Share</button>
       &nbsp; &nbsp; &nbsp;-->
-      <button mat-raised-button (click)="edit=true">Edit</button>
+      <button mat-raised-button (click)="clickEdit()">Edit</button>
       &nbsp; &nbsp; &nbsp;
       <button mat-raised-button>Delete</button>
     </div>
