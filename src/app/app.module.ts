@@ -10,6 +10,7 @@ import { FormControl } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import {MatMenuModule} from '@angular/material/menu';
+import {MatSelectModule} from '@angular/material/select';
 
 import { FormsModule } from '@angular/forms';
 import { MatGridListModule } from '@angular/material/grid-list';
@@ -59,7 +60,8 @@ import { RecipeOverviewPageComponent } from './recipe-overview-page/recipe-overv
     MatTabsModule,
     MatCheckboxModule,
     AppRoutingModule,
-    MatMenuModule
+    MatMenuModule,
+    MatSelectModule
   ],
   exports: [
     MatFormFieldModule,
@@ -73,7 +75,8 @@ import { RecipeOverviewPageComponent } from './recipe-overview-page/recipe-overv
     MatCardModule,
     MatTabsModule,
     MatCheckboxModule,
-    MatMenuModule
+    MatMenuModule,
+    MatSelectModule,
   ],
   providers: [
     Validators,

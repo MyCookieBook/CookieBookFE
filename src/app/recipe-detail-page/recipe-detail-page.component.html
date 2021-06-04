@@ -2,6 +2,8 @@
   <app-navbar></app-navbar>
 </header>
 <body>
+
+  <!--Category-->
   <div [hidden]="edit">
     <br> &nbsp;&nbsp;
     <button mat-raised-button color="basic">
@@ -41,9 +43,13 @@
       <button mat-menu-item (click)="setCategory('Dessert/FruitSalad')">Fruit Salad</button>
     </mat-menu>
   </div>
-  <mat-grid-list cols="2" rowHeight="5:1">
+
+
+  <mat-grid-list cols="2" rowHeight="7:1">
     <mat-grid-tile colspan="1" rowspan="4">
       <mat-card>
+
+
         <mat-card-header>
           <div [hidden]="edit">
             <mat-card-title><b>{{recipe_title}}</b> &nbsp; by {{recipe_author}}</mat-card-title>
@@ -64,8 +70,10 @@
             </mat-card-title>
           </div>
         </mat-card-header>
+
+
         <mat-card-content>
-          <p></p>
+          <br>
           <div [hidden]="edit">
             <p>
               <mat-icon>schedule</mat-icon> &nbsp;
@@ -78,11 +86,12 @@
             <p>
               <mat-icon>leaderboard</mat-icon> &nbsp;
               <b *ngFor="let x of getDifficulty()">
-                <img mat-card-image text-align="inline" align="textbottom" src="https://raw.githubusercontent.com/MyCookieBook/CookieBookFE/master/src/pictures/Logo.jpg" alt="{{x}}">
+                <img mat-card-image text-align="inline" align="textbottom" src="https://raw.githubusercontent.com/MyCookieBook/CookieBookFE/master/src/pictures/Logo.jpg" alt="{{x+1}}">
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               </b>
             </p>
           </div>
+
           <div [hidden]="!edit">
             <p>
               <mat-icon>schedule</mat-icon> &nbsp;
@@ -103,14 +112,16 @@
             </p>
             <p>
               <mat-icon>leaderboard</mat-icon> &nbsp;
-              <button mat-icon-button *ngFor="let x of getDifficultyNew()" (click)="recipe_difficulty_new = x">
-                <img mat-card-image text-align="inline" align="textbottom" src="https://raw.githubusercontent.com/MyCookieBook/CookieBookFE/master/src/pictures/Logo.jpg">
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              </button>
-              <button mat-icon-button *ngFor="let x of getGrayCookies()" (click)="recipe_difficulty_new = recipe_difficulty_new+x">
-                <img mat-card-image text-align="inline" align="textbottom" src="https://raw.githubusercontent.com/MyCookieBook/CookieBookFE/master/src/pictures/LogoGray.jpg">
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              </button>
+              <mat-form-field>
+                <mat-label>Difficulty Level</mat-label>
+                <mat-select>
+                  <mat-option value="1" (click)="recipe_difficulty_new = 1">1</mat-option>
+                  <mat-option value="2" (click)="recipe_difficulty_new = 2">2</mat-option>
+                  <mat-option value="3" (click)="recipe_difficulty_new = 3">3</mat-option>
+                  <mat-option value="4" (click)="recipe_difficulty_new = 4">4</mat-option>
+                  <mat-option value="5" (click)="recipe_difficulty_new = 5">5</mat-option>
+                </mat-select>
+              </mat-form-field>
             </p>
           </div>
           <br>
@@ -174,31 +185,28 @@
         <div>
           <a href="https://dhbw-karlsruhe.myjetbrains.com/youtrack/dashboard">More information</a>
         </div>
-        <p></p>
-        <div>
-          <button mat-raised-button color="basic">
-            Tag
-          </button>
-        </div>
-        <p></p>
 
       </mat-card>
     </mat-grid-tile>
+
+  <mat-grid-tile colspan="2" rowspan="2">
+    <div class="div-margin" [hidden]="edit">
+      <button mat-raised-button color="primary">Bake</button>
+      &nbsp; &nbsp; &nbsp;
+      <!--<button mat-raised-button>Share</button>
+      &nbsp; &nbsp; &nbsp;-->
+      <button mat-raised-button (click)="edit=true">Edit</button>
+      &nbsp; &nbsp; &nbsp;
+      <button mat-raised-button>Delete</button>
+    </div>
+    <div class="div-margin" [hidden]="!edit">
+      <button mat-raised-button color="{{color}}" (click)="clickSave()">Save</button>
+      &nbsp; &nbsp; &nbsp;
+      <button mat-raised-button (click)="clickCancel()">Cancel</button>
+    </div>
+  </mat-grid-tile>
   </mat-grid-list>
-  <div class="div-margin" align="center" [hidden]="edit">
-    <button mat-raised-button color="primary">Bake</button>
-    &nbsp; &nbsp; &nbsp;
-    <!--<button mat-raised-button>Share</button>
-    &nbsp; &nbsp; &nbsp;-->
-    <button mat-raised-button (click)="edit=true">Edit</button>
-    &nbsp; &nbsp; &nbsp;
-    <button mat-raised-button>Delete</button>
-  </div>
-  <div class="div-margin" align="center" [hidden]="!edit">
-    <button mat-raised-button color="{{color}}" (click)="clickSave()">Save</button>
-     &nbsp; &nbsp; &nbsp;
-    <button mat-raised-button (click)="clickCancel()">Cancel</button>
-  </div>
+
 </body>
 <footer>
   <app-footer></app-footer>

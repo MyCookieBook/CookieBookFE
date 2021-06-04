@@ -130,20 +130,8 @@ export class RecipeDetailPageComponent implements OnInit {
     }
   }
 
-  setDifficulty(difficulty: number) {
-    this.recipe_difficulty_new = this.recipe_difficulty_new + difficulty;
-  }
-
   getDifficulty() {
     return new Array(this.recipe_difficulty);
-  }
-
-  getDifficultyNew() {
-    return new Array(this.recipe_difficulty_new);
-  }
-
-  getGrayCookies() {
-    return new Array(5 - this.recipe_difficulty_new);
   }
 
   clickSave() {
