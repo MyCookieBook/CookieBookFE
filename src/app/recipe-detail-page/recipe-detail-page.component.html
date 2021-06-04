@@ -12,7 +12,7 @@
   </div>
   <div [hidden]="!edit">
     <br> &nbsp;&nbsp;
-    <button mat-raised-button [matMenuTriggerFor]="category">Category/{{recipe_category_new.getCategoryFE()}}</button>
+    <button mat-raised-button [matMenuTriggerFor]="category">Category/{{recipe_new.getCategoryFE()}}</button>
     <mat-menu #category="matMenu">
       <button mat-menu-item [matMenuTriggerFor]="appetizer" (click)="recipe_new.setCategoryFE('Appetizer')">Appetizer</button>
       <button mat-menu-item [matMenuTriggerFor]="mainDish" (click)="recipe_new.setCategoryFE('MainDish')">Main Dish</button>
@@ -70,7 +70,6 @@
             </mat-card-title>
           </div>
         </mat-card-header>
-
 
         <mat-card-content>
           <br>
@@ -165,8 +164,9 @@
           </div>
         </mat-card-content>
       </mat-card>
-
     </mat-grid-tile>
+
+
     <mat-grid-tile colspan="1" rowspan="{{high}}">
       <mat-card>
         <div [hidden]="edit">
@@ -175,40 +175,39 @@
           <p>{{recipe_old.other}}</p>
         </div>
         <div [hidden]="!edit">
-          <!--<button mat-button (click)="openDialog()">Open dialog</button>-->
           <p><img class="image" mat-card-image src="{{recipe_new.picture}}" alt="Image"></p>
-          <button mat-raised-button> <!--(click)="openDialogPicture()"-->
-            Change picture &nbsp;
-            <mat-icon color="primary">
-              add_box
-            </mat-icon>
-          </button>
-          <a href="{{recipe_new.link}}">More information</a>
+          <p>
+            <button mat-raised-button>
+              Change picture &nbsp;
+              <mat-icon color="primary">
+                add_box
+              </mat-icon>
+            </button>
+          </p>
+          <br>
+          <p><a href="{{recipe_new.link}}">More information</a></p>
+          <br>
           <p>{{recipe_new.other}}</p>
         </div>
-        <p></p>
-        <div>
-        </div>
-
       </mat-card>
     </mat-grid-tile>
 
-  <mat-grid-tile colspan="2" rowspan="2">
-    <div class="div-margin" [hidden]="edit">
-      <button mat-raised-button color="primary">Bake</button>
-      &nbsp; &nbsp; &nbsp;
-      <!--<button mat-raised-button>Share</button>
-      &nbsp; &nbsp; &nbsp;-->
-      <button mat-raised-button (click)="clickEdit()">Edit</button>
-      &nbsp; &nbsp; &nbsp;
-      <button mat-raised-button>Delete</button>
-    </div>
-    <div class="div-margin" [hidden]="!edit">
-      <button mat-raised-button color="{{color}}" (click)="clickSave()">Save</button>
-      &nbsp; &nbsp; &nbsp;
-      <button mat-raised-button (click)="clickCancel()">Cancel</button>
-    </div>
-  </mat-grid-tile>
+    <mat-grid-tile colspan="2" rowspan="2">
+      <div class="div-margin" [hidden]="edit">
+        <button mat-raised-button color="primary">Bake</button>
+        &nbsp; &nbsp; &nbsp;
+        <!--<button mat-raised-button>Share</button>
+        &nbsp; &nbsp; &nbsp;-->
+        <button mat-raised-button (click)="clickEdit()">Edit</button>
+        &nbsp; &nbsp; &nbsp;
+        <button mat-raised-button>Delete</button>
+      </div>
+      <div class="div-margin" [hidden]="!edit">
+        <button mat-raised-button color="{{color}}" (click)="clickSave()">Save</button>
+        &nbsp; &nbsp; &nbsp;
+        <button mat-raised-button (click)="clickCancel()">Cancel</button>
+      </div>
+    </mat-grid-tile>
   </mat-grid-list>
 
 </body>

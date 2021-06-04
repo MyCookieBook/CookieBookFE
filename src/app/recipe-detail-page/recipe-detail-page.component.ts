@@ -20,10 +20,9 @@ export class RecipeDetailPageComponent implements OnInit {
   high = 4;
 
   recipe_old: Recipe;
-  recipe_new: Recipe;
+  recipe_new = new Recipe();
 
   recipe_id: number;
-
   /*recipe_category: string;
   recipe_title: string;
   recipe_author: string;
@@ -49,25 +48,27 @@ export class RecipeDetailPageComponent implements OnInit {
   duration: FormControl;
   nutritional: FormControl;
 
-  picture_src: String;
-  link_scr: String;
-
   cookie = "https://raw.githubusercontent.com/MyCookieBook/CookieBookFE/master/src/pictures/Logo.jpg";
 
   constructor(/*public dialog: MatDialog*/) {
-    this.recipe_id = 0;
+    /*this.recipe_id = 0;
     if(this.recipe_id === 0) {
       this.recipe_old = new Recipe();
       this.createEmptyRecipe();
+      this.color = "basic";
+      //this.high = 7;
       this.edit = true;
-    }
+    }*/
   }
 
   ngOnInit(): void {
     this.recipe_id = 0;
     if(this.recipe_id === 0) {
+      this.recipe_old = new Recipe();
       this.createEmptyRecipe();
       this.color = "basic";
+      this.high = 7;
+      this.edit = true;
     }
     this.init();
   }
@@ -79,31 +80,32 @@ export class RecipeDetailPageComponent implements OnInit {
     this.recipe_duration_new = this.recipe_duration;
     this.recipe_values_new = this.recipe_values;
     this.recipe_difficulty_new = this.recipe_difficulty;*/
+
     this.recipe_new.copy(this.recipe_old);
 
     this.title = new FormControl(this.recipe_old.title, [Validators.required]);
     this.author = new FormControl(this.recipe_old.author, [Validators.required]);
     this.duration = new FormControl(this.recipe_old.duration, [Validators.maxLength(3)]);
-    this.nutritional = new FormControl(this.recipe_old.values, [Validators.maxLength(30)]);
+    this.nutritional = new FormControl(this.recipe_old.nutritional, [Validators.maxLength(30)]);
   }
 
   createEmptyRecipe() {
-    this.recipe_old.setCategoryFE("Category/Other");
+    this.recipe_old.setCategoryFE("Other");
     this.recipe_old.title = "Recipe Title";
     this.recipe_old.author = "Recipe Author";
-    //this.recipe_old.duration = 0;
-    //this.recipe_old.values = "";
+    this.recipe_old.duration = 0;
+    this.recipe_old.nutritional = "";
     this.recipe_old.difficulty = 1;
     this.recipe_old.ingredient = ["Ingredients"];
-    //this.recipe_old.material = ""
+    this.recipe_old.material = [""];
     this.recipe_old.step = ["Steps"];
     this.recipe_old.picture = "https://raw.githubusercontent.com/MyCookieBook/CookieBookFE/master/src/pictures/DefaultRecipePicture.jpg";
-    //this.recipe_old.link = "";
-    //this.recipe_old.other = "";
+    this.recipe_old.link = "";
+    this.recipe_old.other = "";
   }
 
   setCategory(category: string) {
-    this.recipe_category_new = 'Category/' + category;
+    this.recipe_new.setCategoryFE(category);
   }
 
   inputTitle(event) {
@@ -175,6 +177,7 @@ export class RecipeDetailPageComponent implements OnInit {
       this.edit = false;
       this.high = 4;
       this.recipe_old.copy(this.recipe_new);
+    }
 
       /*this.recipe_category = this.recipe_category_new;
       this.recipe_title = this.recipe_title_new;
@@ -182,7 +185,6 @@ export class RecipeDetailPageComponent implements OnInit {
       this.recipe_duration = this.recipe_duration_new;
       this.recipe_values = this.recipe_values_new;
       this.recipe_difficulty = this.recipe_difficulty_new;*/
-    }
   }
 
   clickCancel() {
