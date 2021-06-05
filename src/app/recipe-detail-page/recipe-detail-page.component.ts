@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule, MatFormField, MatLabel } from '@angular/material/form-field';
+import {MatListModule} from '@angular/material/list';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {FormControl, Validators, ReactiveFormsModule} from '@angular/forms';
 import {MatDialog} from '@angular/material/dialog';
 import {MatMenuModule} from '@angular/material/menu';
 import {Recipe} from '../classes/recipe';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-recipe-detail-page',
@@ -23,25 +25,6 @@ export class RecipeDetailPageComponent implements OnInit {
   recipe_new = new Recipe();
 
   recipe_id: number;
-  /*recipe_category: string;
-  recipe_title: string;
-  recipe_author: string;
-  recipe_duration: number;
-  recipe_values: string;
-  recipe_difficulty: number;
-  recipe_ingredient: Array<string>;
-  recipe_material: Array<string>;
-  recipe_step: Array<string>;
-  recipe_picture: string;
-  recipe_link: string;
-  recipe_other: string;
-
-  recipe_category_new: string;
-  recipe_title_new: string;
-  recipe_author_new: string;
-  recipe_duration_new: number;
-  recipe_values_new: string;
-  recipe_difficulty_new: number;*/
 
   title: FormControl;
   author: FormControl;
@@ -50,16 +33,7 @@ export class RecipeDetailPageComponent implements OnInit {
 
   cookie = "https://raw.githubusercontent.com/MyCookieBook/CookieBookFE/master/src/pictures/Logo.jpg";
 
-  constructor(/*public dialog: MatDialog*/) {
-    /*this.recipe_id = 0;
-    if(this.recipe_id === 0) {
-      this.recipe_old = new Recipe();
-      this.createEmptyRecipe();
-      this.color = "basic";
-      //this.high = 7;
-      this.edit = true;
-    }*/
-  }
+  constructor(/*public dialog: MatDialog*/private router: Router) {  }
 
   ngOnInit(): void {
     this.recipe_id = 0;
@@ -74,13 +48,6 @@ export class RecipeDetailPageComponent implements OnInit {
   }
 
   init() {
-    /*this.recipe_category_new = this.recipe_category;
-    this.recipe_title_new = this.recipe_title;
-    this.recipe_author_new = this.recipe_author;
-    this.recipe_duration_new = this.recipe_duration;
-    this.recipe_values_new = this.recipe_values;
-    this.recipe_difficulty_new = this.recipe_difficulty;*/
-
     this.recipe_new.copy(this.recipe_old);
 
     this.title = new FormControl(this.recipe_old.title, [Validators.required]);
@@ -178,26 +145,16 @@ export class RecipeDetailPageComponent implements OnInit {
       this.high = 4;
       this.recipe_old.copy(this.recipe_new);
     }
-
-      /*this.recipe_category = this.recipe_category_new;
-      this.recipe_title = this.recipe_title_new;
-      this.recipe_author = this.recipe_author_new;
-      this.recipe_duration = this.recipe_duration_new;
-      this.recipe_values = this.recipe_values_new;
-      this.recipe_difficulty = this.recipe_difficulty_new;*/
   }
 
   clickCancel() {
-    this.edit = false;
-    this.high = 4;
-    this.recipe_new.copy(this.recipe_old);
-
-    /*this.recipe_category_new = this.recipe_category;
-    this.recipe_title_new = this.recipe_title;
-    this.recipe_author_new = this.recipe_author;
-    this.recipe_duration_new = this.recipe_duration;
-    this.recipe_values_new = this.recipe_values;
-    this.recipe_difficulty_new = this.recipe_difficulty;*/
+    if(this.recipe_id === 0) {
+      this.router.navigate(['/']);
+    } else {
+      this.edit = false;
+      this.high = 4;
+      this.recipe_new.copy(this.recipe_old);
+    }
   }
 
   clickEdit() {
@@ -210,12 +167,5 @@ export class RecipeDetailPageComponent implements OnInit {
       this.color = "primary";
     }
   }
-
-  /*openDialogPicture() {
-    const dialogRef = this.dialog.open(DialogPictureComponent);
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-    });
-  }*/
 
 }

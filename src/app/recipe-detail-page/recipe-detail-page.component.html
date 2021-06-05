@@ -124,43 +124,27 @@
             </p>
           </div>
           <br>
-          <div>
+          <div [hidden]="!edit">
             <p>
               <b>Ingredients</b>
             </p>
-            <table mat-table>
-              <ng-container matColumnDef="quantity">
-                <td mat-cell>Quantity</td>
-              </ng-container>
-              <ng-container matColumnDef="ingredient">
-                <td mat-cell>Ingredient</td>
-              </ng-container>
-              <tr mat-row></tr>
-            </table>
-          </div>
-          <p></p>
-          <div>
+            <mat-list role="list">
+              <mat-list-item role="listitem" *ngFor="let ingredient of recipe_new.ingredient">{{ingredient}}</mat-list-item>
+            </mat-list>
+            <br>
             <p>
               <b>Material</b>
             </p>
-            <table mat-table>
-              <ng-container matColumnDef="material">
-                <td mat-cell>Material</td>
-              </ng-container>
-              <tr mat-row></tr>
-            </table>
-          </div>
-          <p></p>
-          <div>
+            <mat-list role="list">
+              <mat-list-item role="listitem" *ngFor="let material of recipe_new.material">{{material}}</mat-list-item>
+            </mat-list>
+            <br>
             <p>
               <b>Steps</b>
             </p>
-            <table mat-table>
-              <ng-container matColumnDef="steps">
-                <td mat-cell>Step</td>
-              </ng-container>
-              <tr mat-row></tr>
-            </table>
+            <mat-list role="list">
+              <mat-list-item role="listitem" *ngFor="let step of recipe_new.step">{{step}}</mat-list-item>
+            </mat-list>
           </div>
         </mat-card-content>
       </mat-card>
