@@ -91,6 +91,14 @@ export class Recipe {
     this._ingredient = ingredient;
   }
 
+  public addIngredient(ingredient: string, index: number) {
+    if(index === -1) {
+      this._ingredient.push(ingredient);
+    } else {
+      this._ingredient[index] = ingredient;
+    }
+  }
+
   public get material() {
     return this._material;
   }
@@ -139,12 +147,26 @@ export class Recipe {
     this._duration = r.duration;
     this._nutritional = r.nutritional;
     this._difficulty = r.difficulty;
-    this._ingredient = r.ingredient;
+    this.copyIngredient(r.ingredient);
+    //this._ingredient = r.ingredient;
     this._material = r.material;
     this._step = r.step;
     this._picture = r.picture;
     this._link = r.link;
     this._other = r.other;
+  }
+
+  public copyIngredient(ingredient: Array<string>) {
+    //this._ingredient = null;
+    //while(this._ingredient.length > 0) {
+      //this._ingredient.pop();
+    //}
+    //ingredient.forEach(i => this._ingredient.push(i));
+    //for(var i = 0; i < ingredient.length; i++) {
+    this._ingredient = ingredient.slice();
+    for(var index in ingredient) {
+      //this._ingredient.push(ingredient[index].);
+    }
   }
 
 }

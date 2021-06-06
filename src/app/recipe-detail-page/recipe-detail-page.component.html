@@ -58,13 +58,13 @@
             <mat-card-title>
               <mat-form-field hideRequiredMarker="false" floatLabel="auto">
                 <mat-label><b>Recipe Title</b></mat-label>
-                <input matInput (keyup)="inputTitle($event)" placeholder="{{recipe_new.title}}" [formControl]="title" required>
+                <input matInput (keyup)="inputTitle($event)" [formControl]="title" required>
                 <mat-error *ngIf="title.invalid">{{getErrorMessageTitle()}}</mat-error>
               </mat-form-field>
               &nbsp; by &nbsp;
               <mat-form-field hideRequiredMarker="false" floatLabel="auto">
                 <mat-label><b>Recipe Author</b></mat-label>
-                <input matInput (keyup)="inputAuthor($event)" placeholder="{{recipe_new.author}}" [formControl]="author" required>
+                <input matInput (keyup)="inputAuthor($event)" [formControl]="author" required>
                 <mat-error *ngIf="author.invalid">{{getErrorMessageAuthor()}}</mat-error>
               </mat-form-field>
             </mat-card-title>
@@ -111,7 +111,7 @@
             </p>
             <p>
               <mat-icon>leaderboard</mat-icon> &nbsp;
-              <mat-form-field>
+              <mat-form-field hideRequiredMarker="false">
                 <mat-label>Difficulty Level</mat-label>
                 <mat-select>
                   <mat-option value="1" (click)="recipe_new.difficulty = 1">1</mat-option>
@@ -124,13 +124,47 @@
             </p>
           </div>
           <br>
-          <div [hidden]="!edit">
+          <div [hidden]="edit">
             <p>
               <b>Ingredients</b>
             </p>
             <mat-list role="list">
-              <mat-list-item role="listitem" *ngFor="let ingredient of recipe_new.ingredient">{{ingredient}}</mat-list-item>
+              <mat-list-item role="listitem" *ngFor="let ingredient of recipe_old.ingredient">{{ingredient}}</mat-list-item>
             </mat-list>
+            <br>
+            <p>
+              <b>Material</b>
+            </p>
+            <mat-list role="list">
+              <mat-list-item role="listitem" *ngFor="let material of recipe_old.material">{{material}}</mat-list-item>
+            </mat-list>
+            <br>
+            <p>
+              <b>Steps</b>
+            </p>
+            <mat-list role="list">
+              <mat-list-item role="listitem" *ngFor="let step of recipe_old.step">{{step}}</mat-list-item>
+            </mat-list>
+          </div>
+          <div [hidden]="!edit">
+            <p>
+              <b>Ingredients</b>
+            </p>
+            <!--<mat-list role="list">
+              <mat-list-item role="listitem" *ngFor="let ingredient of recipe_new.ingredient">{{ingredient}}</mat-list-item>
+            </mat-list>-->
+            <p *ngFor="let i of recipe_new.ingredient, index ind">
+              <mat-form-field hideRequiredMarker="false" floatLabel="always">
+                <mat-label></mat-label>
+                <input matInput (keyup)="inputIngredient($event, ind)" placeholder="{{i}}" value="{{i}}" required>
+                <!--<mat-error *ngIf="ingredient.invalid">{{getErrorMessageIngredient()}}</mat-error>-->
+              </mat-form-field>
+            </p>
+            <p>
+              <button mat-icon-button (click)="addIngredient()">
+                <mat-icon>add_box</mat-icon>
+              </button>
+            </p>
             <br>
             <p>
               <b>Material</b>
@@ -155,7 +189,9 @@
       <mat-card>
         <div [hidden]="edit">
           <p><img class="image" mat-card-image src="{{recipe_old.picture}}" alt="Image"></p>
-          <a href="{{recipe_old.link}}">More information</a>
+          <br>
+          <p><a href="{{recipe_old.link}}">More information</a></p>
+          <br>
           <p>{{recipe_old.other}}</p>
         </div>
         <div [hidden]="!edit">
@@ -171,7 +207,13 @@
           <br>
           <p><a href="{{recipe_new.link}}">More information</a></p>
           <br>
-          <p>{{recipe_new.other}}</p>
+          <p>
+            <mat-form-field>
+              <mat-label>Other Information</mat-label>
+              <textarea matInput (keyup)="inputOther($event)" [formControl]="other"></textarea>
+              <mat-error *ngIf="other.invalid">{{getErrorMessageOther()}}</mat-error>
+            </mat-form-field>
+          </p>
         </div>
       </mat-card>
     </mat-grid-tile>

@@ -19,17 +19,20 @@ export class RecipeDetailPageComponent implements OnInit {
 
   edit = false;
   color = "primary";
-  high = 4;
+  high = 5;
 
   recipe_old: Recipe;
   recipe_new = new Recipe();
 
   recipe_id: number;
+  //recipe_ingredient: string;
 
   title: FormControl;
   author: FormControl;
   duration: FormControl;
   nutritional: FormControl;
+  ingredient: FormControl;
+  other: FormControl;
 
   cookie = "https://raw.githubusercontent.com/MyCookieBook/CookieBookFE/master/src/pictures/Logo.jpg";
 
@@ -50,10 +53,7 @@ export class RecipeDetailPageComponent implements OnInit {
   init() {
     this.recipe_new.copy(this.recipe_old);
 
-    this.title = new FormControl(this.recipe_old.title, [Validators.required]);
-    this.author = new FormControl(this.recipe_old.author, [Validators.required]);
-    this.duration = new FormControl(this.recipe_old.duration, [Validators.maxLength(3)]);
-    this.nutritional = new FormControl(this.recipe_old.nutritional, [Validators.maxLength(30)]);
+    this.setFormControl();
   }
 
   createEmptyRecipe() {
@@ -135,6 +135,44 @@ export class RecipeDetailPageComponent implements OnInit {
     }
   }
 
+  inputIngredient(event, ind: number) {
+    this.checkInvalid();
+    const ingredient = event.target.value;
+    this.recipe_new.addIngredient(ingredient, ind);
+    //this.recipe_ingredient = ingredient;
+  }
+
+  /*getErrorMessageIngredient() {
+    this.color = "basic"
+    if(this.ingredient.hasError('required')) {
+      return 'Please enter ingredients for your recipe!';
+    } else if(this.ingredient.hasError('maxlength')) {
+      return 'Your ingredient is too long.';
+    } else {
+      return '';
+    }
+  }*/
+
+  addIngredient() {
+    this.recipe_new.addIngredient("", -1);
+    //this.recipe_ingredient = "";
+  }
+
+  inputOther(event) {
+    this.checkInvalid();
+    const other = event.target.value;
+    this.recipe_new.other = other;
+  }
+
+  getErrorMessageOther() {
+    this.color = "basic";
+    if(this.nutritional.hasError('maxlength')) {
+      return 'Your information is too long. Max 100 signs.';
+    } else {
+      return '';
+    }
+  }
+
   getDifficulty() {
     return new Array(this.recipe_old.difficulty);
   }
@@ -142,17 +180,17 @@ export class RecipeDetailPageComponent implements OnInit {
   clickSave() {
     if(this.color === "primary") {
       this.edit = false;
-      this.high = 4;
+      this.high = 5;
       this.recipe_old.copy(this.recipe_new);
     }
   }
 
   clickCancel() {
-    if(this.recipe_id === 0) {
+    if(this.recipe_id === -1) {
       this.router.navigate(['/']);
     } else {
       this.edit = false;
-      this.high = 4;
+      this.high = 5;
       this.recipe_new.copy(this.recipe_old);
     }
   }
@@ -160,12 +198,23 @@ export class RecipeDetailPageComponent implements OnInit {
   clickEdit() {
     this.edit = true;
     this.high = 7;
+
+    this.setFormControl();
   }
 
   checkInvalid() {
     if(!this.title.invalid && !this.author.invalid && !this.duration.invalid && !this.nutritional.invalid) {
       this.color = "primary";
     }
+  }
+
+  setFormControl() {
+    this.title = new FormControl(this.recipe_new.title, [Validators.required]);
+    this.author = new FormControl(this.recipe_new.author, [Validators.required]);
+    this.duration = new FormControl(this.recipe_new.duration, [Validators.maxLength(3)]);
+    this.nutritional = new FormControl(this.recipe_new.nutritional, [Validators.maxLength(30)]);
+    this.ingredient = new FormControl('', [Validators.maxLength(100)]);
+    this.other = new FormControl(this.recipe_new.other, [Validators.maxLength(100)]);
   }
 
 }
