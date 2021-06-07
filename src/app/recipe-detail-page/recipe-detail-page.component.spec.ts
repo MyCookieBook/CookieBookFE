@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ProfileDataComponent } from './profile-data.component';
+import { RecipeDetailPageComponent } from './recipe-detail-page.component';
 
-describe('ProfileDataComponent', () => {
-  let component: ProfileDataComponent;
-  let fixture: ComponentFixture<ProfileDataComponent>;
+describe('RecipeDetailPageComponent', () => {
+  let component: RecipeDetailPageComponent;
+  let fixture: ComponentFixture<RecipeDetailPageComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ProfileDataComponent ]
+      declarations: [ RecipeDetailPageComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ProfileDataComponent);
+    fixture = TestBed.createComponent(RecipeDetailPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

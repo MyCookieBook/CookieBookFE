@@ -1,0 +1,122 @@
+<header>
+  <app-navbar></app-navbar>
+</header>
+<body>
+  <div>
+    <p></p> &nbsp;&nbsp;
+    <button mat-raised-button color="basic">
+      Category
+    </button>
+  </div>
+  <mat-grid-list cols="2" rowHeight="6:1">
+    <mat-grid-tile colspan="1" rowspan="3">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title><b>Recipe Title</b> &nbsp; by Recipe Author</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p></p>
+          <div>
+            <mat-icon>schedule</mat-icon> &nbsp;
+            duration min
+          </div>
+          <div>
+            <mat-icon>bug_report</mat-icon> &nbsp;
+            nutritional values
+          </div>
+          <div>
+            <mat-icon>leaderboard</mat-icon> &nbsp;
+            cookies
+          </div>
+          <p></p>
+          <p></p>
+          <div>
+            <p>
+              <b>Ingredients</b>
+            </p>
+            <table mat-table>
+              <ng-container matColumnDef="quantity">
+                <td mat-cell>Quantity</td>
+              </ng-container>
+              <ng-container matColumnDef="ingredient">
+                <td mat-cell>Ingredient</td>
+              </ng-container>
+              <tr mat-row></tr>
+            </table>
+          </div>
+          <p></p>
+          <div>
+            <p>
+              <b>Material</b>
+            </p>
+            <table mat-table>
+              <ng-container matColumnDef="material">
+                <td mat-cell>Material</td>
+              </ng-container>
+              <tr mat-row></tr>
+            </table>
+          </div>
+          <p></p>
+          <div>
+            <p>
+              <b>Steps</b>
+            </p>
+            <table mat-table>
+              <ng-container matColumnDef="steps">
+                <td mat-cell>Step</td>
+              </ng-container>
+              <tr mat-row></tr>
+            </table>
+          </div>
+        </mat-card-content>
+      </mat-card>
+
+    </mat-grid-tile>
+    <mat-grid-tile colspan="1" rowspan="3">
+      <mat-card>
+        <div>
+          <button mat-icon-button>
+            <mat-icon color="primary">
+              add_box
+            </mat-icon>
+          </button>
+          <img mat-card-image src="https://raw.githubusercontent.com/MyCookieBook/CookieBookFE/master/src/pictures/avatar.jpg">
+        </div>
+        <p></p>
+        <div>
+          <a href="https://dhbw-karlsruhe.myjetbrains.com/youtrack/dashboard">More information</a>
+        </div>
+        <p></p>
+        <div>
+          <button mat-raised-button color="basic">
+            Tag
+          </button>
+        </div>
+        <p></p>
+
+      </mat-card>
+    </mat-grid-tile>
+
+    <mat-grid-tile colspan="2" rowspan="1">
+      <div class="div-margin" [hidden]="edit">
+        <button mat-raised-button color="primary">Bake</button>
+        &nbsp; &nbsp; &nbsp;
+        <!--<button mat-raised-button>Share</button>
+        &nbsp; &nbsp; &nbsp;-->
+        <button mat-raised-button (click)="edit=true">Edit</button>
+        &nbsp; &nbsp; &nbsp;
+        <button mat-raised-button>Delete</button>
+      </div>
+      <div class="div-margin" [hidden]="!edit">
+        <button mat-raised-button color="{{color}}" (click)="clickSave()">Save</button>
+        &nbsp; &nbsp; &nbsp;
+        <button mat-raised-button (click)="clickCancel()">Cancel</button>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+</body>
+<footer>
+  <app-footer></app-footer>
+</footer>
+
+<router-outlet></router-outlet>

@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { ProfileDataComponent } from './profile-data/profile-data.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -10,6 +9,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { FormControl } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
+import {HttpClientModule} from "@angular/common/http";
 
 import { FormsModule } from '@angular/forms';
 import { MatGridListModule } from '@angular/material/grid-list';
@@ -25,22 +25,23 @@ import { LoginDataComponent } from './login-data/login-data.component';
 import { LoginRegisterComponent } from './login-register/login-register.component';
 import { FooterComponent } from './footer/footer.component';
 import { MainPageComponent } from './main-page/main-page.component';
+import { RecipeDetailPageComponent } from './recipe-detail-page/recipe-detail-page.component';
 
 //Routing
 import { AppRoutingModule } from './app-routing.module';
-import {HttpClientModule} from "@angular/common/http";
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    ProfileDataComponent,
     ProfilePageComponent,
     NavbarComponent,
     LoginPageComponent,
     LoginDataComponent,
     LoginRegisterComponent,
     FooterComponent,
-    MainPageComponent
+    MainPageComponent,
+    RecipeDetailPageComponent
   ],
   imports: [
     BrowserModule,
@@ -57,7 +58,7 @@ import {HttpClientModule} from "@angular/common/http";
     MatCardModule,
     MatTabsModule,
     MatCheckboxModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
   exports: [
     MatFormFieldModule,
@@ -70,7 +71,7 @@ import {HttpClientModule} from "@angular/common/http";
     MatButtonModule,
     MatCardModule,
     MatTabsModule,
-    MatCheckboxModule
+    MatCheckboxModule,
   ],
   providers: [
     Validators,

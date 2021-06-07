@@ -4,7 +4,46 @@
 <body>
 <mat-grid-list cols="2" rowHeight="6:1">
   <mat-grid-tile colspan="1" rowspan="3">
-    <app-profile-data></app-profile-data>
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title><b>My Profile</b></mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p></p>
+        <div [hidden]="edit">
+          <b>Username</b> &nbsp; {{username_old}}
+        </div>
+        <div [hidden]="!edit">
+          <mat-form-field hideRequiredMarker="false" floatLabel="always">
+            <mat-label><b>Username</b></mat-label>
+            <input matInput (keyup)="inputUsername($event)" [formControl]="name" required>
+            <mat-error *ngIf="name.invalid">{{getErrorMessageName()}}</mat-error>
+          </mat-form-field>
+        </div>
+        <p></p>
+        <div [hidden]="edit">
+          <b>E-Mail</b> &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; {{usermail_old}}
+        </div>
+        <div [hidden]="!edit">
+          <mat-form-field hideRequiredMarker="false" floatLabel="always">
+            <mat-label><b>E-Mail</b></mat-label>
+            <input matInput (keyup)="inputUsermail($event)" [formControl]="email" required>
+            <mat-error *ngIf="email.invalid">{{getErrorMessageMail()}}</mat-error>
+          </mat-form-field>
+        </div>
+        <p></p>
+        <div [hidden]="edit">
+          <b>Password</b> &nbsp;&nbsp; ********
+        </div>
+        <div [hidden]="!edit">
+          <button mat-button>
+            Change Password
+            <mat-icon>edit</mat-icon>
+          </button>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
   </mat-grid-tile>
   <mat-grid-tile colspan="1" rowspan="3">
     <mat-card>
@@ -12,11 +51,13 @@
     </mat-card>
   </mat-grid-tile>
   <mat-grid-tile colspan="2" rowspan="1">
-    <div class="div-margin">
-      <button mat-raised-button color="primary">Save</button>
+    <div class="div-margin" [hidden]="edit">
+      <button mat-raised-button (click)="edit=true">Edit</button>
     </div>
-    <div class="div-margin">
-      <button mat-raised-button>Cancel</button>
+    <div class="div-margin" [hidden]="!edit">
+      <button mat-raised-button color="{{color}}" (click)="clickSave()">Save</button>
+      &nbsp; &nbsp; &nbsp;
+      <button mat-raised-button (click)="clickCancel()">Cancel</button>
     </div>
   </mat-grid-tile>
 </mat-grid-list>
