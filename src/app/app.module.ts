@@ -13,6 +13,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatSelectModule} from '@angular/material/select';
 import {MatDialog, MatDialogRef} from '@angular/material/dialog';
+import {HttpClientModule} from "@angular/common/http";
 
 import { FormsModule } from '@angular/forms';
 import { MatGridListModule } from '@angular/material/grid-list';
@@ -52,6 +53,7 @@ import { AppRoutingModule } from './app-routing.module';
   imports: [
     BrowserModule,
     FormsModule,
+    HttpClientModule,
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
