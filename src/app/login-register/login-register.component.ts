@@ -1,9 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {MatIconModule} from '@angular/material/icon';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatCheckboxModule} from '@angular/material/checkbox';
-import {FormControl, Validators, ReactiveFormsModule} from '@angular/forms';
-import { AbstractControl, NG_VALIDATORS, ValidationErrors, Validator, ValidatorFn } from '@angular/forms';
+import {Component} from '@angular/core';
+import {AbstractControl, FormControl, ValidationErrors, Validators} from '@angular/forms';
 import {Router} from "@angular/router";
 import {UserRegisterService} from "./service/user-register.service";
 
@@ -84,16 +80,6 @@ export class LoginRegisterComponent /*implements OnInit*/ {
     }
   }
 
-  // checkRegister() {
-  //   if(this.hasError == false) {
-  //     this.registerSuccess = true;
-  //   } else {
-  //     this.registerSuccess = false;
-  //   }
-  // }
-
-  /*ngOnInit(): void {
-  }*/
   handleRegister() {
     this.userRegisterService.registerUser(this.email.value, this.password.value).subscribe((res) => {
       if (this.hasError == false) {

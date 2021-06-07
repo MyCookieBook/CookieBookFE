@@ -52,7 +52,7 @@
   </mat-grid-tile>
   <mat-grid-tile colspan="2" rowspan="1">
     <div class="div-margin" [hidden]="edit">
-      <button mat-raised-button (click)="edit=true">Edit</button>
+      <button mat-raised-button (click)="clickEdit()">Edit</button>
     </div>
     <div class="div-margin" [hidden]="!edit">
       <button mat-raised-button color="{{color}}" (click)="clickSave()">Save</button>
