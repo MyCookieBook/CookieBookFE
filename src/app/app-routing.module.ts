@@ -18,6 +18,7 @@ const routes: Routes = [
   {path: 'profile', component: ProfilePageComponent},
   {path: 'recipe', component: RecipeDetailPageComponent},
   {path: 'recipe/search', component: RecipeOverviewPageComponent},
+  {path: 'error404', component: ErrorPageComponent},
   {path: '**', component: ErrorPageComponent} //wildcard route for 404 page
 ];
 
