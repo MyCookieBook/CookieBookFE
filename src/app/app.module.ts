@@ -9,6 +9,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { FormControl } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
+import {HttpClientModule} from "@angular/common/http";
 
 import { FormsModule } from '@angular/forms';
 import { MatGridListModule } from '@angular/material/grid-list';
@@ -24,10 +25,11 @@ import { LoginDataComponent } from './login-data/login-data.component';
 import { LoginRegisterComponent } from './login-register/login-register.component';
 import { FooterComponent } from './footer/footer.component';
 import { MainPageComponent } from './main-page/main-page.component';
+import { RecipeDetailPageComponent } from './recipe-detail-page/recipe-detail-page.component';
 
 //Routing
 import { AppRoutingModule } from './app-routing.module';
-import { RecipeDetailPageComponent } from './recipe-detail-page/recipe-detail-page.component';
+
 
 @NgModule({
   declarations: [
@@ -44,6 +46,7 @@ import { RecipeDetailPageComponent } from './recipe-detail-page/recipe-detail-pa
   imports: [
     BrowserModule,
     FormsModule,
+    HttpClientModule,
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
