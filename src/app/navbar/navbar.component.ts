@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {MatMenuModule} from '@angular/material/menu';
 import {Router} from "@angular/router";
 import {UserLogoutService} from "./service/user-logout.service";
 
@@ -7,7 +8,7 @@ import {UserLogoutService} from "./service/user-logout.service";
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss']
 })
-export class NavbarComponent /*implements OnInit*/ {
+export class NavbarComponent {
 
   logoutSuccess = false;
   status: Number;
@@ -29,5 +30,4 @@ export class NavbarComponent /*implements OnInit*/ {
       this.router.navigate(['/login'])
     })
   }
-
 }

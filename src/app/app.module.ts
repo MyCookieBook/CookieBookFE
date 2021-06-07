@@ -4,11 +4,15 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import {MatListModule} from '@angular/material/list';
 import { MatInputModule } from '@angular/material/input';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { FormControl } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatSelectModule} from '@angular/material/select';
+import {MatDialog, MatDialogRef} from '@angular/material/dialog';
 import {HttpClientModule} from "@angular/common/http";
 
 import { FormsModule } from '@angular/forms';
@@ -26,10 +30,11 @@ import { LoginRegisterComponent } from './login-register/login-register.componen
 import { FooterComponent } from './footer/footer.component';
 import { MainPageComponent } from './main-page/main-page.component';
 import { RecipeDetailPageComponent } from './recipe-detail-page/recipe-detail-page.component';
+import { RecipeOverviewPageComponent } from './recipe-overview-page/recipe-overview-page.component';
+import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 
 //Routing
 import { AppRoutingModule } from './app-routing.module';
-
 
 @NgModule({
   declarations: [
@@ -41,7 +46,9 @@ import { AppRoutingModule } from './app-routing.module';
     LoginRegisterComponent,
     FooterComponent,
     MainPageComponent,
-    RecipeDetailPageComponent
+    RecipeDetailPageComponent,
+    RecipeOverviewPageComponent,
+    ConfirmDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -58,7 +65,10 @@ import { AppRoutingModule } from './app-routing.module';
     MatCardModule,
     MatTabsModule,
     MatCheckboxModule,
+    MatListModule,
     AppRoutingModule,
+    MatMenuModule,
+    MatSelectModule,
   ],
   exports: [
     MatFormFieldModule,
@@ -72,6 +82,9 @@ import { AppRoutingModule } from './app-routing.module';
     MatCardModule,
     MatTabsModule,
     MatCheckboxModule,
+    MatMenuModule,
+    MatSelectModule,
+    MatListModule,
   ],
   providers: [
     Validators,

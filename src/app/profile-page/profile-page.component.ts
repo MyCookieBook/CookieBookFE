@@ -13,11 +13,11 @@ export class ProfilePageComponent /*implements OnInit*/ {
 
   edit = false;
   username_old = "username";
-  username_new = this.username_old;
-  name = new FormControl(this.username_old, [Validators.required, Validators.minLength(4)]);
   usermail_old = "usermail";
+  username_new = this.username_old;
   usermail_new = this.usermail_old;
-  email = new FormControl(this.username_old, [Validators.required, Validators.email]);
+  name = new FormControl(this.username_new, [Validators.required, Validators.minLength(4)]);
+  email = new FormControl(this.username_new, [Validators.required, Validators.email]);
   color = "primary";
   picturescr="test";
 
@@ -78,6 +78,12 @@ export class ProfilePageComponent /*implements OnInit*/ {
     this.edit = false;
     this.username_new = this.username_old;
     this.usermail_new = this.usermail_old;
+  }
+
+  clickEdit() {
+    this.edit = true;
+    this.name = new FormControl(this.username_new, [Validators.required, Validators.minLength(4)]);
+    this.email = new FormControl(this.username_new, [Validators.required, Validators.email]);
   }
 
   /*ngOnInit(): void {
