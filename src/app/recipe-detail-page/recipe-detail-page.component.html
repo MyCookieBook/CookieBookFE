@@ -114,11 +114,11 @@
               <mat-form-field hideRequiredMarker="false">
                 <mat-label>Difficulty Level</mat-label>
                 <mat-select>
-                  <mat-option value="1" (click)="recipe_new.difficulty = 1">1</mat-option>
-                  <mat-option value="2" (click)="recipe_new.difficulty = 2">2</mat-option>
-                  <mat-option value="3" (click)="recipe_new.difficulty = 3">3</mat-option>
-                  <mat-option value="4" (click)="recipe_new.difficulty = 4">4</mat-option>
-                  <mat-option value="5" (click)="recipe_new.difficulty = 5">5</mat-option>
+                  <mat-option value="1" (click)="setDifficulty(1)">1</mat-option>
+                  <mat-option value="2" (click)="setDifficulty(2)">2</mat-option>
+                  <mat-option value="3" (click)="setDifficulty(3)">3</mat-option>
+                  <mat-option value="4" (click)="setDifficulty(4)">4</mat-option>
+                  <mat-option value="5" (click)="setDifficulty(5)">5</mat-option>
                 </mat-select>
               </mat-form-field>
             </p>
@@ -148,16 +148,15 @@
           </div>
           <div [hidden]="!edit">
             <p>
-              <b>Ingredients</b>
+              <b>Ingredients </b><sup>*</sup>
             </p>
-            <!--<mat-list role="list">
-              <mat-list-item role="listitem" *ngFor="let ingredient of recipe_new.ingredient">{{ingredient}}</mat-list-item>
-            </mat-list>-->
-            <p *ngFor="let i of recipe_new.ingredient, index ind">
-              <mat-form-field hideRequiredMarker="false" floatLabel="always">
+            <p *ngFor="let i of recipe_new.ingredient, let ind = index">
+              <mat-form-field hideRequiredMarker="true" floatLabel="always">
                 <mat-label></mat-label>
-                <input matInput (keyup)="inputIngredient($event, ind)" placeholder="{{i}}" value="{{i}}" required>
-                <!--<mat-error *ngIf="ingredient.invalid">{{getErrorMessageIngredient()}}</mat-error>-->
+                <input matInput (keyup)="inputIngredient($event, ind)" placeholder="Ingredient" value="{{i}}" required>
+                <button mat-icon-button matSuffix (click)="deleteIngredient(ind)">
+                  <mat-icon>delete</mat-icon>
+                </button>
               </mat-form-field>
             </p>
             <p>
@@ -169,16 +168,38 @@
             <p>
               <b>Material</b>
             </p>
-            <mat-list role="list">
-              <mat-list-item role="listitem" *ngFor="let material of recipe_new.material">{{material}}</mat-list-item>
-            </mat-list>
+            <p *ngFor="let i of recipe_new.material, let ind = index">
+              <mat-form-field hideRequiredMarker="true" floatLabel="always">
+                <mat-label></mat-label>
+                <input matInput (keyup)="inputMaterial($event, ind)" placeholder="Material" value="{{i}}">
+                <button mat-icon-button matSuffix (click)="deleteMaterial(ind)">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </mat-form-field>
+            </p>
+            <p>
+              <button mat-icon-button (click)="addMaterial()">
+                <mat-icon>add_box</mat-icon>
+              </button>
+            </p>
             <br>
             <p>
-              <b>Steps</b>
+              <b>Steps </b><sup>*</sup>
             </p>
-            <mat-list role="list">
-              <mat-list-item role="listitem" *ngFor="let step of recipe_new.step">{{step}}</mat-list-item>
-            </mat-list>
+            <p *ngFor="let i of recipe_new.step, let ind = index">
+              <mat-form-field hideRequiredMarker="true" floatLabel="always">
+                <mat-label></mat-label>
+                <input matInput (keyup)="inputStep($event, ind)" placeholder="Step" value="{{i}}" required>
+                <button mat-icon-button matSuffix (click)="deleteStep(ind)">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </mat-form-field>
+            </p>
+            <p>
+              <button mat-icon-button (click)="addStep()">
+                <mat-icon>add_box</mat-icon>
+              </button>
+            </p>
           </div>
         </mat-card-content>
       </mat-card>
@@ -196,16 +217,22 @@
         </div>
         <div [hidden]="!edit">
           <p><img class="image" mat-card-image src="{{recipe_new.picture}}" alt="Image"></p>
-          <p>
+          <!--<p>
             <button mat-raised-button>
               Change picture &nbsp;
               <mat-icon color="primary">
                 add_box
               </mat-icon>
             </button>
-          </p>
+          </p>-->
           <br>
-          <p><a href="{{recipe_new.link}}" onclick="return false">More information</a></p>
+          <p>
+            <mat-form-field>
+              <mat-label>More Information (Link)</mat-label>
+              <input matInput (keyup)="inputLink($event)" [formControl]="link">
+              <mat-error *ngIf="link.invalid">{{getErrorMessageLink()}}</mat-error>
+            </mat-form-field>
+          </p>
           <br>
           <p>
             <mat-form-field>

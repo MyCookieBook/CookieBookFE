@@ -99,6 +99,18 @@ export class Recipe {
     }
   }
 
+  public deleteIngredient(index: number) {
+    if(index === 0) {
+      if(this._ingredient.length === 1) {
+        this._ingredient[index] = "";
+      } else {
+        this._ingredient.shift();
+      }
+    } else {
+      this._ingredient.splice(index);
+    }
+  }
+
   public get material() {
     return this._material;
   }
@@ -107,12 +119,52 @@ export class Recipe {
     this._material = material;
   }
 
+  public addMaterial(material: string, index: number) {
+    if(index === -1) {
+      this._material.push(material);
+    } else {
+      this._material[index] = material;
+    }
+  }
+
+  public deleteMaterial(index: number) {
+    if(index === 0) {
+      if(this._material.length === 1) {
+        this._material[index] = "";
+      } else {
+        this._material.shift();
+      }
+    } else {
+      this._material.splice(index);
+    }
+  }
+
   public get step() {
     return this._step;
   }
 
   public set step(step: Array<string>) {
     this._step = step;
+  }
+
+  public addStep(step: string, index: number) {
+    if(index === -1) {
+      this._step.push(step);
+    } else {
+      this._step[index] = step;
+    }
+  }
+
+  public deleteStep(index: number) {
+    if(index === 0) {
+      if(this._step.length === 1) {
+        this._step[index] = "";
+      } else {
+        this._step.shift();
+      }
+    } else {
+      this._step.splice(index);
+    }
   }
 
   public get picture() {
@@ -147,26 +199,12 @@ export class Recipe {
     this._duration = r.duration;
     this._nutritional = r.nutritional;
     this._difficulty = r.difficulty;
-    this.copyIngredient(r.ingredient);
-    //this._ingredient = r.ingredient;
-    this._material = r.material;
-    this._step = r.step;
+    this._ingredient = r.ingredient.slice();
+    this._material = r.material.slice();
+    this._step = r.step.slice();
     this._picture = r.picture;
     this._link = r.link;
     this._other = r.other;
-  }
-
-  public copyIngredient(ingredient: Array<string>) {
-    //this._ingredient = null;
-    //while(this._ingredient.length > 0) {
-      //this._ingredient.pop();
-    //}
-    //ingredient.forEach(i => this._ingredient.push(i));
-    //for(var i = 0; i < ingredient.length; i++) {
-    this._ingredient = ingredient.slice();
-    for(var index in ingredient) {
-      //this._ingredient.push(ingredient[index].);
-    }
   }
 
 }

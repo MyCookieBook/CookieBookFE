@@ -12,6 +12,7 @@ import { Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatSelectModule} from '@angular/material/select';
+import {MatDialog, MatDialogRef} from '@angular/material/dialog';
 
 import { FormsModule } from '@angular/forms';
 import { MatGridListModule } from '@angular/material/grid-list';
@@ -27,11 +28,12 @@ import { LoginDataComponent } from './login-data/login-data.component';
 import { LoginRegisterComponent } from './login-register/login-register.component';
 import { FooterComponent } from './footer/footer.component';
 import { MainPageComponent } from './main-page/main-page.component';
+import { RecipeDetailPageComponent } from './recipe-detail-page/recipe-detail-page.component';
+import { RecipeOverviewPageComponent } from './recipe-overview-page/recipe-overview-page.component';
+import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 
 //Routing
 import { AppRoutingModule } from './app-routing.module';
-import { RecipeDetailPageComponent } from './recipe-detail-page/recipe-detail-page.component';
-import { RecipeOverviewPageComponent } from './recipe-overview-page/recipe-overview-page.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +46,8 @@ import { RecipeOverviewPageComponent } from './recipe-overview-page/recipe-overv
     FooterComponent,
     MainPageComponent,
     RecipeDetailPageComponent,
-    RecipeOverviewPageComponent
+    RecipeOverviewPageComponent,
+    ConfirmDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -63,7 +66,7 @@ import { RecipeOverviewPageComponent } from './recipe-overview-page/recipe-overv
     MatListModule,
     AppRoutingModule,
     MatMenuModule,
-    MatSelectModule
+    MatSelectModule,
   ],
   exports: [
     MatFormFieldModule,
