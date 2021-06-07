@@ -32,6 +32,7 @@ import { MainPageComponent } from './main-page/main-page.component';
 import { AppRoutingModule } from './app-routing.module';
 import { RecipeDetailPageComponent } from './recipe-detail-page/recipe-detail-page.component';
 import { RecipeOverviewPageComponent } from './recipe-overview-page/recipe-overview-page.component';
+import { ErrorPageComponent } from './error-page/error-page.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { RecipeOverviewPageComponent } from './recipe-overview-page/recipe-overv
     FooterComponent,
     MainPageComponent,
     RecipeDetailPageComponent,
-    RecipeOverviewPageComponent
+    RecipeOverviewPageComponent,
+    ErrorPageComponent
   ],
   imports: [
     BrowserModule,
