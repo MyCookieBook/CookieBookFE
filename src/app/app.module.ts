@@ -27,12 +27,17 @@ import { LoginDataComponent } from './login-data/login-data.component';
 import { LoginRegisterComponent } from './login-register/login-register.component';
 import { FooterComponent } from './footer/footer.component';
 import { MainPageComponent } from './main-page/main-page.component';
-
-//Routing
-import { AppRoutingModule } from './app-routing.module';
 import { RecipeDetailPageComponent } from './recipe-detail-page/recipe-detail-page.component';
 import { RecipeOverviewPageComponent } from './recipe-overview-page/recipe-overview-page.component';
 import { ErrorPageComponent } from './error-page/error-page.component';
+import { HelpPageComponent } from './help-page/help-page.component';
+import { ContactPageComponent } from './contact-page/contact-page.component';
+import { InformationPrivacyPageComponent } from './information-privacy-page/information-privacy-page.component';
+import { TeamPageComponent } from './team-page/team-page.component';
+
+//Routing
+import { AppRoutingModule } from './app-routing.module';
+
 
 @NgModule({
   declarations: [
@@ -46,7 +51,11 @@ import { ErrorPageComponent } from './error-page/error-page.component';
     MainPageComponent,
     RecipeDetailPageComponent,
     RecipeOverviewPageComponent,
-    ErrorPageComponent
+    ErrorPageComponent,
+    HelpPageComponent,
+    ContactPageComponent,
+    InformationPrivacyPageComponent,
+    TeamPageComponent
   ],
   imports: [
     BrowserModule,
