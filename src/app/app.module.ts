@@ -12,6 +12,8 @@ import { Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatSelectModule} from '@angular/material/select';
+import {MatDialog, MatDialogRef} from '@angular/material/dialog';
+import {HttpClientModule} from "@angular/common/http";
 
 import { FormsModule } from '@angular/forms';
 import { MatGridListModule } from '@angular/material/grid-list';
@@ -34,10 +36,10 @@ import { HelpPageComponent } from './help-page/help-page.component';
 import { ContactPageComponent } from './contact-page/contact-page.component';
 import { InformationPrivacyPageComponent } from './information-privacy-page/information-privacy-page.component';
 import { TeamPageComponent } from './team-page/team-page.component';
+import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 
 //Routing
 import { AppRoutingModule } from './app-routing.module';
-
 
 @NgModule({
   declarations: [
@@ -56,10 +58,13 @@ import { AppRoutingModule } from './app-routing.module';
     ContactPageComponent,
     InformationPrivacyPageComponent,
     TeamPageComponent
+    ConfirmDialogComponent
+
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    HttpClientModule,
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
@@ -74,7 +79,7 @@ import { AppRoutingModule } from './app-routing.module';
     MatListModule,
     AppRoutingModule,
     MatMenuModule,
-    MatSelectModule
+    MatSelectModule,
   ],
   exports: [
     MatFormFieldModule,

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {MatMenuModule} from '@angular/material/menu';
+import {Router} from "@angular/router";
+import {UserLogoutService} from "./service/user-logout.service";
 
 @Component({
   selector: 'app-navbar',
@@ -8,5 +10,24 @@ import {MatMenuModule} from '@angular/material/menu';
 })
 export class NavbarComponent {
 
-  constructor() { }
+  logoutSuccess = false;
+  status: Number;
+
+  constructor(private userLogoutService: UserLogoutService, private router: Router) { }
+
+  clickLogin() {
+    //showLoginPage();
+  }
+
+  /*ngOnInit(): void {
+  }*/
+  handleLogout() {
+    this.userLogoutService.logoutUser(JSON.parse(localStorage.getItem('UserID'))).subscribe((result) => {
+      console.log(JSON.parse(localStorage.getItem('UserID')))
+      localStorage.removeItem('UserID');
+      this.logoutSuccess = true;
+      this.status = +result;
+      this.router.navigate(['/login'])
+    })
+  }
 }
