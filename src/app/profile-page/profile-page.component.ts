@@ -161,7 +161,8 @@ export class ProfilePageComponent implements OnInit {
   }
 
   confirmInvalid() {
-    if(this.pw_confirm.invalid || this.notEqualPw()) {
+    if(this.notEqualPw() || this.pw_confirm.invalid) {
+     console.log('right');
       return true;
     } else {
       return false;
@@ -169,6 +170,9 @@ export class ProfilePageComponent implements OnInit {
   }
 
   notEqualPw() {
+    console.log(this.password_confirm);
+    console.log(this.password_new);
+    console.log(!(this.password_new === this.password_confirm));
     return !(this.password_new === this.password_confirm);
   }
 
@@ -179,6 +183,7 @@ export class ProfilePageComponent implements OnInit {
     } else if(this.pw_confirm.hasError('minlength')) {
       return 'The password is to short! (min length 8)';
     } else if (this.notEqualPw()){
+      console.log("message");
       return 'It is not the same password!';
     } else {
       return '';

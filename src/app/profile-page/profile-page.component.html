@@ -46,7 +46,8 @@
             <p>
               <mat-form-field hideRequiredMarker="false" floatLabel="always">
                 <mat-label>Old Password</mat-label>
-                <input matInput (keyup)="inputPasswordOld($event)" [type]="hidePwOld ? 'password' : 'text'" placeholder="Enter your old Password" [formControl]="pw_old" required>
+                <input matInput (keyup)="inputPasswordOld($event)" [type]="hidePwOld ? 'password' : 'text'"
+                       placeholder="Enter your old Password" [formControl]="pw_old" required>
                 <mat-error *ngIf="pw_old.invalid">{{getErrorMessagePasswordOld()}}</mat-error>
                 <button mat-icon-button
                         matSuffix (click)="hidePwOld = !hidePwOld"
@@ -59,7 +60,8 @@
             <p>
               <mat-form-field hideRequiredMarker="false" floatLabel="always">
                 <mat-label>New Password</mat-label>
-                <input matInput (keyup)="inputPasswordNew($event)" [type]="hidePwNew ? 'password' : 'text'" placeholder="Enter your new Password" [formControl]="pw_new" required>
+                <input matInput (keyup)="inputPasswordNew($event)" [type]="hidePwNew ? 'password' : 'text'"
+                       placeholder="Enter your new Password" [formControl]="pw_new" required>
                 <mat-error *ngIf="pw_new.invalid">{{getErrorMessagePasswordNew()}}</mat-error>
                 <button mat-icon-button
                         matSuffix (click)="hidePwNew = !hidePwNew"
@@ -72,7 +74,8 @@
             <p>
               <mat-form-field hideRequiredMarker="false" floatLabel="always">
                 <mat-label>Confirm new Password</mat-label>
-                <input matInput (keyup)="inputPasswordConfirm($event)" [type]="hidePwConfirm ? 'password' : 'text'" placeholder="Confirm your new Password" [formControl]="pw_confirm" required>
+                <input matInput (keyup)="inputPasswordConfirm($event)" [type]="hidePwConfirm ? 'password' : 'text'"
+                       placeholder="Confirm your new Password" [formControl]="pw_confirm" required>
                 <mat-error *ngIf="confirmInvalid()">{{getErrorMessagePasswordConfirm()}}</mat-error>
                 <button mat-icon-button
                         matSuffix (click)="hidePwConfirm = !hidePwConfirm"
@@ -81,6 +84,9 @@
                   <mat-icon>{{hidePwConfirm ? 'visibility_off' : 'visibility'}}</mat-icon>
                 </button>
               </mat-form-field>
+            </p>
+            <p>
+              {{getErrorMessagePasswordConfirm()}}
             </p>
             <p class="div-margin">
               <button mat-raised-button color="{{colorPw}}" (click)="clickSavePw()">Save new Password</button>
@@ -100,7 +106,8 @@
   </mat-grid-tile>
   <mat-grid-tile colspan="1" rowspan="4">
     <mat-card>
-      <img mat-card-image src="https://raw.githubusercontent.com/MyCookieBook/CookieBookFE/master/src/pictures/avatar.jpg">
+      <img mat-card-image
+           src="https://raw.githubusercontent.com/MyCookieBook/CookieBookFE/master/src/pictures/avatar.jpg">
     </mat-card>
   </mat-grid-tile>
   <mat-grid-tile colspan="2" rowspan="1">
