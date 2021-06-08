@@ -2,14 +2,32 @@
   <mat-toolbar color="primary">
     <span class="example-spacer"></span>
     <div>
-      <button mat-button class="button-font">.&nbsp; .&nbsp; .</button>
+      <button mat-button class="button-font" [matMenuTriggerFor]="otherPages">.&nbsp; .&nbsp; .</button>
+      <mat-menu #otherPages="matMenu">
+        <button mat-menu-item>
+          <a routerLink="/help" routerLinkActive="active" style="text-decoration:none; color:black">Help</a>
+        </button>
+        <button mat-menu-item>
+          <a routerLink="/contact" routerLinkActive="active" style="text-decoration:none; color:black">Contact</a>
+        </button>
+        <button mat-menu-item>
+          <a routerLink="/information_privacy" routerLinkActive="active" style="text-decoration:none; color:black">information privacy</a>
+        </button>
+        <button mat-menu-item>
+          <a routerLink="/team" routerLinkActive="active" style="text-decoration:none; color:black">Team</a>
+        </button>
+      </mat-menu>
     </div>
     <div>
-      <button mat-button class="button-font">information privacy</button>
+      <button mat-button class="button-font">
+        <a routerLink="/information_privacy" routerLinkActive="active" style="text-decoration:none; color:white">information privacy</a>
+      </button>
     </div>
     <div class="example-button-container">
       <button mat-icon-button>
-        <mat-icon>help_outline</mat-icon>
+        <mat-icon>
+          <a routerLink="/help" routerLinkActive="active" style="text-decoration:none; color:white">help_outline</a>
+        </mat-icon>
       </button>
     </div>
   </mat-toolbar>

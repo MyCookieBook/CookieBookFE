@@ -31,6 +31,11 @@ import { FooterComponent } from './footer/footer.component';
 import { MainPageComponent } from './main-page/main-page.component';
 import { RecipeDetailPageComponent } from './recipe-detail-page/recipe-detail-page.component';
 import { RecipeOverviewPageComponent } from './recipe-overview-page/recipe-overview-page.component';
+import { ErrorPageComponent } from './error-page/error-page.component';
+import { HelpPageComponent } from './help-page/help-page.component';
+import { ContactPageComponent } from './contact-page/contact-page.component';
+import { InformationPrivacyPageComponent } from './information-privacy-page/information-privacy-page.component';
+import { TeamPageComponent } from './team-page/team-page.component';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 
 //Routing
@@ -48,7 +53,13 @@ import { AppRoutingModule } from './app-routing.module';
     MainPageComponent,
     RecipeDetailPageComponent,
     RecipeOverviewPageComponent,
+    ErrorPageComponent,
+    HelpPageComponent,
+    ContactPageComponent,
+    InformationPrivacyPageComponent,
+    TeamPageComponent
     ConfirmDialogComponent
+
   ],
   imports: [
     BrowserModule,
