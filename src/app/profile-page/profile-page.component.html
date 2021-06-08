@@ -3,7 +3,7 @@
 </header>
 <body>
 <mat-grid-list cols="2" rowHeight="6:1">
-  <mat-grid-tile colspan="1" rowspan="3">
+  <mat-grid-tile colspan="1" rowspan="4">
     <mat-card>
       <mat-card-header>
         <mat-card-title><b>My Profile</b></mat-card-title>
@@ -36,16 +36,69 @@
           <b>Password</b> &nbsp;&nbsp; ********
         </div>
         <div [hidden]="!edit">
-          <button mat-button>
+          <mat-expansion-panel hideToggle (opened)="initChangePassword()">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Change Password
+                <mat-icon>edit</mat-icon>
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <p>
+              <mat-form-field hideRequiredMarker="false" floatLabel="always">
+                <mat-label>Old Password</mat-label>
+                <input matInput (keyup)="inputPasswordOld($event)" [type]="hidePwOld ? 'password' : 'text'" placeholder="Enter your old Password" [formControl]="pw_old" required>
+                <mat-error *ngIf="pw_old.invalid">{{getErrorMessagePasswordOld()}}</mat-error>
+                <button mat-icon-button
+                        matSuffix (click)="hidePwOld = !hidePwOld"
+                        [attr.aria-label]="'Hide password old'"
+                        [attr.aria-pressed]="hidePwOld">
+                  <mat-icon>{{hidePwOld ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+              </mat-form-field>
+            </p>
+            <p>
+              <mat-form-field hideRequiredMarker="false" floatLabel="always">
+                <mat-label>New Password</mat-label>
+                <input matInput (keyup)="inputPasswordNew($event)" [type]="hidePwNew ? 'password' : 'text'" placeholder="Enter your new Password" [formControl]="pw_new" required>
+                <mat-error *ngIf="pw_new.invalid">{{getErrorMessagePasswordNew()}}</mat-error>
+                <button mat-icon-button
+                        matSuffix (click)="hidePwNew = !hidePwNew"
+                        [attr.aria-label]="'Hide password new'"
+                        [attr.aria-pressed]="hidePwNew">
+                  <mat-icon>{{hidePwNew ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+              </mat-form-field>
+            </p>
+            <p>
+              <mat-form-field hideRequiredMarker="false" floatLabel="always">
+                <mat-label>Confirm new Password</mat-label>
+                <input matInput (keyup)="inputPasswordConfirm($event)" [type]="hidePwConfirm ? 'password' : 'text'" placeholder="Confirm your new Password" [formControl]="pw_confirm" required>
+                <mat-error *ngIf="confirmInvalid()">{{getErrorMessagePasswordConfirm()}}</mat-error>
+                <button mat-icon-button
+                        matSuffix (click)="hidePwConfirm = !hidePwConfirm"
+                        [attr.aria-label]="'Hide password confirm'"
+                        [attr.aria-pressed]="hidePwConfirm">
+                  <mat-icon>{{hidePwConfirm ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+              </mat-form-field>
+            </p>
+            <p class="div-margin">
+              <button mat-raised-button color="{{colorPw}}" (click)="clickSavePw()">Save new Password</button>
+              &nbsp; &nbsp;
+              <button mat-raised-button (click)="clickCancelPw()">Cancel</button>
+            </p>
+            <p [hidden]="!savePw">Password is changed.</p>
+          </mat-expansion-panel>
+          <!--<button mat-button>
             Change Password
             <mat-icon>edit</mat-icon>
-          </button>
+          </button>-->
         </div>
       </mat-card-content>
     </mat-card>
 
   </mat-grid-tile>
-  <mat-grid-tile colspan="1" rowspan="3">
+  <mat-grid-tile colspan="1" rowspan="4">
     <mat-card>
       <img mat-card-image src="https://raw.githubusercontent.com/MyCookieBook/CookieBookFE/master/src/pictures/avatar.jpg">
     </mat-card>

@@ -11,6 +11,7 @@ import { Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import {HttpClientModule} from "@angular/common/http";
 
+import {MatExpansionModule} from '@angular/material/expansion';
 import { FormsModule } from '@angular/forms';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
@@ -59,6 +60,7 @@ import { AppRoutingModule } from './app-routing.module';
     MatTabsModule,
     MatCheckboxModule,
     AppRoutingModule,
+    MatExpansionModule
   ],
   exports: [
     MatFormFieldModule,
@@ -72,6 +74,7 @@ import { AppRoutingModule } from './app-routing.module';
     MatCardModule,
     MatTabsModule,
     MatCheckboxModule,
+    MatExpansionModule
   ],
   providers: [
     Validators,

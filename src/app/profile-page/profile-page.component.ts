@@ -16,20 +16,33 @@ export class ProfilePageComponent implements OnInit {
 
   edit = false;
   color = "primary";
+  colorPw = "basic";
 
   userId: string;
   response: number;
 
   username_old: string;
   usermail_old: string;
-  password_old: string;
 
   username_new: string;
   usermail_new: string;
+
+  password_old: string;
   password_new: string;
+  password_confirm: string;
+
+  hidePwOld: boolean;
+  hidePwNew: boolean;
+  hidePwConfirm: boolean;
+
+  savePw: boolean;
 
   name: FormControl;
   email: FormControl;
+
+  pw_old: FormControl;
+  pw_new: FormControl;
+  pw_confirm: FormControl;
 
   picturescr = "https://raw.githubusercontent.com/MyCookieBook/CookieBookFE/master/src/pictures/avatar.jpg";
 
@@ -48,6 +61,8 @@ export class ProfilePageComponent implements OnInit {
     this.usermail_new = this.usermail_old;
 
     this.setFormControl();
+    this.initChangePassword();
+    this.clearPasswords();
   }
 
   inputUsername(event) {
@@ -90,6 +105,108 @@ export class ProfilePageComponent implements OnInit {
     }
   }
 
+  initChangePassword() {
+    this.hidePwOld = true;
+    this.hidePwNew = true;
+    this.hidePwConfirm = true;
+    this.setFormControlPassword();
+    this.savePw = false;
+  }
+
+  clearPasswords() {
+    this.password_old = "";
+    this.password_new = "";
+    this.password_confirm = "";
+    this.colorPw = "basic";
+  }
+
+  inputPasswordOld(event) {
+    const pw = event.target.value;
+    this.password_old = pw;
+    this.checkInvalidPw();
+  }
+
+  getErrorMessagePasswordOld() {
+    this.colorPw = "basic";
+    if(this.pw_old.hasError('required')) {
+      return 'Please enter the password!';
+    } else if(this.pw_old.hasError('minlength')) {
+      return 'The password is to short! (min length 8)';
+    } else {
+      return '';
+    }
+  }
+
+  inputPasswordNew(event) {
+    const pw = event.target.value;
+    this.password_new = pw;
+    this.checkInvalidPw();
+  }
+
+  getErrorMessagePasswordNew() {
+    this.colorPw = "basic";
+    if(this.pw_new.hasError('required')) {
+      return 'Please enter the password!';
+    } else if(this.pw_new.hasError('minlength')) {
+      return 'The password is to short! (min length 8)';
+    } else {
+      return '';
+    }
+  }
+
+  inputPasswordConfirm(event) {
+    const pw = event.target.value;
+    this.password_confirm = pw;
+    this.checkInvalidPw();
+  }
+
+  confirmInvalid() {
+    if(this.pw_confirm.invalid || this.notEqualPw()) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  notEqualPw() {
+    return !(this.password_new === this.password_confirm);
+  }
+
+  getErrorMessagePasswordConfirm() {
+    this.colorPw = "basic";
+    if(this.pw_confirm.hasError('required')) {
+      return 'Please enter the password!';
+    } else if(this.pw_confirm.hasError('minlength')) {
+      return 'The password is to short! (min length 8)';
+    } else if (this.notEqualPw()){
+      return 'It is not the same password!';
+    } else {
+      return '';
+    }
+  }
+
+  checkInvalidPw() {
+    if(!this.pw_old.invalid && !this.pw_new.invalid && !this.confirmInvalid()) {
+      this.colorPw = "primary";
+    }
+  }
+
+  clickSavePw() {
+    if(this.colorPw === "primary") {
+      //handleSavePassword();
+      //if (this.response === 20) {
+        this.clearPasswords();
+        this.initChangePassword();
+        this.savePw = true;
+      //}
+    }
+  }
+
+  clickCancelPw() {
+    this.clearPasswords();
+    this.initChangePassword();
+  }
+
   clickEdit() {
     this.edit = true;
     this.setFormControl();
@@ -117,6 +234,12 @@ export class ProfilePageComponent implements OnInit {
   setFormControl() {
     this.name = new FormControl(this.username_new, [Validators.required, Validators.minLength(4)]);
     this.email = new FormControl(this.usermail_new, [Validators.required, Validators.email]);
+  }
+
+  setFormControlPassword() {
+    this.pw_old = new FormControl(this.password_old, [Validators.minLength(8), Validators.required]);
+    this.pw_new = new FormControl(this.password_new, [Validators.minLength(8), Validators.required]);
+    this.pw_confirm = new FormControl(this.password_confirm, [Validators.minLength(8), Validators.required]);
   }
 
   handleEditProfile() {
