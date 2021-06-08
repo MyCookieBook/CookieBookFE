@@ -8,7 +8,6 @@ import {MatDialog} from '@angular/material/dialog';
 import {MatMenuModule} from '@angular/material/menu';
 import {Recipe} from '../classes/recipe';
 import { Router } from '@angular/router';
-//import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-recipe-detail-page',
@@ -38,7 +37,7 @@ export class RecipeDetailPageComponent implements OnInit {
 
   cookie = "https://raw.githubusercontent.com/MyCookieBook/CookieBookFE/master/src/pictures/Logo.jpg";
 
-  constructor(/*public dialog: MatDialog,*/ private router: Router) {  }
+  constructor(private router: Router) {  }
 
   ngOnInit(): void {
     this.recipe_id = 0;
@@ -294,22 +293,5 @@ export class RecipeDetailPageComponent implements OnInit {
     this.link = new FormControl(this.recipe_new.link, [Validators.maxLength(22)]);
     this.other = new FormControl(this.recipe_new.other, [Validators.maxLength(255)]);
   }
-
-  /*openDialog() {
-    var cancel = false;
-    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
-      width: '250px',
-      //data: {text: 'test'}
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      //this.animal = result;
-      cancel = result;
-    });
-
-    return cancel;
-  }*/
-
 
 }
