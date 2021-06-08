@@ -109,5 +109,4 @@ export class LoginRegisterComponent /*implements OnInit*/ {
       this.registerSuccess = false;
     });
   }
-
 }

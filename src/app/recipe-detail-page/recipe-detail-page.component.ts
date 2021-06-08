@@ -1,13 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule, MatFormField, MatLabel } from '@angular/material/form-field';
-import {MatListModule} from '@angular/material/list';
-import {FormBuilder, FormGroup} from '@angular/forms';
-import {FormControl, Validators, ReactiveFormsModule} from '@angular/forms';
-import {MatDialog} from '@angular/material/dialog';
-import {MatMenuModule} from '@angular/material/menu';
+import {Component, OnInit} from '@angular/core';
+import {FormControl, Validators} from '@angular/forms';
 import {Recipe} from '../classes/recipe';
-import { Router } from '@angular/router';
+import {Router} from '@angular/router';
+import {RecipeDetailService} from "./service/recipe-detail.service";
+
 //import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 
 @Component({
@@ -24,10 +20,14 @@ export class RecipeDetailPageComponent implements OnInit {
   highview = 5;
   highedit = 8;
 
+  response: number;
+
   recipe_old: Recipe;
   recipe_new = new Recipe();
 
   recipe_id: number;
+  recipeId: string;
+  user_Id: string;
 
   title: FormControl;
   author: FormControl;
@@ -38,11 +38,14 @@ export class RecipeDetailPageComponent implements OnInit {
 
   cookie = "https://raw.githubusercontent.com/MyCookieBook/CookieBookFE/master/src/pictures/Logo.jpg";
 
-  constructor(/*public dialog: MatDialog,*/ private router: Router) {  }
+  constructor(private recipeDetailService: RecipeDetailService, private router: Router) {
+  }
 
   ngOnInit(): void {
+    this.recipeId = sessionStorage.getItem("RecipeID");
+    this.user_Id = localStorage.getItem("UserID");
     this.recipe_id = 0;
-    if(this.recipe_id === 0) {
+    if (this.recipe_id === 0) {
       this.recipe_old = new Recipe();
       this.createEmptyRecipe();
       this.color = "basic";
@@ -85,9 +88,9 @@ export class RecipeDetailPageComponent implements OnInit {
 
   getErrorMessageTitle() {
     this.color = "basic"
-    if(this.title.hasError('required')) {
+    if (this.title.hasError('required')) {
       return 'Please enter a title for your recipe!';
-    } else if(this.title.hasError('maxlength')) {
+    } else if (this.title.hasError('maxlength')) {
       return 'Your title is too long. (Max length 255)'
     } else {
       return '';
@@ -102,11 +105,11 @@ export class RecipeDetailPageComponent implements OnInit {
 
   getErrorMessageAuthor() {
     this.color = "basic"
-    if(this.author.hasError('required')) {
+    if (this.author.hasError('required')) {
       return 'Please enter a author for your recipe!';
-    } else if(this.title.hasError('maxlength')) {
+    } else if (this.title.hasError('maxlength')) {
       return 'Your authorname is too long. (Max length 255)'
-    } else{
+    } else {
       return '';
     }
   }
@@ -119,7 +122,7 @@ export class RecipeDetailPageComponent implements OnInit {
 
   getErrorMessageDuration() {
     this.color = "basic";
-    if(this.duration.hasError('maxlength')) {
+    if (this.duration.hasError('maxlength')) {
       return 'Your duration is too long. Max 11 signs.';
     } else {
       return '';
@@ -134,7 +137,7 @@ export class RecipeDetailPageComponent implements OnInit {
 
   getErrorMessageNutritional() {
     this.color = "basic";
-    if(this.nutritional.hasError('maxlength')) {
+    if (this.nutritional.hasError('maxlength')) {
       return 'Your nutritional values are too long. Max 255 signs.';
     } else {
       return '';
@@ -156,7 +159,7 @@ export class RecipeDetailPageComponent implements OnInit {
 
   deleteIngredient(index: number) {
     this.recipe_new.deleteIngredient(index);
-    if(this.recipe_new.ingredient.length > 1) {
+    if (this.recipe_new.ingredient.length > 1) {
       this.highedit--;
       this.highview--;
       this.high = this.highedit;
@@ -178,7 +181,7 @@ export class RecipeDetailPageComponent implements OnInit {
 
   deleteMaterial(index: number) {
     this.recipe_new.deleteMaterial(index);
-    if(this.recipe_new.material.length > 1) {
+    if (this.recipe_new.material.length > 1) {
       this.highedit--;
       this.highview--;
       this.high = this.highedit;
@@ -200,7 +203,7 @@ export class RecipeDetailPageComponent implements OnInit {
 
   deleteStep(index: number) {
     this.recipe_new.deleteStep(index);
-    if(this.recipe_new.step.length > 1) {
+    if (this.recipe_new.step.length > 1) {
       this.highedit--;
       this.highview--;
       this.high = this.highedit;
@@ -208,14 +211,14 @@ export class RecipeDetailPageComponent implements OnInit {
   }
 
   inputLink(event) {
-      const link = event.target.value;
-      this.recipe_new.link = link;
-      this.checkInvalid();
-    }
+    const link = event.target.value;
+    this.recipe_new.link = link;
+    this.checkInvalid();
+  }
 
   getErrorMessageLink() {
     this.color = "basic";
-    if(this.nutritional.hasError('maxlength')) {
+    if (this.nutritional.hasError('maxlength')) {
       return 'Your link is too long. Max 255 signs.';
     } else {
       return '';
@@ -230,7 +233,7 @@ export class RecipeDetailPageComponent implements OnInit {
 
   getErrorMessageOther() {
     this.color = "basic";
-    if(this.nutritional.hasError('maxlength')) {
+    if (this.nutritional.hasError('maxlength')) {
       return 'Your information is too long. Max 255 signs.';
     } else {
       return '';
@@ -247,16 +250,23 @@ export class RecipeDetailPageComponent implements OnInit {
   }
 
   clickSave() {
-    if(this.color === "primary") {
-      this.edit = false;
-      this.high = this.highview;
-      this.recipe_old.copy(this.recipe_new);
+    if (this.color === "primary") {
+      this.handleAddRecipe();
+      console.log(this.response);
+      if (this.response === 20) {
+        this.recipe_old.copy(this.recipe_new);
+        this.edit = false;
+        this.high = this.highview;
+      } else if (this.response === 40) {
+        localStorage.removeItem("UserID");
+        this.router.navigate(['/login']);
+      }
     }
   }
 
   clickCancel() {
     //this.openDialog();
-    if(this.recipe_id === -1) {
+    if (this.recipe_id === -1) {
       this.router.navigate(['/']);
     } else {
       this.edit = false;
@@ -273,15 +283,15 @@ export class RecipeDetailPageComponent implements OnInit {
   }
 
   checkInvalid() {
-    if(!this.title.invalid &&
-        !this.author.invalid &&
-        !this.duration.invalid &&
-        !this.nutritional.invalid &&
-        this.recipe_new.difficulty > 0 &&
-        !(this.recipe_new.ingredient[0] === "") &&
-        !(this.recipe_new.step[0] === "") &&
-        !this.link.invalid &&
-        !this.other.invalid) {
+    if (!this.title.invalid &&
+      !this.author.invalid &&
+      !this.duration.invalid &&
+      !this.nutritional.invalid &&
+      this.recipe_new.difficulty > 0 &&
+      !(this.recipe_new.ingredient[0] === "") &&
+      !(this.recipe_new.step[0] === "") &&
+      !this.link.invalid &&
+      !this.other.invalid) {
       this.color = "primary";
     }
   }
@@ -307,9 +317,25 @@ export class RecipeDetailPageComponent implements OnInit {
       //this.animal = result;
       cancel = result;
     });
-
     return cancel;
   }*/
 
+  handleAddRecipe() {
+    this.recipeDetailService.addRecipe(this.recipe_new, this.user_Id).subscribe((res) => {
+      this.response = res;
+      console.log(res);
+    });
+  }
 
+  // handleEditRecipe(){
+  //   this.recipeDetailService.editRecipe(this.recipe_new,this.user_Id).subscribe((res) => {
+  //
+  //   });
+  // }
+
+  handleDeleteRecipe() {
+    this.recipeDetailService.deleteRecipe(this.recipeId, this.user_Id).subscribe((res) => {
+
+    });
+  }
 }
