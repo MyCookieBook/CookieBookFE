@@ -86,7 +86,7 @@
               </mat-form-field>
             </p>
             <p>
-              {{getErrorMessagePasswordConfirm()}}
+              <mat-error *ngIf="notEqualPw()">It is not the same password!</mat-error>
             </p>
             <p class="div-margin">
               <button mat-raised-button color="{{colorPw}}" (click)="clickSavePw()">Save new Password</button>
@@ -95,10 +95,6 @@
             </p>
             <p [hidden]="!savePw">Password is changed.</p>
           </mat-expansion-panel>
-          <!--<button mat-button>
-            Change Password
-            <mat-icon>edit</mat-icon>
-          </button>-->
         </div>
       </mat-card-content>
     </mat-card>

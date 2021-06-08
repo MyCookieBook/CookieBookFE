@@ -10,7 +10,8 @@
 <p>
   <mat-form-field hideRequiredMarker="true" floatLabel="auto">
     <mat-label>Password</mat-label>
-    <input matInput id="pw" [type]="hidePassword ? 'password' : 'text'" placeholder="Enter your Password" [formControl]="password" required>
+    <input matInput id="pw" [type]="hidePassword ? 'password' : 'text'" placeholder="Enter your Password"
+           [formControl]="password" required>
     <mat-error *ngIf="password.invalid">{{getErrorMessagePassword()}}</mat-error>
     <button mat-icon-button
             matSuffix (click)="hidePassword = !hidePassword"
@@ -24,10 +25,9 @@
 <p>
   <mat-form-field hideRequiredMarker="true" floatLabel="auto">
     <mat-label>Confirm Password</mat-label>
-    <input matInput id="cpw" [type]="hideConfirmPassword ? 'password' : 'text'" placeholder="Confirm your Password" [formControl]="confirmPassword" required>
-    <!--[formControl]="confirmPassword"-->
+    <input matInput id="cpw" [type]="hideConfirmPassword ? 'password' : 'text'" placeholder="Confirm your Password"
+           [formControl]="confirmPassword" required>
     <mat-error *ngIf="confirmPassword.invalid">{{getErrorMessageConfirmPassword()}}</mat-error>
-    <!--!getEqualPassword()-->
     <button mat-icon-button
             matSuffix (click)="hideConfirmPassword = !hideConfirmPassword"
             [attr.aria-label]="'Hide confirm password'"
@@ -36,7 +36,10 @@
     </button>
   </mat-form-field>
 </p>
-
+<p>
+  <mat-error *ngIf="!getEqualPassword()">It is not the same password!</mat-error>
+</p>
+<br>
 <div>
   <mat-checkbox color="primary" [formControl]="acceptDSGVO" required>
     Confirm the DSGVO
