@@ -20,6 +20,7 @@ export class ProfilePageComponent implements OnInit {
 
   userId: string;
   response: number;
+  saveResponse: number;
 
   username_old: string;
   usermail_old: string;
@@ -54,8 +55,8 @@ export class ProfilePageComponent implements OnInit {
     this.userId = localStorage.getItem('UserID');
     this.getUser();
 
-    this.username_old = "username"; //BE
-    this.usermail_old = "user@mail";  //BE
+    // this.username_old = "username"; //BE
+    // this.usermail_old = "user@mail";  //BE
 
     this.username_new = this.username_old;
     this.usermail_new = this.usermail_old;
@@ -128,9 +129,9 @@ export class ProfilePageComponent implements OnInit {
 
   getErrorMessagePasswordOld() {
     this.colorPw = "basic";
-    if(this.pw_old.hasError('required')) {
+    if (this.pw_old.hasError('required')) {
       return 'Please enter the password!';
-    } else if(this.pw_old.hasError('minlength')) {
+    } else if (this.pw_old.hasError('minlength')) {
       return 'The password is to short! (min length 8)';
     } else {
       return '';
@@ -145,9 +146,9 @@ export class ProfilePageComponent implements OnInit {
 
   getErrorMessagePasswordNew() {
     this.colorPw = "basic";
-    if(this.pw_new.hasError('required')) {
+    if (this.pw_new.hasError('required')) {
       return 'Please enter the password!';
-    } else if(this.pw_new.hasError('minlength')) {
+    } else if (this.pw_new.hasError('minlength')) {
       return 'The password is to short! (min length 8)';
     } else {
       return '';
@@ -161,7 +162,7 @@ export class ProfilePageComponent implements OnInit {
   }
 
   confirmInvalid() {
-    if(this.notEqualPw() || this.pw_confirm.invalid) {
+    if (this.notEqualPw() || this.pw_confirm.invalid) {
       return true;
     } else {
       return false;
@@ -174,11 +175,11 @@ export class ProfilePageComponent implements OnInit {
 
   getErrorMessagePasswordConfirm() {
     this.colorPw = "basic";
-    if(this.pw_confirm.hasError('required')) {
+    if (this.pw_confirm.hasError('required')) {
       return 'Please enter the password!';
-    } else if(this.pw_confirm.hasError('minlength')) {
+    } else if (this.pw_confirm.hasError('minlength')) {
       return 'The password is to short! (min length 8)';
-    } else if (this.notEqualPw()){
+    } else if (this.notEqualPw()) {
       return 'It is not the same password!';
     } else {
       return '';
@@ -186,19 +187,14 @@ export class ProfilePageComponent implements OnInit {
   }
 
   checkInvalidPw() {
-    if(!this.pw_old.invalid && !this.pw_new.invalid && !this.confirmInvalid()) {
+    if (!this.pw_old.invalid && !this.pw_new.invalid && !this.confirmInvalid()) {
       this.colorPw = "primary";
     }
   }
 
   clickSavePw() {
-    if(this.colorPw === "primary") {
-      //this.handleChangePassword();
-      //if (this.response === 20) {
-        this.clearPasswords();
-        this.initChangePassword();
-        this.savePw = true;
-      //}
+    if (this.colorPw === "primary") {
+      this.handleChangePassword();
     }
   }
 
@@ -215,13 +211,6 @@ export class ProfilePageComponent implements OnInit {
   clickSave() {
     if (this.color === "primary") {
       this.handleEditProfile();
-      if (this.response === 20) {
-        this.edit = false;
-        this.username_old = this.username_new;
-        this.usermail_old = this.usermail_new;
-      }else{
-        this.router.navigate(['/login']);
-      }
     }
   }
 
@@ -232,8 +221,8 @@ export class ProfilePageComponent implements OnInit {
   }
 
   setFormControl() {
-    this.name = new FormControl(this.username_new, [Validators.required, Validators.minLength(4)]);
-    this.email = new FormControl(this.usermail_new, [Validators.required, Validators.email]);
+    this.name = new FormControl(this.username_old, [Validators.required, Validators.minLength(4)]);
+    this.email = new FormControl(this.usermail_old, [Validators.required, Validators.email]);
   }
 
   setFormControlPassword() {
@@ -244,17 +233,29 @@ export class ProfilePageComponent implements OnInit {
 
   handleEditProfile() {
     this.profileService.editProfile(this.userId, this.usermail_new, this.username_new).subscribe((res) => {
-      this.response = res;
-      console.log(res);
+      this.response = +res;
+      if (this.response === 20) {
+        this.edit = false;
+        this.username_old = this.username_new;
+        this.usermail_old = this.usermail_new;
+      } else {
+        this.router.navigate(['/login']);
+      }
     });
   }
 
-  // handleChangePassword(){
-  //   this.profileService.changePassword(this.userId, this.usermail_old, this.password_new).subscribe((res) => {
-  //     console.log(res);
-  //   }, () => {
-  //   });
-  // }
+  handleChangePassword() {
+    this.profileService.changePassword(this.userId, this.usermail_old, this.password_new).subscribe((res1) => {
+      this.saveResponse = +res1;
+      if (this.saveResponse === 20) {
+        this.clearPasswords();
+        this.initChangePassword();
+        this.savePw = true;
+      } else {
+        this.router.navigate(['/login']);
+      }
+    });
+  }
 
   getUser() {
     this.profileService.getUser(this.userId).subscribe((map) => {

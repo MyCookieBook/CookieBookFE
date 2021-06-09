@@ -26,7 +26,6 @@ import { LoginDataComponent } from './login-data/login-data.component';
 import { LoginRegisterComponent } from './login-register/login-register.component';
 import { FooterComponent } from './footer/footer.component';
 import { MainPageComponent } from './main-page/main-page.component';
-import { RecipeDetailPageComponent } from './recipe-detail-page/recipe-detail-page.component';
 
 //Routing
 import { AppRoutingModule } from './app-routing.module';
@@ -41,8 +40,7 @@ import { AppRoutingModule } from './app-routing.module';
     LoginDataComponent,
     LoginRegisterComponent,
     FooterComponent,
-    MainPageComponent,
-    RecipeDetailPageComponent
+    MainPageComponent
   ],
   imports: [
     BrowserModule,

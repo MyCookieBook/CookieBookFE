@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {map} from "rxjs/operators";
+import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class ProfileService {
   constructor(private http: HttpClient) {
   }
 
-  editProfile(id: string, email: string, username: string) {
+  editProfile(id: string, email: string, username: string): Observable<number> {
     const headers = new HttpHeaders()
       .set(
         'Content-Type',
@@ -28,7 +29,7 @@ export class ProfileService {
     }, {"headers": headers})
   }
 
-  changePassword(id: string, email: string, password: string){
+  changePassword(id: string, email: string, password: string):Observable<number>{
     const headers = new HttpHeaders()
       .set(
         'Content-Type',
