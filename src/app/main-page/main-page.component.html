@@ -2,46 +2,59 @@
   <app-navbar></app-navbar>
 </header>
 <body>
-  <mat-grid-list cols="2" rows="6" rowHeight="3:1"> <!--rowHeight="5:2"-->
-    <mat-grid-tile [style.background]="'royalblue'"> <!--class="appetizer"   colspan="1" rowspan="3"-->
-      <h1><b>Appetizer</b></h1>
+  <mat-grid-list cols="2" rows="6" rowHeight="3:1">
+    <mat-grid-tile [style.background]="'royalblue'">
+      <button mat-button class="button-font">
+        <h1><b>Appetizer</b></h1>
+      </button>
     </mat-grid-tile>
     <mat-grid-tile [style.background]="'royalblue'">
-      Picture
+      <img class="tile-image" src="https://raw.githubusercontent.com/MyCookieBook/CookieBookFE/master/src/pictures/appetizer.jpg" layout-fill>
     </mat-grid-tile>
     <mat-grid-tile [style.background]="'steelblue'">
-      Picture
+      <img class="tile-image" src="https://raw.githubusercontent.com/MyCookieBook/CookieBookFE/master/src/pictures/mainDishes.jpg" layout-fill>
     </mat-grid-tile>
     <mat-grid-tile [style.background]="'steelblue'">
-      <h1><b>Main Dish</b></h1>
+      <button mat-button class="button-font">
+        <h1><b>Main Dish</b></h1>
+      </button>
     </mat-grid-tile>
     <mat-grid-tile [style.background]="'skyblue'">
-      <h1><b>Dessert</b></h1>
+      <button mat-button class="button-font">
+        <h1><b>Dessert</b></h1>
+      </button>
     </mat-grid-tile>
     <mat-grid-tile [style.background]="'skyblue'">
-      Picture
+      <img class="tile-image" src="https://raw.githubusercontent.com/MyCookieBook/CookieBookFE/master/src/pictures/dessert.jpg" layout-fill>
     </mat-grid-tile>
     <mat-grid-tile [style.background]="'aquamarine'">
-      Picture
+      <img class="tile-image" src="https://raw.githubusercontent.com/MyCookieBook/CookieBookFE/master/src/pictures/drinks.jpg" layout-fill>
     </mat-grid-tile>
     <mat-grid-tile [style.background]="'aquamarine'">
-      <h1><b>Drinks</b></h1>
+      <button mat-button class="button-font">
+        <h1><b>Drinks</b></h1>
+      </button>
     </mat-grid-tile>
     <mat-grid-tile [style.background]="'mediumseagreen'">
-      <h1><b>Basic Recipes</b></h1>
+      <button mat-button class="button-font">
+        <h1><b>Basic Recipes</b></h1>
+      </button>
     </mat-grid-tile>
     <mat-grid-tile [style.background]="'mediumseagreen'">
-      Picture
+      <img class="tile-image" src="https://raw.githubusercontent.com/MyCookieBook/CookieBookFE/master/src/pictures/basics.jpeg" layout-fill>
     </mat-grid-tile>
     <mat-grid-tile [style.background]="'limegreen'">
-      Picture
+      <img class="tile-image" src="https://raw.githubusercontent.com/MyCookieBook/CookieBookFE/master/src/pictures/other.jpg" layout-fill>
     </mat-grid-tile>
     <mat-grid-tile [style.background]="'limegreen'">
-      <h1><b>Other</b></h1>
+      <button mat-button class="button-font">
+        <h1><b>Other</b></h1>
+      </button>
     </mat-grid-tile>
   </mat-grid-list>
 </body>
 <footer>
   <app-footer></app-footer>
 </footer>
+
 <router-outlet></router-outlet>
