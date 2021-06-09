@@ -3,41 +3,41 @@
 </header>
 <body>
   <mat-grid-list cols="2" rows="6" rowHeight="3:1"> <!--rowHeight="5:2"-->
-    <mat-grid-tile class="appetizer"> <!--colspan="1" rowspan="3"-->
-      Appetizer
+    <mat-grid-tile [style.background]="'royalblue'"> <!--class="appetizer"   colspan="1" rowspan="3"-->
+      <h1><b>Appetizer</b></h1>
     </mat-grid-tile>
-    <mat-grid-tile>
+    <mat-grid-tile [style.background]="'royalblue'">
       Picture
     </mat-grid-tile>
-    <mat-grid-tile>
+    <mat-grid-tile [style.background]="'steelblue'">
       Picture
     </mat-grid-tile>
-    <mat-grid-tile>
-      Main Dish
+    <mat-grid-tile [style.background]="'steelblue'">
+      <h1><b>Main Dish</b></h1>
     </mat-grid-tile>
-    <mat-grid-tile>
-      Dessert
+    <mat-grid-tile [style.background]="'skyblue'">
+      <h1><b>Dessert</b></h1>
     </mat-grid-tile>
-    <mat-grid-tile>
+    <mat-grid-tile [style.background]="'skyblue'">
       Picture
     </mat-grid-tile>
-    <mat-grid-tile>
+    <mat-grid-tile [style.background]="'aquamarine'">
       Picture
     </mat-grid-tile>
-    <mat-grid-tile>
-      Drinks
+    <mat-grid-tile [style.background]="'aquamarine'">
+      <h1><b>Drinks</b></h1>
     </mat-grid-tile>
-    <mat-grid-tile>
-      Basic Recipes
+    <mat-grid-tile [style.background]="'mediumseagreen'">
+      <h1><b>Basic Recipes</b></h1>
     </mat-grid-tile>
-    <mat-grid-tile>
+    <mat-grid-tile [style.background]="'mediumseagreen'">
       Picture
     </mat-grid-tile>
-    <mat-grid-tile>
+    <mat-grid-tile [style.background]="'limegreen'">
       Picture
     </mat-grid-tile>
-    <mat-grid-tile>
-      Other
+    <mat-grid-tile [style.background]="'limegreen'">
+      <h1><b>Other</b></h1>
     </mat-grid-tile>
   </mat-grid-list>
 </body>
