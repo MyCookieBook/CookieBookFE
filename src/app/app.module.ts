@@ -39,6 +39,7 @@ import { TeamPageComponent } from './team-page/team-page.component';
 
 //Routing
 import { AppRoutingModule } from './app-routing.module';
+import { MorePageComponent } from './more-page/more-page.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import { AppRoutingModule } from './app-routing.module';
     HelpPageComponent,
     ContactPageComponent,
     InformationPrivacyPageComponent,
-    TeamPageComponent
+    TeamPageComponent,
+    MorePageComponent
   ],
   imports: [
     BrowserModule,
