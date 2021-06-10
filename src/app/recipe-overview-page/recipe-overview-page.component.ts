@@ -17,9 +17,8 @@ export class RecipeOverviewPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.handleSearchRecipe();
-    this.search = 'dessert';
-    var recipe = new Recipe();
+    this.handleSearchRecipe();
+    const recipe = new Recipe();
     recipe.setId(0);
     recipe.setCategoryFE('Dessert/Pastries');
     recipe.setTitle('Cookies');
@@ -49,8 +48,8 @@ export class RecipeOverviewPageComponent implements OnInit {
   }
 
   handleSearchRecipe() {
-    // this.search = localStorage.getItem(search);
-    // localStorage.removeItem(search);
+    this.search = localStorage.getItem('search');
+    localStorage.removeItem('search');
     // Sinja it's your turn
     // this.recipes = ...
   }
