@@ -1,9 +1,17 @@
 .login-background {
   background-image:url("https://raw.githubusercontent.com/MyCookieBook/CookieBookFE/master/src/pictures/loginPage-background.png");
 
-  height: 100%;
+  width: 100%;
+  height: auto;
 
   background-position: center;
   background-repeat: no-repeat;
+  background-attachment: scroll;
   background-size: cover;
+
+}
+
+.info-card {
+  max-width: 80%;
+  height: auto;
 }
