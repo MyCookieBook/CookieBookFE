@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Recipe} from "../classes/recipe";
+import {Recipe} from '../classes/recipe';
 
 @Component({
   selector: 'app-recipe-overview-page',

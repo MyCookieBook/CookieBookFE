@@ -1,11 +1,12 @@
 import {Injectable} from '@angular/core';
-import {Recipe} from "../../classes/recipe";
-import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
-import {Category} from "../../classes/category";
+import {Recipe} from '../../classes/recipe';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
+import {Category} from '../../classes/category';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class RecipeOverviewService {
 
   public userId: string;
@@ -16,14 +17,14 @@ export class RecipeOverviewService {
   }
 
   getRecipeList(userId: string) {
-    return this.http.get<Array<Recipe>>("http://localhost:8080/recipeslist?userId=" + userId).subscribe(data => {
+    return this.http.get<Array<Recipe>>('http://localhost:8080/recipeslist?userId=' + userId).subscribe(data => {
       this.recipe = data;
-      //this.recipe = data.slice()
+      // this.recipe = data.slice()
     });
   }
 
   getRecipeListFavorites(userId: string) {
-    return this.http.get<Array<Recipe>>("http://localhost:8080/recipelist/favorite?userId="+ userId).subscribe(data => {
+    return this.http.get<Array<Recipe>>('http://localhost:8080/recipelist/favorite?userId=' + userId).subscribe(data => {
     });
   }
 
@@ -31,7 +32,7 @@ export class RecipeOverviewService {
     const varCategory = {
       params: new HttpParams().set('category', category)
     };
-    return this.http.get<Array<Recipe>>("http://localhost:8080/recipeslist/byCategory/${category}?userId=" + userId, varCategory).subscribe(data => {
+    return this.http.get<Array<Recipe>>('http://localhost:8080/recipeslist/byCategory/${category}?userId=' + userId, varCategory).subscribe(data => {
       this.recipe = data;
     });
   }
@@ -40,7 +41,7 @@ export class RecipeOverviewService {
     const varSubcategory = {
       params: new HttpParams().set('subcategory', subcategory)
     };
-    return this.http.get<Array<Recipe>>("http://localhost:8080/recipeslist/bySubcategory/${subcategory}?userId=" + userId, varSubcategory).subscribe(data => {
+    return this.http.get<Array<Recipe>>('http://localhost:8080/recipeslist/bySubcategory/${subcategory}?userId=' + userId, varSubcategory).subscribe(data => {
       this.recipe = data;
     });
   }
@@ -51,7 +52,7 @@ export class RecipeOverviewService {
         'Content-Type',
         'application/json'
       );
-    return this.http.post("http://localhost:8080/recipe/bookmark?recipeId=" + recipeId + "&userId=" + userId, null, {'headers': headers});
+    return this.http.post('http://localhost:8080/recipe/bookmark?recipeId=' + recipeId + '&userId=' + userId, null, {headers: headers});
   }
 
   deleteBookmark(recipeId: string, userId: string) {
@@ -60,6 +61,6 @@ export class RecipeOverviewService {
         'Content-Type',
         'application/json'
       );
-    return this.http.post("http://localhost:8080/recipe/deleteBookmark?recipeId=" + recipeId + "&userId=" + userId, null, {'headers': headers});
+    return this.http.post('http://localhost:8080/recipe/deleteBookmark?recipeId=' + recipeId + '&userId=' + userId, null, {headers: headers});
   }
 }

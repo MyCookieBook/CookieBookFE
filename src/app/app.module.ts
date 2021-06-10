@@ -13,7 +13,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatSelectModule} from '@angular/material/select';
 import {MatDialog, MatDialogRef} from '@angular/material/dialog';
-import {HttpClientModule} from "@angular/common/http";
+import {HttpClientModule} from '@angular/common/http';
 
 import {MatExpansionModule} from '@angular/material/expansion';
 import { FormsModule } from '@angular/forms';
@@ -38,7 +38,7 @@ import { ContactPageComponent } from './contact-page/contact-page.component';
 import { InformationPrivacyPageComponent } from './information-privacy-page/information-privacy-page.component';
 import { TeamPageComponent } from './team-page/team-page.component';
 
-//Routing
+// Routing
 import { AppRoutingModule } from './app-routing.module';
 
 
