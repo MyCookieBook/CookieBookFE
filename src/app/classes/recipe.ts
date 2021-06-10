@@ -36,7 +36,6 @@ export class Recipe {
     } else {
       this.id = id;
     }
-
   }
 
   public getCategoryFE() {

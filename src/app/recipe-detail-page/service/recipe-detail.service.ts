@@ -15,34 +15,27 @@ export class RecipeDetailService {
   constructor(private http: HttpClient) {
   }
 
-  addRecipe(recipe: Recipe, userId: string) {
+  addRecipe(recipe: Recipe, userId: string, recipeId: Number) {
     console.log(userId);
     const headers = new HttpHeaders()
       .set(
         'Content-Type',
         'application/json'
       );
+    recipe.setId(recipeId);
+    console.log(recipe.getId());
     const body = JSON.stringify(recipe);
     console.log(body);
     return this.http.post<number>("http://localhost:8080/recipes/add?userId=" + userId, body, {'headers': headers});
   }
 
-  // editRecipe(recipe: Recipe, userId: string) {
-  //   const headers = new HttpHeaders()
-  //     .set(
-  //       'Content-Type',
-  //       'application/json'
-  //     );
-  //   const body = JSON.stringify(recipe);
-  //   return this.http.post<Recipe>("http://localhost:8080/recipes/edit?userId=" + userId, body, {'headers': headers});
-  // }
-
-  deleteRecipe(recipeId: string, userId: string) {
+  deleteRecipe(recipeId: Number, userId: string) {
     const headers = new HttpHeaders()
       .set(
         'Content-Type',
         'application/json'
       );
-    return this.http.post("http://localhost:8080/recipes/delete?recipeId=" + recipeId + "&userId=" + userId, null, {'headers': headers});
+    console.log("recipeID: "+recipeId);
+    return this.http.post<number>("http://localhost:8080/recipes/delete?recipeId=" + recipeId + "&userId=" + userId, null, {'headers': headers});
   }
 }

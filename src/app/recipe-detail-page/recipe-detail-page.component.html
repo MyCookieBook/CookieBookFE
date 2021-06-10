@@ -274,7 +274,7 @@
       &nbsp; &nbsp; &nbsp;-->
       <button mat-raised-button (click)="clickEdit()">Edit</button>
       &nbsp; &nbsp; &nbsp;
-      <button mat-raised-button>Delete</button>
+      <button mat-raised-button (click)="clickDelete()">Delete</button>
     </div>
     <div class="div-margin" [hidden]="!edit">
       <button mat-raised-button color="{{color}}" (click)="clickSave()">Save</button>

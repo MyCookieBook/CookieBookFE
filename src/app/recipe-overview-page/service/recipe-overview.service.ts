@@ -22,6 +22,11 @@ export class RecipeOverviewService {
     });
   }
 
+  getRecipeListFavorites(userId: string) {
+    return this.http.get<Array<Recipe>>("http://localhost:8080/recipelist/favorite?userId="+ userId).subscribe(data => {
+    });
+  }
+
   getRecipeListbyCategory(userId: string, category: string) {
     const varCategory = {
       params: new HttpParams().set('category', category)

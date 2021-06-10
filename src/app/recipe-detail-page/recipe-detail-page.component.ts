@@ -29,7 +29,7 @@ export class RecipeDetailPageComponent implements OnInit {
   recipe_new = new Recipe();
 
   recipe_id: number;
-  recipeId: string;
+  recipeId: Number;
   user_Id: string;
 
   title: FormControl;
@@ -45,7 +45,6 @@ export class RecipeDetailPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.recipeId = sessionStorage.getItem("RecipeID");
     this.user_Id = localStorage.getItem("UserID");
     this.recipe_id = 0;
     if (this.recipe_id === 0) {
@@ -66,6 +65,7 @@ export class RecipeDetailPageComponent implements OnInit {
 
   createEmptyRecipe() {
     this.recipe_old.setId(0);
+    this.recipeId = 0;
     this.recipe_old.setCategoryFE("Other");
     this.recipe_old.setTitle("");
     this.recipe_old.setAuthor("");
@@ -267,8 +267,7 @@ export class RecipeDetailPageComponent implements OnInit {
   }
 
   clickCancel() {
-    //this.openDialog();
-    if (this.recipe_id === -1) {
+    if (this.recipe_id === 0) {
       this.router.navigate(['/']);
     } else {
       this.edit = false;
@@ -280,8 +279,15 @@ export class RecipeDetailPageComponent implements OnInit {
   clickEdit() {
     this.edit = true;
     this.high = this.highedit;
-
+    this.recipeId = this.response;
+    this.recipe_old.setId(this.response);
+    this.recipe_new.setId(this.recipe_old.getId());
     this.setFormControl();
+  }
+
+  clickDelete() {
+    this.recipeId = this.response;
+    this.handleDeleteRecipe();
   }
 
   checkInvalid() {
@@ -307,44 +313,27 @@ export class RecipeDetailPageComponent implements OnInit {
     this.other = new FormControl(this.recipe_new.getOther(), [Validators.maxLength(255)]);
   }
 
-  /*openDialog() {
-    var cancel = false;
-    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
-      width: '250px',
-      //data: {text: 'test'}
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      //this.animal = result;
-      cancel = result;
-    });
-    return cancel;
-  }*/
-
   handleAddRecipe() {
-    this.recipeDetailService.addRecipe(this.recipe_new, this.user_Id).subscribe((res) => {
-      this.response = res;
-      if (this.response === 20) {
+    this.recipeDetailService.addRecipe(this.recipe_new, this.user_Id, this.recipeId).subscribe((res) => {
+      this.response = res.valueOf();
+      if (this.response != 0) {
         this.recipe_old.copy(this.recipe_new);
         this.edit = false;
         this.high = this.highview;
-      } else if (this.response === 40) {
-        localStorage.removeItem("UserID");
+      } else if (this.response === 0) {
         this.router.navigate(['/login']);
       }
     });
   }
 
-  // handleEditRecipe(){
-  //   this.recipeDetailService.editRecipe(this.recipe_new,this.user_Id).subscribe((res) => {
-  //
-  //   });
-  // }
-
   handleDeleteRecipe() {
     this.recipeDetailService.deleteRecipe(this.recipeId, this.user_Id).subscribe((res) => {
-
+      if (res === 20) {
+        console.log("deletion successful");
+        this.router.navigate(['/']);
+      }else {
+        console.log("deletion failed")
+      }
     });
   }
 }
