@@ -4,7 +4,7 @@
 <body>
 <mat-grid-list cols="2" rows="6" rowHeight="3:1">
   <mat-grid-tile [style.background]="'skyblue'">
-    <button mat-button class="button-font">
+    <button mat-button class="button" (click)="handleSearchRecipe('APPETIZER')">
       <h1><b>Appetizer</b></h1>
     </button>
   </mat-grid-tile>
@@ -19,12 +19,12 @@
          layout-fill>
   </mat-grid-tile>
   <mat-grid-tile [style.background]="'skyblue'">
-    <button mat-button class="button-font">
+    <button mat-button class="button" (click)="handleSearchRecipe('MAINDISH')">
       <h1><b>Main Dish</b></h1>
     </button>
   </mat-grid-tile>
   <mat-grid-tile [style.background]="'skyblue'">
-    <button mat-button class="button-font">
+    <button mat-button class="button" (click)="handleSearchRecipe('DESSERT')">
       <h1><b>Dessert</b></h1>
     </button>
   </mat-grid-tile>
@@ -37,12 +37,12 @@
          src="https://raw.githubusercontent.com/MyCookieBook/CookieBookFE/master/src/pictures/drinks.jpg" layout-fill>
   </mat-grid-tile>
   <mat-grid-tile [style.background]="'skyblue'">
-    <button mat-button class="button-font">
+    <button mat-button class="button" (click)="handleSearchRecipe('DRINKS')">
       <h1><b>Drinks</b></h1>
     </button>
   </mat-grid-tile>
   <mat-grid-tile [style.background]="'skyblue'">
-    <button mat-button class="button-font">
+    <button mat-button class="button" (click)="handleSearchRecipe('BASICS')">
       <h1><b>Basic Recipes</b></h1>
     </button>
   </mat-grid-tile>
@@ -55,7 +55,7 @@
          src="https://raw.githubusercontent.com/MyCookieBook/CookieBookFE/master/src/pictures/other.jpg" layout-fill>
   </mat-grid-tile>
   <mat-grid-tile [style.background]="'skyblue'">
-    <button mat-button class="button-font">
+    <button mat-button class="button" (click)="handleSearchRecipe('OTHER')">
       <h1><b>Other</b></h1>
     </button>
   </mat-grid-tile>

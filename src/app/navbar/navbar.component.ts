@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {MatMenuModule} from '@angular/material/menu';
 import {Router} from "@angular/router";
 import {UserLogoutService} from "./service/user-logout.service";
+import {FormControl, Validators, ReactiveFormsModule} from '@angular/forms';
 
 @Component({
   selector: 'app-navbar',
@@ -13,16 +14,23 @@ export class NavbarComponent {
   logoutSuccess = false;
   status: Number;
 
+  search = new FormControl('');
+
   constructor(private userLogoutService: UserLogoutService, private router: Router) { }
 
-  clickLogin() {
+  /*clickLogin() {
     //showLoginPage();
-  }
+  }*/
 
   /*ngOnInit(): void {
   }*/
-  handleSearchRecipe() {
+  clickSearch() {
+    this.handleSearchRecipe(this.search.value);
+  }
 
+  handleSearchRecipe(search: string) {
+    localStorage.setItem('Search', search);
+    this.router.navigate(['/recipe/search']);
   }
 
   handleLogout() {
