@@ -13,20 +13,19 @@ export class RecipeOverviewPageComponent implements OnInit {
   empty: boolean;
   search: string;
 
-
   constructor(private router: Router) { }
 
   ngOnInit(): void {
     //this.handleSearchRecipe();
     this.search = 'dessert';
     var recipe = new Recipe();
-    recipe.id = 0;
+    recipe.setId(0);
     recipe.setCategoryFE('Dessert/Pastries');
-    recipe.title = 'Cookies';
-    recipe.author = 'MyCookieBook-Team';
-    recipe.bookmark = true;
-    recipe.duration = 120;
-    recipe.difficulty = 3;
+    recipe.setTitle('Cookies');
+    recipe.setAuthor('MyCookieBook-Team');
+    recipe.setBookmark(true);
+    recipe.setDuration(120);
+    recipe.setDifficulty(3);
     this.recipes = [];
     this.recipes.push(recipe);
     this.recipes.push(recipe);
