@@ -17,10 +17,22 @@ export class Recipe {
   private _link: string;
   private _other: string;
 
+  private _bookmark:boolean;
+  public set bookmark(bookmark: boolean) {
+    this._bookmark = bookmark;
+  }
+  public get bookmark() {
+    return this._bookmark;
+  }
+
   public Recipe() {};
 
   public get id() {
     return this._id;
+  }
+
+  public set id(id: Number) {
+    this._id = id;
   }
 
   public getCategoryFE() {
