@@ -23,8 +23,7 @@ export class Recipe {
   private link: string;
   private other: string; //other
 
-  public Recipe() {
-  };
+  public Recipe() {};
 
   public getId() {
     return this.id;
