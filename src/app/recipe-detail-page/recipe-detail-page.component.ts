@@ -3,6 +3,9 @@ import {FormControl, Validators} from '@angular/forms';
 import {Recipe} from '../classes/recipe';
 import {Router} from '@angular/router';
 import {RecipeDetailService} from "./service/recipe-detail.service";
+import {Ingredient} from "../classes/ingredient";
+import {Material} from "../classes/material";
+import {Step} from "../classes/step";
 
 //import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 
@@ -62,16 +65,17 @@ export class RecipeDetailPageComponent implements OnInit {
   }
 
   createEmptyRecipe() {
+    this.recipe_old.id = 0;
     this.recipe_old.setCategoryFE("Other");
     this.recipe_old.title = "";
     this.recipe_old.author = "";
     this.recipe_old.duration = 0;
     this.recipe_old.nutritional = "";
     this.recipe_old.difficulty = 0;
-    this.recipe_old.ingredient = [""];
-    this.recipe_old.material = [""];
-    this.recipe_old.step = [""];
-    this.recipe_old.picture = "https://raw.githubusercontent.com/MyCookieBook/CookieBookFE/master/src/pictures/DefaultRecipePicture.jpg";
+    this.recipe_old.setIngredient([""]);
+    this.recipe_old.setMaterial([""]);
+    this.recipe_old.setStep([""]);
+    // this.recipe_old.picture = "https://raw.githubusercontent.com/MyCookieBook/CookieBookFE/master/src/pictures/DefaultRecipePicture.jpg";
     this.recipe_old.link = "";
     this.recipe_old.other = "";
   }
@@ -112,6 +116,13 @@ export class RecipeDetailPageComponent implements OnInit {
     } else {
       return '';
     }
+  }
+
+  bookmark() {
+    //eventuell auch wieder beides in handleBookmark ausführen
+    this.recipe_old.bookmark = !this.recipe_old.bookmark;
+    this.recipe_new.bookmark = this.recipe_old.bookmark;
+    //this.handleBookmark();
   }
 
   inputDuration(event) {
@@ -159,7 +170,7 @@ export class RecipeDetailPageComponent implements OnInit {
 
   deleteIngredient(index: number) {
     this.recipe_new.deleteIngredient(index);
-    if (this.recipe_new.ingredient.length > 1) {
+    if (this.recipe_new.getIngredient.length > 1) {
       this.highedit--;
       this.highview--;
       this.high = this.highedit;
@@ -181,7 +192,7 @@ export class RecipeDetailPageComponent implements OnInit {
 
   deleteMaterial(index: number) {
     this.recipe_new.deleteMaterial(index);
-    if (this.recipe_new.material.length > 1) {
+    if (this.recipe_new.getMaterial.length > 1) {
       this.highedit--;
       this.highview--;
       this.high = this.highedit;
@@ -203,7 +214,7 @@ export class RecipeDetailPageComponent implements OnInit {
 
   deleteStep(index: number) {
     this.recipe_new.deleteStep(index);
-    if (this.recipe_new.step.length > 1) {
+    if (this.recipe_new.getStep.length > 1) {
       this.highedit--;
       this.highview--;
       this.high = this.highedit;
@@ -252,15 +263,6 @@ export class RecipeDetailPageComponent implements OnInit {
   clickSave() {
     if (this.color === "primary") {
       this.handleAddRecipe();
-      console.log(this.response);
-      if (this.response === 20) {
-        this.recipe_old.copy(this.recipe_new);
-        this.edit = false;
-        this.high = this.highview;
-      } else if (this.response === 40) {
-        localStorage.removeItem("UserID");
-        this.router.navigate(['/login']);
-      }
     }
   }
 
@@ -288,8 +290,8 @@ export class RecipeDetailPageComponent implements OnInit {
       !this.duration.invalid &&
       !this.nutritional.invalid &&
       this.recipe_new.difficulty > 0 &&
-      !(this.recipe_new.ingredient[0] === "") &&
-      !(this.recipe_new.step[0] === "") &&
+      !(this.recipe_new.getIngredient[0] === "") &&
+      !(this.recipe_new.getStep[0] === "") &&
       !this.link.invalid &&
       !this.other.invalid) {
       this.color = "primary";
@@ -323,7 +325,14 @@ export class RecipeDetailPageComponent implements OnInit {
   handleAddRecipe() {
     this.recipeDetailService.addRecipe(this.recipe_new, this.user_Id).subscribe((res) => {
       this.response = res;
-      console.log(res);
+      if (this.response === 20) {
+        this.recipe_old.copy(this.recipe_new);
+        this.edit = false;
+        this.high = this.highview;
+      } else if (this.response === 40) {
+        localStorage.removeItem("UserID");
+        this.router.navigate(['/login']);
+      }
     });
   }
 
