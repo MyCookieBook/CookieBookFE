@@ -15,6 +15,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatDialog, MatDialogRef} from '@angular/material/dialog';
 import {HttpClientModule} from "@angular/common/http";
 
+import {MatExpansionModule} from '@angular/material/expansion';
 import { FormsModule } from '@angular/forms';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
@@ -39,6 +40,7 @@ import { TeamPageComponent } from './team-page/team-page.component';
 
 //Routing
 import { AppRoutingModule } from './app-routing.module';
+
 
 @NgModule({
   declarations: [
@@ -77,6 +79,7 @@ import { AppRoutingModule } from './app-routing.module';
     AppRoutingModule,
     MatMenuModule,
     MatSelectModule,
+    MatExpansionModule
   ],
   exports: [
     MatFormFieldModule,
@@ -90,6 +93,7 @@ import { AppRoutingModule } from './app-routing.module';
     MatCardModule,
     MatTabsModule,
     MatCheckboxModule,
+    MatExpansionModule,
     MatMenuModule,
     MatSelectModule,
     MatListModule,
