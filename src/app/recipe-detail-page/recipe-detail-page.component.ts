@@ -35,7 +35,7 @@ export class RecipeDetailPageComponent implements OnInit {
   title: FormControl;
   author: FormControl;
   duration: FormControl;
-  nutritional: FormControl;
+  calory: FormControl;
   link: FormControl;
   other: FormControl;
 
@@ -65,19 +65,19 @@ export class RecipeDetailPageComponent implements OnInit {
   }
 
   createEmptyRecipe() {
-    this.recipe_old.id = 0;
+    this.recipe_old.setId(0);
     this.recipe_old.setCategoryFE("Other");
-    this.recipe_old.title = "";
-    this.recipe_old.author = "";
-    this.recipe_old.duration = 0;
-    this.recipe_old.nutritional = "";
-    this.recipe_old.difficulty = 0;
+    this.recipe_old.setTitle("");
+    this.recipe_old.setAuthor("");
+    this.recipe_old.setDuration(0);
+    this.recipe_old.setCalory("");
+    this.recipe_old.setDifficulty(0);
     this.recipe_old.setIngredient([""]);
     this.recipe_old.setMaterial([""]);
     this.recipe_old.setStep([""]);
     // this.recipe_old.picture = "https://raw.githubusercontent.com/MyCookieBook/CookieBookFE/master/src/pictures/DefaultRecipePicture.jpg";
-    this.recipe_old.link = "";
-    this.recipe_old.other = "";
+    this.recipe_old.setLink("");
+    this.recipe_old.setOther("");
   }
 
   setCategory(category: string) {
@@ -86,7 +86,7 @@ export class RecipeDetailPageComponent implements OnInit {
 
   inputTitle(event) {
     const title = event.target.value;
-    this.recipe_new.title = title;
+    this.recipe_new.setTitle(title);
     this.checkInvalid();
   }
 
@@ -103,7 +103,7 @@ export class RecipeDetailPageComponent implements OnInit {
 
   inputAuthor(event) {
     const author = event.target.value;
-    this.recipe_new.author = author;
+    this.recipe_new.setAuthor(author);
     this.checkInvalid();
   }
 
@@ -111,7 +111,7 @@ export class RecipeDetailPageComponent implements OnInit {
     this.color = "basic"
     if (this.author.hasError('required')) {
       return 'Please enter a author for your recipe!';
-    } else if (this.title.hasError('maxlength')) {
+    } else if (this.author.hasError('maxlength')) {
       return 'Your authorname is too long. (Max length 255)'
     } else {
       return '';
@@ -120,14 +120,14 @@ export class RecipeDetailPageComponent implements OnInit {
 
   bookmark() {
     //eventuell auch wieder beides in handleBookmark ausführen
-    this.recipe_old.bookmark = !this.recipe_old.bookmark;
-    this.recipe_new.bookmark = this.recipe_old.bookmark;
+    this.recipe_old.setBookmark(!this.recipe_old.getBookmark());
+    this.recipe_new.setBookmark(this.recipe_old.getBookmark());
     //this.handleBookmark();
   }
 
   inputDuration(event) {
     const duration = event.target.value;
-    this.recipe_new.duration = duration;
+    this.recipe_new.setDuration(duration);
     this.checkInvalid();
   }
 
@@ -140,15 +140,15 @@ export class RecipeDetailPageComponent implements OnInit {
     }
   }
 
-  inputNutritional(event) {
-    const nutritional = event.target.value;
-    this.recipe_new.nutritional = nutritional;
+  inputCalory(event) {
+    const calory = event.target.value;
+    this.recipe_new.setCalory(calory);
     this.checkInvalid();
   }
 
-  getErrorMessageNutritional() {
+  getErrorMessageCalory() {
     this.color = "basic";
-    if (this.nutritional.hasError('maxlength')) {
+    if (this.calory.hasError('maxlength')) {
       return 'Your nutritional values are too long. Max 255 signs.';
     } else {
       return '';
@@ -223,13 +223,13 @@ export class RecipeDetailPageComponent implements OnInit {
 
   inputLink(event) {
     const link = event.target.value;
-    this.recipe_new.link = link;
+    this.recipe_new.setLink(link);
     this.checkInvalid();
   }
 
   getErrorMessageLink() {
     this.color = "basic";
-    if (this.nutritional.hasError('maxlength')) {
+    if (this.link.hasError('maxlength')) {
       return 'Your link is too long. Max 255 signs.';
     } else {
       return '';
@@ -238,13 +238,13 @@ export class RecipeDetailPageComponent implements OnInit {
 
   inputOther(event) {
     const other = event.target.value;
-    this.recipe_new.other = other;
+    this.recipe_new.setOther(other);
     this.checkInvalid();
   }
 
   getErrorMessageOther() {
     this.color = "basic";
-    if (this.nutritional.hasError('maxlength')) {
+    if (this.other.hasError('maxlength')) {
       return 'Your information is too long. Max 255 signs.';
     } else {
       return '';
@@ -252,12 +252,12 @@ export class RecipeDetailPageComponent implements OnInit {
   }
 
   setDifficulty(value: number) {
-    this.recipe_new.difficulty = value;
+    this.recipe_new.setDifficulty(value);
     this.checkInvalid();
   }
 
   getDifficulty() {
-    return new Array(this.recipe_old.difficulty);
+    return new Array(this.recipe_old.getDifficulty());
   }
 
   clickSave() {
@@ -288,8 +288,8 @@ export class RecipeDetailPageComponent implements OnInit {
     if (!this.title.invalid &&
       !this.author.invalid &&
       !this.duration.invalid &&
-      !this.nutritional.invalid &&
-      this.recipe_new.difficulty > 0 &&
+      !this.calory.invalid &&
+      this.recipe_new.getDifficulty() > 0 &&
       !(this.recipe_new.getIngredient[0] === "") &&
       !(this.recipe_new.getStep[0] === "") &&
       !this.link.invalid &&
@@ -299,12 +299,12 @@ export class RecipeDetailPageComponent implements OnInit {
   }
 
   setFormControl() {
-    this.title = new FormControl(this.recipe_new.title, [Validators.required, Validators.maxLength(255)]);
-    this.author = new FormControl(this.recipe_new.author, [Validators.required, Validators.maxLength(255)]);
-    this.duration = new FormControl(this.recipe_new.duration, [Validators.maxLength(11)]);
-    this.nutritional = new FormControl(this.recipe_new.nutritional, [Validators.maxLength(255)]);
-    this.link = new FormControl(this.recipe_new.link, [Validators.maxLength(22)]);
-    this.other = new FormControl(this.recipe_new.other, [Validators.maxLength(255)]);
+    this.title = new FormControl(this.recipe_new.getTitle(), [Validators.required, Validators.maxLength(255)]);
+    this.author = new FormControl(this.recipe_new.getAuthor(), [Validators.required, Validators.maxLength(255)]);
+    this.duration = new FormControl(this.recipe_new.getDuration(), [Validators.maxLength(11)]);
+    this.calory = new FormControl(this.recipe_new.getCalory(), [Validators.maxLength(255)]);
+    this.link = new FormControl(this.recipe_new.getLink(), [Validators.maxLength(22)]);
+    this.other = new FormControl(this.recipe_new.getOther(), [Validators.maxLength(255)]);
   }
 
   /*openDialog() {

@@ -55,13 +55,13 @@
       <mat-card-header>
         <div [hidden]="edit">
           <mat-card-title>
-            <b>{{recipe_old.title}}</b> &nbsp; by {{recipe_old.author}}
+            <b>{{recipe_old.getTitle()}}</b> &nbsp; by {{recipe_old.getAuthor()}}
             &nbsp;&nbsp;&nbsp;&nbsp;
             <button mat-icon-button
                     matSuffix (click)="bookmark()"
                     [attr.aria-label]="'bookmark recipe'"
                     [attr.aria-pressed]="bookmark">
-              <mat-icon>{{recipe_old.bookmark ? 'favorite' : 'favorite_border'}}</mat-icon>
+              <mat-icon>{{recipe_old.getBookmark() ? 'favorite' : 'favorite_border'}}</mat-icon>
             </button>
           </mat-card-title>
         </div>
@@ -83,7 +83,7 @@
                     matSuffix (click)="bookmark()"
                     [attr.aria-label]="'bookmark recipe'"
                     [attr.aria-pressed]="bookmark">
-              <mat-icon>{{recipe_old.bookmark ? 'favorite' : 'favorite_border'}}</mat-icon>
+              <mat-icon>{{recipe_old.getBookmark() ? 'favorite' : 'favorite_border'}}</mat-icon>
             </button>
           </mat-card-title>
         </div>
@@ -94,11 +94,11 @@
         <div [hidden]="edit">
           <p>
             <mat-icon>schedule</mat-icon> &nbsp;
-            {{recipe_old.duration}} min
+            {{recipe_old.getDuration}} min
           </p>
           <p>
             <mat-icon>bug_report</mat-icon> &nbsp;
-            {{recipe_old.nutritional}}
+            {{recipe_old.getCalory()}}
           </p>
           <p>
             <mat-icon>leaderboard</mat-icon> &nbsp;
@@ -125,8 +125,8 @@
             <mat-icon>bug_report</mat-icon> &nbsp;
             <mat-form-field hideRequiredMarker="true" floatLabel="auto">
               <mat-label>Nutritional Values</mat-label>
-              <input matInput (keyup)="inputNutritional($event)" [formControl]="nutritional">
-              <mat-error *ngIf="nutritional.invalid">{{getErrorMessageNutritional()}}</mat-error>
+              <input matInput (keyup)="inputCalory($event)" [formControl]="calory">
+              <mat-error *ngIf="calory.invalid">{{getErrorMessageCalory()}}</mat-error>
             </mat-form-field>
           </p>
           <p>
@@ -232,9 +232,9 @@
       <div [hidden]="edit">
         <p><img class="image" mat-card-image src="https://raw.githubusercontent.com/MyCookieBook/CookieBookFE/master/src/pictures/DefaultRecipePicture.jpg" alt="Image"></p>
         <br>
-        <p><a href="{{recipe_old.link}}">More information</a></p>
+        <p><a href="{{recipe_old.getLink()}}">More information</a></p>
         <br>
-        <p>{{recipe_old.other}}</p>
+        <p>{{recipe_old.getOther()}}</p>
       </div>
       <div [hidden]="!edit">
         <p><img class="image" mat-card-image src="https://raw.githubusercontent.com/MyCookieBook/CookieBookFE/master/src/pictures/DefaultRecipePicture.jpg" alt="Image"></p>
