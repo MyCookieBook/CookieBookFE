@@ -24,33 +24,33 @@
   <div>
     <button mat-button class="button-font" [matMenuTriggerFor]="category">Recipes</button>
     <mat-menu #category="matMenu">
-      <button mat-menu-item [matMenuTriggerFor]="appetizer" (click)="handleSearchRecipe('APPETIZER')"><b>Appetizer</b></button>
-      <button mat-menu-item [matMenuTriggerFor]="mainDish" (click)="handleSearchRecipe('MAINDISH')"><b>Main Dish</b></button>
-      <button mat-menu-item [matMenuTriggerFor]="dessert" (click)="handleSearchRecipe('DESSERT')"><b>Dessert</b></button>
-      <button mat-menu-item (click)="handleSearchRecipe('DRINKS')"><b>Drinks</b></button>
-      <button mat-menu-item (click)="handleSearchRecipe('BASICS')"><b>Basic Recipes</b></button>
-      <button mat-menu-item (click)="handleSearchRecipe('OTHER')"><b>Other</b></button>
+      <button mat-menu-item [matMenuTriggerFor]="appetizer" (click)="handleSearchRecipe('APPETIZER', 'category')"><b>Appetizer</b></button>
+      <button mat-menu-item [matMenuTriggerFor]="mainDish" (click)="handleSearchRecipe('MAINDISH', 'category')"><b>Main Dish</b></button>
+      <button mat-menu-item [matMenuTriggerFor]="dessert" (click)="handleSearchRecipe('DESSERT', 'category')"><b>Dessert</b></button>
+      <button mat-menu-item (click)="handleSearchRecipe('DRINKS', 'category')"><b>Drinks</b></button>
+      <button mat-menu-item (click)="handleSearchRecipe('BASICS', 'category')"><b>Basic Recipes</b></button>
+      <button mat-menu-item (click)="handleSearchRecipe('OTHER', 'category')"><b>Other</b></button>
     </mat-menu>
     <mat-menu #appetizer="matMenu">
-      <button mat-menu-item (click)="handleSearchRecipe('APP_SALAD')">Salad</button>
-      <button mat-menu-item (click)="handleSearchRecipe('APP_SOUP')">Soup</button>
-      <button mat-menu-item (click)="handleSearchRecipe('MORSEL')">Morsel</button>
+      <button mat-menu-item (click)="handleSearchRecipe('APP_SALAD', 'subcategory')">Salad</button>
+      <button mat-menu-item (click)="handleSearchRecipe('APP_SOUP', 'subcategory')">Soup</button>
+      <button mat-menu-item (click)="handleSearchRecipe('MORSEL', 'subcategory')">Morsel</button>
     </mat-menu>
     <mat-menu #mainDish="matMenu">
-      <button mat-menu-item (click)="handleSearchRecipe('MAIN_SALAD')">Salad</button>
-      <button mat-menu-item (click)="handleSearchRecipe('MAIN_SOUP')">Soup</button>
-      <button mat-menu-item (click)="handleSearchRecipe('MEAT')">Meat</button>
-      <button mat-menu-item (click)="handleSearchRecipe('FISH')">Fish</button>
-      <button mat-menu-item (click)="handleSearchRecipe('VEGAN')">Vegan</button>
-      <button mat-menu-item (click)="handleSearchRecipe('VEGETARIAN')">Vegetarian</button>
-      <button mat-menu-item (click)="handleSearchRecipe('CASSEROLE')">Casserole</button>
-      <button mat-menu-item (click)="handleSearchRecipe('SIDEDISHES')">Side Dishes</button>
+      <button mat-menu-item (click)="handleSearchRecipe('MAIN_SALAD', 'subcategory')">Salad</button>
+      <button mat-menu-item (click)="handleSearchRecipe('MAIN_SOUP', 'subcategory')">Soup</button>
+      <button mat-menu-item (click)="handleSearchRecipe('MEAT', 'subcategory')">Meat</button>
+      <button mat-menu-item (click)="handleSearchRecipe('FISH', 'subcategory')">Fish</button>
+      <button mat-menu-item (click)="handleSearchRecipe('VEGAN', 'subcategory')">Vegan</button>
+      <button mat-menu-item (click)="handleSearchRecipe('VEGETARIAN', 'subcategory')">Vegetarian</button>
+      <button mat-menu-item (click)="handleSearchRecipe('CASSEROLE', 'subcategory')">Casserole</button>
+      <button mat-menu-item (click)="handleSearchRecipe('SIDEDISHES', 'subcategory')">Side Dishes</button>
     </mat-menu>
     <mat-menu #dessert="matMenu">
-      <button mat-menu-item (click)="handleSearchRecipe('DOUGH')">Dough</button>
-      <button mat-menu-item (click)="handleSearchRecipe('PASTERIES')">Pastries</button>
-      <button mat-menu-item (click)="handleSearchRecipe('COLDDISHES')">Cold Dishes</button>
-      <button mat-menu-item (click)="handleSearchRecipe('FRUITSALAD')">Fruit Salad</button>
+      <button mat-menu-item (click)="handleSearchRecipe('DOUGH', 'subcategory')">Dough</button>
+      <button mat-menu-item (click)="handleSearchRecipe('PASTERIES', 'subcategory')">Pastries</button>
+      <button mat-menu-item (click)="handleSearchRecipe('COLDDISHES', 'subcategory')">Cold Dishes</button>
+      <button mat-menu-item (click)="handleSearchRecipe('FRUITSALAD', 'subcategory')">Fruit Salad</button>
     </mat-menu>
   </div>
   <div>

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {MatMenuModule} from '@angular/material/menu';
-import {Router} from "@angular/router";
-import {UserLogoutService} from "./service/user-logout.service";
+import {Router} from '@angular/router';
+import {UserLogoutService} from './service/user-logout.service';
 import {FormControl, Validators, ReactiveFormsModule} from '@angular/forms';
 
 @Component({
@@ -12,6 +12,7 @@ import {FormControl, Validators, ReactiveFormsModule} from '@angular/forms';
 export class NavbarComponent {
 
   logoutSuccess = false;
+  // tslint:disable-next-line:ban-types
   status: Number;
 
   search = new FormControl('');
@@ -24,22 +25,23 @@ export class NavbarComponent {
 
   /*ngOnInit(): void {
   }*/
-  clickSearch() {
-    this.handleSearchRecipe(this.search.value);
+  clickSearch(): any {
+    this.handleSearchRecipe(this.search.value, 'freeSearch');
   }
 
-  handleSearchRecipe(search: string) {
+  handleSearchRecipe(search: string, searchfield: string): any {
     localStorage.setItem('Search', search);
+    localStorage.setItem('searchfield', searchfield);
     this.router.navigate(['/recipe/search']);
   }
 
-  handleLogout() {
+  handleLogout(): any {
     this.userLogoutService.logoutUser(JSON.parse(localStorage.getItem('UserID'))).subscribe((result) => {
-      console.log(JSON.parse(localStorage.getItem('UserID')))
+      console.log(JSON.parse(localStorage.getItem('UserID')));
       localStorage.removeItem('UserID');
       this.logoutSuccess = true;
       this.status = +result;
-      this.router.navigate(['/login'])
-    })
+      this.router.navigate(['/login']);
+    });
   }
 }
