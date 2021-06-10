@@ -21,6 +21,10 @@ export class NavbarComponent {
 
   /*ngOnInit(): void {
   }*/
+  handleSearchRecipe() {
+
+  }
+
   handleLogout() {
     this.userLogoutService.logoutUser(JSON.parse(localStorage.getItem('UserID'))).subscribe((result) => {
       console.log(JSON.parse(localStorage.getItem('UserID')))
