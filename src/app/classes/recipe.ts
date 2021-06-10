@@ -1,210 +1,288 @@
-import { Category } from '../classes/category';
+import {Category} from '../classes/category';
+import {Material} from "./material";
+import {Ingredient} from "./ingredient";
+import {Step} from "./step";
+import {of} from "rxjs";
 
 export class Recipe {
 
-  private _id: Number;
-  private _category: string;
-  private _subcategory: string;
-  private _title: string;
-  private _author: string;
-  private _duration: Number;
-  private _nutritional: string;
-  private _difficulty: Number;
-  private _ingredient: Array<string>;
-  private _material: Array<string>;
-  private _step: Array<string>;
-  private _picture: string;
-  private _link: string;
-  private _other: string;
+  //private userId: Number;
+  private id: Number;
+  private category: string;
+  private subcategory: string;
+  private title: string;
+  private author: string;
+  private bookmark: boolean;
+  private duration: Number;
+  private calory: string;
+  private difficultyLevel: Number;
+  private ingredients: Array<Ingredient>;
+  private material: Array<Material>;
+  private steps: Array<Step>;
+  // private _picture: string;
+  private link: string;
+  private other: string; //other
 
-  public Recipe() {};
+  public Recipe() {
+  };
 
-  public get id() {
-    return this._id;
+  public getId() {
+    return this.id;
+  }
+
+  public setId (id: Number){
+    if(id === null) {
+      this.id = 0;
+    } else {
+      this.id = id;
+    }
   }
 
   public getCategoryFE() {
     var cat = new Category();
-    return cat.getCategoryFE(this._category, this._subcategory);
+    return cat.getCategoryFE(this.category, this.subcategory);
   }
 
   public setCategoryFE(category: string) {
     var cat = new Category();
     cat.setCategoryBE(category);
-    this._category = cat.getCategory();
-    this._subcategory = cat.getSubcategory();
+    this.category = cat.getCategory();
+    this.subcategory = cat.getSubcategory();
   }
 
-  public get category() {
-    return this._category;
+  public getCategory() {
+    return this.category;
   }
 
-  public get subcategory() {
-    return this._subcategory;
+  public getSubcategory() {
+    return this.subcategory;
   }
 
-  public get title() {
-   return this._title;
+  public getTitle() {
+    return this.title;
   }
 
-  public set title(title: string) {
-    this._title = title;
+  public setTitle(title: string) {
+    this.title = title;
   }
 
-  public get author() {
-    return this._author;
+  public getAuthor() {
+    return this.author;
   }
 
-  public set author(author: string) {
-    this._author = author;
+  public setAuthor(author: string) {
+    this.author = author;
   }
 
-  public get duration() {
-    return this._duration;
+  public getBookmark() {
+    return this.bookmark;
   }
 
-  public set duration(duration: Number) {
-    this._duration = duration;
+  public setBookmark(bookmark: boolean) {
+    this.bookmark = bookmark;
   }
 
-  public get nutritional() {
-    return this._nutritional;
+  public getDuration() {
+    return this.duration;
   }
 
-  public set nutritional(nutritional: string) {
-    this._nutritional = nutritional;
+  public setDuration(duration: Number) {
+    this.duration = duration;
   }
 
-  public get difficulty() {
-    return this._difficulty;
+  public getCalory() {
+    return this.calory;
   }
 
-  public set difficulty(difficulty: Number) {
-    this._difficulty = difficulty;
+  public setCalory(calory: string) {
+    this.calory = calory;
   }
 
-  public get ingredient() {
-    return this._ingredient;
+  public getDifficulty() {
+    return this.difficultyLevel;
   }
 
-  public set ingredient(ingredient: Array<string>) {
-    this._ingredient = ingredient;
+  public setDifficulty(difficulty: Number) {
+    this.difficultyLevel = difficulty;
+  }
+
+  public getIngredientBE() {
+    return this.ingredients;
+  }
+
+  public setIngredientBE(ingredient: Array<Ingredient>) {
+    this.ingredients = ingredient;
+  }
+
+  public getIngredient() {
+    var ingredients = [];
+    this.ingredients.forEach((value) => {
+      ingredients.push(value.ingredientName);
+      console.log(value);
+    });
+    return ingredients;
+  }
+
+  public setIngredient(ingredient: Array<string>) {
+    // löschen this.ingredients
+    this.ingredients = [];
+    ingredient.forEach((value) => {
+      this.ingredients.push(new Ingredient(null, value))
+    })
   }
 
   public addIngredient(ingredient: string, index: number) {
-    if(index === -1) {
-      this._ingredient.push(ingredient);
+    if (index === -1) {
+      this.ingredients.push(new Ingredient(null, ingredient));
     } else {
-      this._ingredient[index] = ingredient;
+      this.ingredients[index] = new Ingredient(null, ingredient);
     }
   }
 
   public deleteIngredient(index: number) {
-    if(index === 0) {
-      if(this._ingredient.length === 1) {
-        this._ingredient[index] = "";
+    if (index === 0) {
+      if (this.ingredients.length === 1) {
+        this.ingredients = [];
+        this.ingredients.push(new Ingredient(null, ""));
       } else {
-        this._ingredient.shift();
+        this.ingredients.shift();
       }
     } else {
-      this._ingredient.splice(index);
+      this.ingredients.splice(index, 1);
     }
   }
 
-  public get material() {
-    return this._material;
+  public getMaterialBE() {
+    return this.material;
   }
 
-  public set material(material: Array<string>) {
-    this._material = material;
+  public setMaterialBE(material: Array<Material>) {
+    this.material = material;
+  }
+
+  public getMaterial() {
+    var materials = [];
+    this.material.forEach((value) => {
+      materials.push(value.materialName);
+      console.log(value);
+    });
+    return materials;
+  }
+
+  public setMaterial(material: Array<string>) {
+    this.material = [];
+    material.forEach((value) => {
+      this.material.push(new Material(null, value))
+    })
   }
 
   public addMaterial(material: string, index: number) {
-    if(index === -1) {
-      this._material.push(material);
+    if (index === -1) {
+      this.material.push(new Material(null, material));
     } else {
-      this._material[index] = material;
+      this.material[index] = new Material(null, material);
     }
   }
 
   public deleteMaterial(index: number) {
-    if(index === 0) {
-      if(this._material.length === 1) {
-        this._material[index] = "";
+    if (index === 0) {
+      if (this.material.length === 1) {
+        this.material = [];
+        this.material.push(new Material(null, ""));
       } else {
-        this._material.shift();
+        this.material.shift();
       }
     } else {
-      this._material.splice(index);
+      this.material.splice(index, 1);
     }
   }
 
-  public get step() {
-    return this._step;
+  public getStepBE() {
+    return this.steps;
   }
 
-  public set step(step: Array<string>) {
-    this._step = step;
+  public setStepBE(step: Array<Step>) {
+    this.steps = step;
+  }
+
+  public getStep() {
+    var steps = [];
+    this.steps.forEach((value) => {
+      steps.push(value.stepName);
+      console.log(value);
+    });
+    return steps;
+  }
+
+  public setStep(step: Array<string>) {
+    this.steps = [];
+    step.forEach((value) => {
+      this.steps.push(new Step(null, value))
+    })
   }
 
   public addStep(step: string, index: number) {
-    if(index === -1) {
-      this._step.push(step);
+    if (index === -1) {
+      this.steps.push(new Step(null, step));
     } else {
-      this._step[index] = step;
+      this.steps[index] = new Step(null, step);
     }
   }
 
   public deleteStep(index: number) {
-    if(index === 0) {
-      if(this._step.length === 1) {
-        this._step[index] = "";
+    if (index === 0) {
+      if (this.steps.length === 1) {
+        this.steps = [];
+        this.steps.push(new Step(null, ""));
       } else {
-        this._step.shift();
+        this.steps.shift();
       }
     } else {
-      this._step.splice(index);
+      this.steps.splice(index,1);
     }
   }
 
-  public get picture() {
-    return this._picture;
+  //
+  // public get picture() {
+  //   return this._picture;
+  // }
+  //
+  // public set picture(picture: string) {
+  //   this._picture = picture;
+  // }
+
+  public getLink() {
+    return this.link;
   }
 
-  public set picture(picture: string) {
-    this._picture = picture;
+  public setLink(link: string) {
+    this.link = link;
   }
 
-  public get link() {
-    return this._link;
+  public getOther() {
+    return this.other;
   }
 
-  public set link(link:string) {
-    this._link = link;
-  }
-
-  public get other() {
-    return this._other;
-  }
-
-  public set other(other: string) {
-    this._other = other;
+  public setOther(other: string) {
+    this.other = other;
   }
 
   public copy(r: Recipe) {
-    this._category = r.category;
-    this._subcategory = r.subcategory;
-    this._title = r.title;
-    this._author = r.author;
-    this._duration = r.duration;
-    this._nutritional = r.nutritional;
-    this._difficulty = r.difficulty;
-    this._ingredient = r.ingredient.slice();
-    this._material = r.material.slice();
-    this._step = r.step.slice();
-    this._picture = r.picture;
-    this._link = r.link;
-    this._other = r.other;
+    this.id = r.getId();
+    this.category = r.getCategory();
+    this.subcategory = r.getSubcategory();
+    this.title = r.getTitle();
+    this.author = r.getAuthor();
+    this.bookmark = r.getBookmark();
+    this.duration = r.getDuration();
+    this.calory = r.getCalory();
+    this.difficultyLevel = r.getDifficulty();
+    this.ingredients = r.getIngredientBE().slice();
+    this.material = r.getMaterialBE().slice();
+    this.steps = r.getStepBE().slice();
+    // this._picture = r.picture;
+    this.link = r.getLink();
+    this.other = r.getOther();
   }
 
 }

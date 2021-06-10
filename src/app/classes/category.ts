@@ -126,14 +126,14 @@ export class Category {
       this.subcategory = "DOUGH";
     } else if (category.includes("Pastries")) {
       this.subcategory = "PASTERIES";
-    } else if (category.includes("COldDishes")) {
+    } else if (category.includes("ColdDishes")) {
       this.subcategory = "COLDDISHES";
     } else if (category.includes("FruitSalad")) {
       this.subcategory = "FRUITSALAD";
-    } else if (category.includes("MainDish")) {
+    } else if (category.includes("Salad")) {
       if(this.category === "APPETIZER") {
         this.subcategory = "APP_SALAD";
-      } else if (this.category === "Salad") {
+      } else if (this.category === "MainDish") {
         this.subcategory = "MAIN_SALAD";
       }
     } else if (category.includes("Soup")) {
@@ -143,7 +143,7 @@ export class Category {
         this.subcategory = "MAIN_SOUP";
       }
     } else {
-      this.subcategory = "";
+      this.subcategory = "DEFAULT";
     }
   }
 
