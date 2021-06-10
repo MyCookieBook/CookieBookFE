@@ -22,6 +22,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule} from '@angular/material/checkbox';
 import { MatTabsModule } from '@angular/material/tabs';
+
 import { ProfilePageComponent } from './profile-page/profile-page.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { LoginPageComponent } from './login-page/login-page.component';
