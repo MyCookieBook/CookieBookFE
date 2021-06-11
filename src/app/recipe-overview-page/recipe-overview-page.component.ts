@@ -42,17 +42,25 @@ export class RecipeOverviewPageComponent implements OnInit {
     }
   }
 
-  clickRecipe(index: number): any {
+  getDifficulty(numb: number) {
+    return new Array(numb);
+  }
+
+  clickRecipe(index: number) {
     console.log(index);
     // localStorage.setItem('recipe', this.recipes[index]);
     // this.router.navigate(['/recipe/']);
   }
 
-  getDifficulty(numb: number): any {
-    return new Array(numb);
+  handleBookmark(recipeId: string, bookmark: boolean, index: number) {
+    //Sinja
+    //BookmarkWert von RecipeId auf bookmark setzen
+    if(true) {
+      this.recipes[index].setBookmark(bookmark);
+    }
   }
 
-  handleSearchRecipe(): any {
+  handleSearchRecipe() {
     this.search = localStorage.getItem('Search');
     console.log(this.search);
     if (localStorage.getItem('Searchfield') === 'category'){
@@ -67,7 +75,7 @@ export class RecipeOverviewPageComponent implements OnInit {
     // this.recipes = ...
   }
 
-  handleBookmark(recipeID: number): any {
+  handleBookmark(recipeID: number){
     this.recipeOverviewService.addBookmark(recipeID, this.userId).subscribe((res) => {});
   }
 }
