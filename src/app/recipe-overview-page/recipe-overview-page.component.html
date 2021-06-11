@@ -39,11 +39,10 @@
         <span>{{recipe.getDuration()}} min</span>
         <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
         <span style="color:darkgray"><mat-icon>leaderboard</mat-icon>&nbsp;&nbsp;</span>
-        <span *ngFor="let x of getDifficulty(recipe.difficulty)">
+        <span *ngFor="let x of getDifficulty(recipe.getDifficulty())">
           <img mat-card-image text-align="inline" align="textbottom"
                src="https://raw.githubusercontent.com/MyCookieBook/CookieBookFE/master/src/pictures/Logo.jpg"
                alt="{{recipe.getDifficulty()}}">
-          &nbsp;&nbsp;&nbsp;&nbsp;
         </span>
       </p>
     </mat-list-item>
