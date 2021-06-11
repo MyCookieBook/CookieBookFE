@@ -37,14 +37,22 @@ export class RecipeOverviewPageComponent implements OnInit {
     }
   }
 
+  getDifficulty(numb: number) {
+    return new Array(numb);
+  }
+
   clickRecipe(index: number) {
     console.log(index);
     //localStorage.setItem('recipe', this.recipes[index]);
     //this.router.navigate(['/recipe/']);
   }
 
-  getDifficulty(numb: number) {
-    return new Array(numb);
+  handleBookmark(recipeId: string, bookmark: boolean, index: number) {
+    //Sinja
+    //BookmarkWert von RecipeId auf bookmark setzen
+    if(true) {
+      this.recipes[index].setBookmark(bookmark);
+    }
   }
 
   handleSearchRecipe() {

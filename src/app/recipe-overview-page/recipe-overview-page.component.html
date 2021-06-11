@@ -8,7 +8,8 @@
   <br>
   <h4>Try this:</h4>
   <p>&middot; Looking for something else.</p>
-  <p><a routerLink="/recipe" routerLinkActive="active" style="text-decoration:none; color:black">&middot; Create a new recipe.</a>
+  <p><a routerLink="/recipe" routerLinkActive="active" style="text-decoration:none; color:black">&middot; Create a new
+    recipe.</a>
   </p>
 </div>
 <div [hidden]="empty" class="bodytext">
@@ -16,8 +17,13 @@
   <h1><b>Your results for <i>'{{search}}'</i>:</b></h1>
   <mat-selection-list [multiple]="false" *ngFor="let recipe of recipes, let ind = index">
     <p></p>
-    <mat-list-item  (click)="clickRecipe(ind)">
-      <mat-icon matListIcon color="primary">{{recipe.getBookmark() ? 'favorite' : 'favorite_border'}}</mat-icon>
+    <mat-list-item (click)="clickRecipe(ind)">
+      <button mat-icon-button
+              matSuffix (click)="handleBookmark(recipe.getId(), !recipe.getBookmark(), ind)"
+              [attr.aria-label]="'bookmark recipe'"
+              [attr.aria-pressed]="bookmark">
+        <mat-icon matListIcon color="primary">{{recipe.getBookmark() ? 'favorite' : 'favorite_border'}}</mat-icon>
+      </button>
       <p matLine>
         <span style="font-size:15pt"><b>{{recipe.getTitle()}}</b></span>
         <span>&nbsp;&nbsp;&nbsp;</span>
@@ -34,7 +40,10 @@
         <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
         <span style="color:darkgray"><mat-icon>leaderboard</mat-icon>&nbsp;&nbsp;</span>
         <span *ngFor="let x of getDifficulty(recipe.difficulty)">
-          <img mat-card-image text-align="inline" align="textbottom" src="https://raw.githubusercontent.com/MyCookieBook/CookieBookFE/master/src/pictures/Logo.jpg" alt="{{recipe.getDifficulty()}}">
+          <img mat-card-image text-align="inline" align="textbottom"
+               src="https://raw.githubusercontent.com/MyCookieBook/CookieBookFE/master/src/pictures/Logo.jpg"
+               alt="{{recipe.getDifficulty()}}">
+          &nbsp;&nbsp;&nbsp;&nbsp;
         </span>
       </p>
     </mat-list-item>

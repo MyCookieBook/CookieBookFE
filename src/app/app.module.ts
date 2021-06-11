@@ -38,10 +38,10 @@ import { HelpPageComponent } from './help-page/help-page.component';
 import { ContactPageComponent } from './contact-page/contact-page.component';
 import { InformationPrivacyPageComponent } from './information-privacy-page/information-privacy-page.component';
 import { TeamPageComponent } from './team-page/team-page.component';
+import { MorePageComponent } from './more-page/more-page.component';
 
 // Routing
 import { AppRoutingModule } from './app-routing.module';
-import { MorePageComponent } from './more-page/more-page.component';
 
 
 @NgModule({
