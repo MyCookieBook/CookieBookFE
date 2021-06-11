@@ -31,7 +31,7 @@ export class NavbarComponent {
 
   handleSearchRecipe(search: string, searchfield: string): any {
     localStorage.setItem('Search', search);
-    localStorage.setItem('searchfield', searchfield);
+    localStorage.setItem('Searchfield', searchfield);
     this.router.navigate(['/recipe/search']);
   }
 

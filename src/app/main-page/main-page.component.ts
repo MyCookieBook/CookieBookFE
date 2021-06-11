@@ -16,7 +16,7 @@ export class MainPageComponent /*implements OnInit*/ {
 
   handleSearchRecipe(search: string): any {
     localStorage.setItem('Search', search);
-    localStorage.setItem('searchfield', 'category');
+    localStorage.setItem('Searchfield', 'category');
     this.router.navigate(['/recipe/search']);
   }
 

@@ -55,11 +55,11 @@ export class RecipeOverviewPageComponent implements OnInit {
   handleSearchRecipe(): any {
     this.search = localStorage.getItem('Search');
     console.log(this.search);
-    if (localStorage.getItem('searchfield') === 'category'){
+    if (localStorage.getItem('Searchfield') === 'category'){
       this.recipeOverviewService.getRecipeListbyCategory(this.userId, this.search).subscribe((res) => {});
-    } else if (localStorage.getItem('searchfield') === 'subcategory'){
+    } else if (localStorage.getItem('Searchfield') === 'subcategory'){
       this.recipeOverviewService.getRecipeListbySubcategory(this.userId, this.search).subscribe((res) => {});
-    } else if (localStorage.getItem('searchfield') === 'freeSearch'){
+    } else if (localStorage.getItem('Searchfield') === 'freeSearch'){
       this.recipeOverviewService.getRecipeListbySearch(this.userId, this.search).subscribe((res) => {});
     }
     localStorage.removeItem('Search');
