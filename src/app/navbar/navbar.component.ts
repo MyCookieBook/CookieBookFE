@@ -12,7 +12,6 @@ import {FormControl, Validators, ReactiveFormsModule} from '@angular/forms';
 export class NavbarComponent {
 
   logoutSuccess = false;
-  // tslint:disable-next-line:ban-types
   status: Number;
 
   search = new FormControl('');
@@ -25,17 +24,26 @@ export class NavbarComponent {
 
   /*ngOnInit(): void {
   }*/
-  clickSearch(): any {
+  clickSearch() {
     this.handleSearchRecipe(this.search.value, 'freeSearch');
   }
 
-  handleSearchRecipe(search: string, searchfield: string): any {
+  handleSearchRecipe(search: string, searchfield: string) {
     localStorage.setItem('Search', search);
     localStorage.setItem('Searchfield', searchfield);
+    if(this.router.url === '/recipe/search') {
+      const currentUrl = this.router.url;
+      this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+        this.router.navigate([currentUrl]);
+      });
+    } else {
+      this.router.navigate(['/recipe/search']);
+    }
+    console.log(this.router.url);
     this.router.navigate(['/recipe/search']);
   }
 
-  handleLogout(): any {
+  handleLogout() {
     this.userLogoutService.logoutUser(JSON.parse(localStorage.getItem('UserID'))).subscribe((result) => {
       console.log(JSON.parse(localStorage.getItem('UserID')));
       localStorage.removeItem('UserID');
