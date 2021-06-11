@@ -42,6 +42,7 @@ import { TeamPageComponent } from './team-page/team-page.component';
 // Routing
 import { AppRoutingModule } from './app-routing.module';
 import { MorePageComponent } from './more-page/more-page.component';
+import { RecipeBakeComponent } from './recipe-bake/recipe-bake.component';
 
 
 @NgModule({
@@ -61,7 +62,8 @@ import { MorePageComponent } from './more-page/more-page.component';
     ContactPageComponent,
     InformationPrivacyPageComponent,
     TeamPageComponent,
-    MorePageComponent
+    MorePageComponent,
+    RecipeBakeComponent
   ],
   imports: [
     BrowserModule,

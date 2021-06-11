@@ -16,7 +16,7 @@
   <h1><b>Your results for <i>'{{search}}'</i>:</b></h1>
   <mat-selection-list [multiple]="false" *ngFor="let recipe of recipes, let ind = index">
     <p></p>
-    <mat-list-item  (click)="clickRecipe(ind)">
+    <mat-list-item (click)="clickRecipe(ind)">
       <mat-icon matListIcon color="primary">{{recipe.getBookmark() ? 'favorite' : 'favorite_border'}}</mat-icon>
       <p matLine>
         <span style="font-size:15pt"><b>{{recipe.getTitle()}}</b></span>
