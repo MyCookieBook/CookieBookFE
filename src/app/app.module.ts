@@ -13,8 +13,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatSelectModule} from '@angular/material/select';
 import {MatDialog, MatDialogRef} from '@angular/material/dialog';
-import {HttpClientModule} from "@angular/common/http";
+import {HttpClientModule} from '@angular/common/http';
 
+import {MatExpansionModule} from '@angular/material/expansion';
 import { FormsModule } from '@angular/forms';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
@@ -38,9 +39,10 @@ import { ContactPageComponent } from './contact-page/contact-page.component';
 import { InformationPrivacyPageComponent } from './information-privacy-page/information-privacy-page.component';
 import { TeamPageComponent } from './team-page/team-page.component';
 
-//Routing
+// Routing
 import { AppRoutingModule } from './app-routing.module';
 import { MorePageComponent } from './more-page/more-page.component';
+
 
 @NgModule({
   declarations: [
@@ -80,6 +82,7 @@ import { MorePageComponent } from './more-page/more-page.component';
     AppRoutingModule,
     MatMenuModule,
     MatSelectModule,
+    MatExpansionModule
   ],
   exports: [
     MatFormFieldModule,
@@ -93,6 +96,7 @@ import { MorePageComponent } from './more-page/more-page.component';
     MatCardModule,
     MatTabsModule,
     MatCheckboxModule,
+    MatExpansionModule,
     MatMenuModule,
     MatSelectModule,
     MatListModule,
