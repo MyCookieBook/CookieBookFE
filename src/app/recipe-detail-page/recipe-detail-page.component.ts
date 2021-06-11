@@ -275,6 +275,12 @@ export class RecipeDetailPageComponent implements OnInit {
     }
   }
 
+  clickBake() {
+    localStorage.setItem('RecipeID', this.recipe_old.getId().toString());
+    //localStorage.setItem('Steps', this.recipe_old.getStep());
+    this.router.navigate(['/bake_recipe']);
+  }
+
   clickEdit() {
     this.edit = true;
     this.high = this.highedit;
