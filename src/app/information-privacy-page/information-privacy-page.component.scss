@@ -1,9 +1,26 @@
 .login-background {
-  background-image:url("https://raw.githubusercontent.com/MyCookieBook/CookieBookFE/master/src/pictures/loginPage-background.png");
+  background-image: url("https://raw.githubusercontent.com/MyCookieBook/CookieBookFE/master/src/pictures/loginPage-background.png");
 
-  height: 100%;
+  width: 100%;
+  height: auto;
 
   background-position: center;
   background-repeat: no-repeat;
+  background-attachment: scroll;
   background-size: cover;
+
+  mat-card::ng-deep.mat-card-header-text {
+    width: 100%;
+  }
+}
+
+.header-card {
+  width: 100%;
+  text-align: center;
+}
+
+.info-card {
+  max-width: 80%;
+  height: auto;
+  text-align: center;
 }

@@ -2,7 +2,46 @@
   <app-navbar></app-navbar>
 </header>
 <body>
-  This is an overview over all recipes!
+<div align="center" [hidden]="!empty">
+  <br><br><br><br>
+  <h2><b>No recipes found for <i>'{{search}}'</i>.</b></h2>
+  <br>
+  <h4>Try this:</h4>
+  <p>&middot; Looking for something else.</p>
+  <p><a routerLink="/recipe" routerLinkActive="active" style="text-decoration:none; color:black">&middot; Create a new recipe.</a>
+  </p>
+</div>
+<div [hidden]="empty" class="bodytext">
+  <br>
+  <h1><b>Your results for <i>'{{search}}'</i>:</b></h1>
+  <mat-selection-list [multiple]="false" *ngFor="let recipe of recipes, let ind = index">
+    <p></p>
+    <mat-list-item  (click)="clickRecipe(ind)">
+      <mat-icon matListIcon color="primary">{{recipe.getBookmark() ? 'favorite' : 'favorite_border'}}</mat-icon>
+      <p matLine>
+        <span style="font-size:15pt"><b>{{recipe.getTitle()}}</b></span>
+        <span>&nbsp;&nbsp;&nbsp;</span>
+        <span style="font-size:10pt"><i>by</i></span>
+        <span>&nbsp;&nbsp;&nbsp;</span>
+        <span style="font-size:12pt"><i>{{recipe.getAuthor()}}</i></span>
+      </p>
+      <p matLine align="right" style="color:darkgray; font-size:10pt">
+        <span>{{recipe.getCategoryFE()}}</span>
+      </p>
+      <p matLine>
+        <span style="color:darkgray"><mat-icon>schedule</mat-icon>&nbsp;&nbsp;</span>
+        <span>{{recipe.getDuration()}} min</span>
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        <span style="color:darkgray"><mat-icon>leaderboard</mat-icon>&nbsp;&nbsp;</span>
+        <span *ngFor="let x of getDifficulty(recipe.difficulty)">
+          <img mat-card-image text-align="inline" align="textbottom" src="https://raw.githubusercontent.com/MyCookieBook/CookieBookFE/master/src/pictures/Logo.jpg" alt="{{recipe.getDifficulty()}}">
+        </span>
+      </p>
+    </mat-list-item>
+    <p></p>
+    <mat-divider></mat-divider>
+  </mat-selection-list>
+</div>
 </body>
 <footer>
   <app-footer></app-footer>

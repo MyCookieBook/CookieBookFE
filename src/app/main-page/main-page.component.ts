@@ -1,15 +1,21 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-main-page',
   templateUrl: './main-page.component.html',
   styleUrls: ['./main-page.component.scss']
 })
-export class MainPageComponent implements OnInit {
+export class MainPageComponent /*implements OnInit*/ {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
-  ngOnInit(): void {
+  /*ngOnInit(): void {
+  }*/
+
+  handleSearchRecipe(search: string) {
+    localStorage.setItem('Search', search);
+    this.router.navigate(['/recipe/search']);
   }
 
 }

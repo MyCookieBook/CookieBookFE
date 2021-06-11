@@ -23,6 +23,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule} from '@angular/material/checkbox';
 import { MatTabsModule } from '@angular/material/tabs';
+
 import { ProfilePageComponent } from './profile-page/profile-page.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { LoginPageComponent } from './login-page/login-page.component';
@@ -40,6 +41,7 @@ import { TeamPageComponent } from './team-page/team-page.component';
 
 // Routing
 import { AppRoutingModule } from './app-routing.module';
+import { MorePageComponent } from './more-page/more-page.component';
 
 
 @NgModule({
@@ -58,7 +60,8 @@ import { AppRoutingModule } from './app-routing.module';
     HelpPageComponent,
     ContactPageComponent,
     InformationPrivacyPageComponent,
-    TeamPageComponent
+    TeamPageComponent,
+    MorePageComponent
   ],
   imports: [
     BrowserModule,
