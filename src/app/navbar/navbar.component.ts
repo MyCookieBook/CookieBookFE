@@ -30,7 +30,15 @@ export class NavbarComponent {
 
   handleSearchRecipe(search: string) {
     localStorage.setItem('Search', search);
-    this.router.navigate(['/recipe/search']);
+    if(this.router.url === '/recipe/search') {
+      const currentUrl = this.router.url;
+      this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+        this.router.navigate([currentUrl]);
+      });
+    } else {
+      this.router.navigate(['/recipe/search']);
+    }
+    console.log(this.router.url);
   }
 
   handleLogout() {
