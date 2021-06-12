@@ -10,10 +10,4 @@ export class AppComponent {
 
   /*constructor(private router: ActivatedRoute) {
 
-  }
-  ngOnInit() {
-    this.route.queryParams.subscribe(params => {
-      this.id = params['userId']
-      });
-  }*/
 }

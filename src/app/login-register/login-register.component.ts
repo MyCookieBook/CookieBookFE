@@ -94,7 +94,6 @@ export class LoginRegisterComponent /*implements OnInit*/ {
       if (this.hasError == false) {
         //this.registerSuccess = true;
         this.userId = +res;
-        console.log(this.userId)
         if (this.userId >= 60) {
           localStorage.setItem('UserID', JSON.stringify(this.userId));
           this.router.navigate(['/']);

@@ -320,7 +320,6 @@ export class Recipe {
     var ingredients = [];
     this.ingredients.forEach((value) => {
       ingredients.push(value.getIngredientName());
-      console.log(value);
     });
     return ingredients;
   }
@@ -366,7 +365,6 @@ export class Recipe {
     var materials = [];
     this.material.forEach((value) => {
       materials.push(value.getMaterialName());
-      console.log(value);
     });
     return materials;
   }

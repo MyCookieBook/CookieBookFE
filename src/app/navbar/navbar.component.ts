@@ -46,13 +46,11 @@ export class NavbarComponent {
     } else {
       this.router.navigate(['/recipe/search']);
     }
-    console.log(this.router.url);
     // this.router.navigate(['/recipe/search']);
   }
 
   handleLogout() {
     this.userLogoutService.logoutUser(JSON.parse(localStorage.getItem('UserID'))).subscribe((result) => {
-      console.log(JSON.parse(localStorage.getItem('UserID')));
       localStorage.removeItem('UserID');
       this.logoutSuccess = true;
       this.status = +result;
