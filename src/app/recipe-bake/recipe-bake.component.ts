@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {Step} from '../classes/step';
 
@@ -14,7 +14,8 @@ export class RecipeBakeComponent implements OnInit {
 
   currentStep;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router) {
+  }
 
   ngOnInit(): void {
     this.recipe = localStorage.getItem('Recipe');
@@ -25,7 +26,7 @@ export class RecipeBakeComponent implements OnInit {
   }
 
   clickNext() {
-    if(this.currentStep < this.steps.length-1) {
+    if (this.currentStep < this.steps.length - 1) {
       this.currentStep++;
     } else {
       this.clickSkip();
@@ -33,7 +34,7 @@ export class RecipeBakeComponent implements OnInit {
   }
 
   clickBack() {
-    if(this.currentStep > 0) {
+    if (this.currentStep > 0) {
       this.currentStep--;
     } else {
       this.currentStep = 0;

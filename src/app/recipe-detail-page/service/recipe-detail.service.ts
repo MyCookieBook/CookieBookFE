@@ -15,16 +15,15 @@ export class RecipeDetailService {
   constructor(private http: HttpClient) {
   }
 
-  // tslint:disable-next-line:ban-types
-  addRecipe(recipe: Recipe, userId: string, recipeId: Number) {
+  addRecipe(recipe: Recipe, userId: string) {
     console.log(userId);
     const headers = new HttpHeaders()
       .set(
         'Content-Type',
         'application/json'
       );
-    recipe.setId(recipeId);
-    console.log(recipe.getId());
+    recipe.setId(JSON.parse(sessionStorage.getItem('RecipeID')));
+    console.log(recipe.getId().valueOf());
     const body = JSON.stringify(recipe);
     console.log(body);
     return this.http.post<number>('http://localhost:8080/recipes/add?userId=' + userId, body, {headers});
@@ -56,6 +55,6 @@ export class RecipeDetailService {
         'Content-Type',
         'application/json'
       );
-    return this.http.post<number>('http://localhost:8080/recipe/deleteBookmark?recipeId=' + recipeId + '&userId=' + userId, null, {headers});
+    return this.http.delete<number>('http://localhost:8080/recipe/deleteBookmark?recipeId=' + recipeId + '&userId=' + userId);
   }
 }

@@ -2,10 +2,10 @@ import {Component, OnInit} from '@angular/core';
 import {FormControl, Validators} from '@angular/forms';
 import {Recipe} from '../classes/recipe';
 import {Router} from '@angular/router';
-import {RecipeDetailService} from "./service/recipe-detail.service";
-import {Ingredient} from "../classes/ingredient";
-import {Material} from "../classes/material";
-import {Step} from "../classes/step";
+import {RecipeDetailService} from './service/recipe-detail.service';
+import {Ingredient} from '../classes/ingredient';
+import {Material} from '../classes/material';
+import {Step} from '../classes/step';
 
 
 @Component({
@@ -24,7 +24,7 @@ export class RecipeDetailPageComponent implements OnInit {
 
   response: number;
 
-  recipe_old: Recipe;
+  recipe_old = new Recipe();
   recipe_new = new Recipe();
 
   recipe_id: number;
@@ -35,6 +35,7 @@ export class RecipeDetailPageComponent implements OnInit {
   author: FormControl;
   duration: FormControl;
   calory: FormControl;
+  difficulty: FormControl;
   link: FormControl;
   other: FormControl;
 
@@ -47,31 +48,28 @@ export class RecipeDetailPageComponent implements OnInit {
     this.user_Id = localStorage.getItem('UserID');
     this.recipe_id = +sessionStorage.getItem('RecipeID');
     if (this.recipe_id === 0) {
-      this.recipe_old = new Recipe();
       this.createEmptyRecipe();
       this.color = 'basic';
       this.high = this.highedit;
       this.edit = true;
     } else {
       console.log('test' + sessionStorage.getItem('Recipe'));
-      this.recipe_old = new Recipe();
       this.recipe_old.setRecipe(sessionStorage.getItem('Recipe'));
-      console.log('old' + this.recipe_old);
-      this.highview += this.recipe_old.getIngredient().length-1;
-      this.highview += this.recipe_old.getMaterial().length-1;
-      this.highview += this.recipe_old.getStep().length-1;
-      this.highedit += this.recipe_old.getIngredient().length-1;
-      this.highedit += this.recipe_old.getMaterial().length-1;
-      this.highedit += this.recipe_old.getStep().length-1;
+      console.log('old' + JSON.stringify(this.recipe_old));
+      this.highview += this.recipe_old.getIngredient().length - 1;
+      this.highview += this.recipe_old.getMaterial().length - 1;
+      this.highview += this.recipe_old.getStep().length - 1;
+      this.highedit += this.recipe_old.getIngredient().length - 1;
+      this.highedit += this.recipe_old.getMaterial().length - 1;
+      this.highedit += this.recipe_old.getStep().length - 1;
       this.high = this.highview;
     }
     this.init();
   }
 
-
   init() {
     this.recipe_new.copy(this.recipe_old);
-    console.log('new' + this.recipe_new);
+    console.log('new' + JSON.stringify(this.recipe_new));
     this.setFormControl();
   }
 
@@ -83,7 +81,7 @@ export class RecipeDetailPageComponent implements OnInit {
     this.recipe_old.setAuthor('');
     this.recipe_old.setDuration(0);
     this.recipe_old.setCalory('');
-    this.recipe_old.setDifficulty(0);
+    this.recipe_old.setDifficulty(1);
     this.recipe_old.setIngredient(['']);
     this.recipe_old.setMaterial(['']);
     this.recipe_old.setStep(['']);
@@ -129,7 +127,6 @@ export class RecipeDetailPageComponent implements OnInit {
       return '';
     }
   }
-
 
 
   inputDuration(event) {
@@ -304,7 +301,7 @@ export class RecipeDetailPageComponent implements OnInit {
   }
 
   checkInvalid() {
-    if(!this.title.invalid &&
+    if (!this.title.invalid &&
       !this.author.invalid &&
       !this.duration.invalid &&
       !this.calory.invalid &&
@@ -322,12 +319,13 @@ export class RecipeDetailPageComponent implements OnInit {
     this.author = new FormControl(this.recipe_new.getAuthor(), [Validators.required, Validators.maxLength(255)]);
     this.duration = new FormControl(this.recipe_new.getDuration(), [Validators.maxLength(11)]);
     this.calory = new FormControl(this.recipe_new.getCalory(), [Validators.maxLength(255)]);
+    this.difficulty = new FormControl(this.recipe_new.getDifficulty());
     this.link = new FormControl(this.recipe_new.getLink(), [Validators.maxLength(22)]);
     this.other = new FormControl(this.recipe_new.getOther(), [Validators.maxLength(255)]);
   }
 
   handleAddRecipe() {
-    this.recipeDetailService.addRecipe(this.recipe_new, this.user_Id, this.recipeId).subscribe((res) => {
+    this.recipeDetailService.addRecipe(this.recipe_new, this.user_Id).subscribe((res) => {
       this.response = res.valueOf();
       if (this.response !== 0) {
         this.recipe_old.copy(this.recipe_new);
@@ -341,8 +339,11 @@ export class RecipeDetailPageComponent implements OnInit {
   }
 
   handleDeleteRecipe() {
-    this.recipeDetailService.deleteRecipe(this.recipeId, this.user_Id).subscribe((res) => {
-      if (res === 20) {
+    this.recipe_id = +sessionStorage.getItem('RecipeID');
+    this.recipeDetailService.deleteRecipe(this.recipe_id, this.user_Id).subscribe((res) => {
+      this.response = res.valueOf();
+      console.log(this.response);
+      if (this.response === 20) {
         console.log('deletion successful');
         this.router.navigate(['/']);
       } else {
@@ -354,19 +355,14 @@ export class RecipeDetailPageComponent implements OnInit {
   handleBookmark(bookmarked: boolean) {
     this.recipe_old.setBookmark(bookmarked);
     this.recipe_new.setBookmark(bookmarked);
+    console.log(bookmarked);
     if (bookmarked === true) {
-      this.recipeDetailService.addBookmark(this.recipe_id , this.user_Id).subscribe((res) => {
+      this.recipeDetailService.addBookmark(this.recipe_id, this.user_Id).subscribe((res) => {
       });
-    } else {
-      this.recipeDetailService.deleteBookmark(this.recipe_id , this.user_Id).subscribe((res) => {
+    } else if (bookmarked === false) {
+      console.log('test');
+      this.recipeDetailService.deleteBookmark(this.recipe_id, this.user_Id).subscribe((res) => {
       });
     }
   }
-  //
-  // bookmark() {
-  //   // eventuell auch wieder beides in handleBookmark ausführen
-  //   this.recipe_old.setBookmark(!this.recipe_old.getBookmark());
-  //   this.recipe_new.setBookmark(this.recipe_old.getBookmark());
-  //   // this.handleBookmark();
-  // }
 }

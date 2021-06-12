@@ -94,7 +94,7 @@
         <div [hidden]="edit">
           <p>
             <mat-icon>schedule</mat-icon> &nbsp;
-            {{recipe_old.getDuration}} min
+            {{recipe_old.getDuration()}} min
           </p>
           <p>
             <mat-icon>bug_report</mat-icon> &nbsp;
@@ -133,7 +133,7 @@
             <mat-icon>leaderboard</mat-icon> &nbsp;
             <mat-form-field hideRequiredMarker="false">
               <mat-label>Difficulty Level*</mat-label>
-              <mat-select>
+              <mat-select [formControl]="difficulty">
                 <mat-option value="1" (click)="setDifficulty(1)">1</mat-option>
                 <mat-option value="2" (click)="setDifficulty(2)">2</mat-option>
                 <mat-option value="3" (click)="setDifficulty(3)">3</mat-option>
@@ -159,7 +159,6 @@
           <mat-list role="list">
             <mat-list-item role="listitem" *ngFor="let material of recipe_old.getMaterial()">{{material}}</mat-list-item>
           </mat-list>
-          <p *ngIf="recipe_old.getMaterial().length === 0">&nbsp;-</p>
           <br>
           <p>
             <b>Steps</b>

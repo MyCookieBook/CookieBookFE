@@ -1,24 +1,24 @@
 export class Step {
-  private _id: Number;
-  private _stepName: string;
+  private id: Number;
+  private stepName: string;
 
   constructor(id: Number, stepName: string ){
     if(id === null) {
-      this._id = 0;
+      this.id = 0;
     } else {
-      this._id = id;
+      this.id = id;
     }
-    this._stepName = stepName;
+    this.stepName = stepName;
   }
-  public get id() {
-    return this._id;
-  }
-
-  public get stepName() {
-    return this._stepName;
+  public getId() {
+    return this.id;
   }
 
-  public set stepName(stepName:string) {
-    this._stepName = stepName;
+  public getStepName() {
+    return this.stepName;
+  }
+
+  public setStepName(stepName: string) {
+    this.stepName = stepName;
   }
 }

@@ -21,7 +21,14 @@ export class NavbarComponent {
 
   clickNewRecipe() {
     sessionStorage.setItem('RecipeID', '0');
-    this.router.navigate(['/recipe']);
+    if (this.router.url === '/recipe') {
+      const currentUrl = this.router.url;
+      this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+        this.router.navigate([currentUrl]);
+      });
+    } else {
+      this.router.navigate(['/recipe']);
+    }
   }
 
   clickSearch() {

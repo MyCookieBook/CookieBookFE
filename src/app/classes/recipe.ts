@@ -90,12 +90,12 @@ export class Recipe {
       recipe += this.empty;
     } else {
       for (let i = 0; i < this.ingredients.length; i++) {
-        if (this.ingredients[i].ingredientName !== '') {
-          recipe += this.ingredients[i].ingredientName;
+        if (this.ingredients[i].getIngredientName() !== '') {
+          recipe += this.ingredients[i].getIngredientName();
           if (i != this.ingredients.length - 1) {
             recipe += this.attribute;
           }
-        } else if (this.ingredients[i].ingredientName === null) {
+        } else if (this.ingredients[i].getIngredientName() === null) {
           recipe += this.empty;
           break;
         }
@@ -106,12 +106,12 @@ export class Recipe {
       recipe += this.empty;
     } else {
       for (let i = 0; i < this.material.length; i++) {
-        if (this.material[i].materialName !== '') {
-          recipe += this.material[i].materialName;
+        if (this.material[i].getMaterialName() !== '') {
+          recipe += this.material[i].getMaterialName();
           if (i != this.material.length - 1) {
             recipe += this.attribute;
           }
-        } else if (this.material[i].materialName === null) {
+        } else if (this.material[i].getMaterialName() === null) {
           recipe += this.empty;
           break;
         }
@@ -122,12 +122,12 @@ export class Recipe {
       recipe += this.empty;
     } else {
       for (let i = 0; i < this.steps.length; i++) {
-        if (this.steps[i].stepName !== '') {
-          recipe += this.steps[i].stepName;
+        if (this.steps[i].getStepName() !== '') {
+          recipe += this.steps[i].getStepName();
           if (i != this.steps.length - 1) {
             recipe += this.attribute;
           }
-        } else if (this.steps[i].stepName === null) {
+        } else if (this.steps[i].getStepName() === null) {
           recipe += this.empty;
           break;
         }
@@ -319,7 +319,7 @@ export class Recipe {
   public getIngredient() {
     var ingredients = [];
     this.ingredients.forEach((value) => {
-      ingredients.push(value.ingredientName);
+      ingredients.push(value.getIngredientName());
       console.log(value);
     });
     return ingredients;
@@ -365,7 +365,7 @@ export class Recipe {
   public getMaterial() {
     var materials = [];
     this.material.forEach((value) => {
-      materials.push(value.materialName);
+      materials.push(value.getMaterialName());
       console.log(value);
     });
     return materials;
@@ -410,7 +410,7 @@ export class Recipe {
   public getStep() {
     var steps = [];
     this.steps.forEach((value) => {
-      steps.push(value.stepName);
+      steps.push(value.getStepName());
     });
     return steps;
   }
