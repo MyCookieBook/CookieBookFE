@@ -1,11 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormControl, Validators} from '@angular/forms';
 import {Recipe} from '../classes/recipe';
 import {Router} from '@angular/router';
 import {RecipeDetailService} from './service/recipe-detail.service';
-import {Ingredient} from '../classes/ingredient';
-import {Material} from '../classes/material';
-import {Step} from '../classes/step';
 
 
 @Component({
@@ -14,7 +11,7 @@ import {Step} from '../classes/step';
   styleUrls: ['./recipe-detail-page.component.scss']
 })
 
-export class RecipeDetailPageComponent implements OnInit {
+export class RecipeDetailPageComponent implements OnInit, OnDestroy {
 
   edit = false;
   color = 'primary';
@@ -71,6 +68,11 @@ export class RecipeDetailPageComponent implements OnInit {
     this.recipe_new.copy(this.recipe_old);
     console.log('new' + JSON.stringify(this.recipe_new));
     this.setFormControl();
+  }
+
+  ngOnDestroy() {
+    sessionStorage.removeItem('RecipeID');
+    sessionStorage.removeItem('Recipe');
   }
 
   createEmptyRecipe() {
@@ -333,6 +335,7 @@ export class RecipeDetailPageComponent implements OnInit {
         this.high = this.highview;
         sessionStorage.setItem('RecipeID', JSON.stringify(res));
       } else if (this.response === 0) {
+        localStorage.removeItem('UserID');
         this.router.navigate(['/login']);
       }
     });
@@ -346,8 +349,9 @@ export class RecipeDetailPageComponent implements OnInit {
       if (this.response === 20) {
         console.log('deletion successful');
         this.router.navigate(['/']);
-      } else {
+      } else if(this.response === 40) {
         console.log('deletion failed');
+        this.router.navigate(['/login']);
       }
     });
   }
@@ -358,11 +362,21 @@ export class RecipeDetailPageComponent implements OnInit {
     console.log(bookmarked);
     if (bookmarked === true) {
       this.recipeDetailService.addBookmark(this.recipe_id, this.user_Id).subscribe((res) => {
+        this.response = res;
+        this.directLogin();
       });
     } else if (bookmarked === false) {
       console.log('test');
       this.recipeDetailService.deleteBookmark(this.recipe_id, this.user_Id).subscribe((res) => {
+        this.response = res;
+        this.directLogin();
       });
+    }
+  }
+
+  directLogin(){
+    if (this.response === 40){
+      this.router.navigate(['/login']);
     }
   }
 }

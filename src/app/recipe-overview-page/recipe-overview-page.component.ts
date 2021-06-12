@@ -20,6 +20,7 @@ export class RecipeOverviewPageComponent implements OnInit {
   userId: string;
   recipeList: Array<Recipe>;
   recipe: Recipe;
+  response: string[];
 
   constructor(private router: Router, private recipeOverviewService: RecipeOverviewService) {
   }
@@ -78,47 +79,50 @@ export class RecipeOverviewPageComponent implements OnInit {
     console.log(this.search);
     if (localStorage.getItem('Searchfield') === 'category') {
       this.recipeOverviewService.getRecipeListbyCategory(this.userId, this.search).subscribe((res) => {
-        for (let i = 0; i < res.length; i++) {
-          this.recipe = new Recipe();
-          this.recipe.setRecipe(res[i]);
-          console.log(this.recipe);
-          this.recipes.push(this.recipe);
+        this.response = res;
+        if (this.response === null) {
+          this.router.navigate(['/login']);
+        } else {
+          for (let i = 0; i < res.length; i++) {
+            this.recipe = new Recipe();
+            this.recipe.setRecipe(res[i]);
+            console.log(this.recipe);
+            this.recipes.push(this.recipe);
+          }
+          this.init();
         }
-        this.init();
       });
     } else if (localStorage.getItem('Searchfield') === 'subcategory') {
       this.recipeOverviewService.getRecipeListbySubcategory(this.userId, this.search).subscribe((res) => {
-        console.log(res);
-        for (let i = 0; i < res.length; i++) {
-          this.recipe = new Recipe();
-          this.recipe.setRecipe(res[i]);
-          console.log(this.recipe);
-          this.recipes.push(this.recipe);
+        this.response = res;
+        if (this.response === null) {
+          this.router.navigate(['/login']);
+        } else {
+          for (let i = 0; i < res.length; i++) {
+            this.recipe = new Recipe();
+            this.recipe.setRecipe(res[i]);
+            console.log(this.recipe);
+            this.recipes.push(this.recipe);
+          }
+          this.init();
         }
-        this.init();
       });
     } else if (localStorage.getItem('Searchfield') === 'freeSearch') {
       this.recipeOverviewService.getRecipeListbySearch(this.userId, this.search).subscribe((res) => {
-        for (let i = 0; i < res.length; i++) {
-          this.recipe = new Recipe();
-          this.recipe.setRecipe(res[i]);
-          console.log(this.recipe);
-          this.recipes.push(this.recipe);
+        this.response = res;
+        if (this.response === null) {
+          this.router.navigate(['/login']);
+        } else {
+          for (let i = 0; i < res.length; i++) {
+            this.recipe = new Recipe();
+            this.recipe.setRecipe(res[i]);
+            console.log(this.recipe);
+            this.recipes.push(this.recipe);
+          }
+          this.init();
         }
-        this.init();
       });
     }
   }
 
-  // handleBookmark(bookmarked: boolean, index: number) {
-  //   this.recipes[index].setBookmark(bookmarked);
-  //   const recipeID = this.recipes[index].getId();
-  //   if (bookmarked === true) {
-  //     this.recipeOverviewService.addBookmark(recipeID, this.userId).subscribe((res) => {
-  //   });
-  //   } else {
-  //     this.recipeOverviewService.deleteBookmark(recipeID, this.userId).subscribe((res) => {
-  //     });
-  //   }
-  // }
 }

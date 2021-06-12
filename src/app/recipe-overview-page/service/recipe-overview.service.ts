@@ -29,22 +29,4 @@ export class RecipeOverviewService {
   getRecipeListbySubcategory(userId: string, subcategory: string){
     return this.http.get<Array<string>>('http://localhost:8080/recipeslist/bySubcategory/' + subcategory + '?userId=' + userId);
   }
-  //
-  // addBookmark(recipeId: Number, userId: string) {
-  //   const headers = new HttpHeaders()
-  //     .set(
-  //       'Content-Type',
-  //       'application/json'
-  //     );
-  //   return this.http.post<number>('http://localhost:8080/recipe/bookmark?recipeId=' + recipeId + '&userId=' + userId, null, {headers});
-  // }
-  //
-  // deleteBookmark(recipeId: Number, userId: string) {
-  //   const headers = new HttpHeaders()
-  //     .set(
-  //       'Content-Type',
-  //       'application/json'
-  //     );
-  //   return this.http.post<number>('http://localhost:8080/recipe/deleteBookmark?recipeId=' + recipeId + '&userId=' + userId, null, {headers});
-  // }
 }

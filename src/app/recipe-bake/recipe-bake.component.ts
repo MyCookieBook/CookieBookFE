@@ -22,7 +22,7 @@ export class RecipeBakeComponent implements OnInit {
     localStorage.removeItem('Recipe');
     this.currentStep = 0;
     this.steps = JSON.parse(localStorage.getItem('Steps'));
-    // this.steps = ['Nasszutaten verrühren','Trockenzutaten vermengen','Trockenzutaten unter Nasszutaten unterheben','Aus Teig Kugeln formen und auf Blech auslegen','Auf 180°C Ober/Unterhitze 40 min backen','Abkühlen lassen und von Blech nehmen'];
+    localStorage.removeItem('Steps');
   }
 
   clickNext() {
