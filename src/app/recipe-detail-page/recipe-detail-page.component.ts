@@ -53,9 +53,7 @@ export class RecipeDetailPageComponent implements OnInit {
       this.high = this.highedit;
       this.edit = true;
     } else {
-      console.log('test' + sessionStorage.getItem('Recipe'));
       this.recipe_old.setRecipe(sessionStorage.getItem('Recipe'));
-      console.log('old' + JSON.stringify(this.recipe_old));
       this.highview += this.recipe_old.getIngredient().length - 1;
       this.highview += this.recipe_old.getMaterial().length - 1;
       this.highview += this.recipe_old.getStep().length - 1;
@@ -69,7 +67,6 @@ export class RecipeDetailPageComponent implements OnInit {
 
   init() {
     this.recipe_new.copy(this.recipe_old);
-    console.log('new' + JSON.stringify(this.recipe_new));
     this.setFormControl();
   }
 
@@ -342,12 +339,9 @@ export class RecipeDetailPageComponent implements OnInit {
     this.recipe_id = +sessionStorage.getItem('RecipeID');
     this.recipeDetailService.deleteRecipe(this.recipe_id, this.user_Id).subscribe((res) => {
       this.response = res.valueOf();
-      console.log(this.response);
       if (this.response === 20) {
-        console.log('deletion successful');
         this.router.navigate(['/']);
       } else {
-        console.log('deletion failed');
       }
     });
   }
@@ -355,12 +349,10 @@ export class RecipeDetailPageComponent implements OnInit {
   handleBookmark(bookmarked: boolean) {
     this.recipe_old.setBookmark(bookmarked);
     this.recipe_new.setBookmark(bookmarked);
-    console.log(bookmarked);
     if (bookmarked === true) {
       this.recipeDetailService.addBookmark(this.recipe_id, this.user_Id).subscribe((res) => {
       });
     } else if (bookmarked === false) {
-      console.log('test');
       this.recipeDetailService.deleteBookmark(this.recipe_id, this.user_Id).subscribe((res) => {
       });
     }

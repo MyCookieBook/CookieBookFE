@@ -16,16 +16,13 @@ export class RecipeDetailService {
   }
 
   addRecipe(recipe: Recipe, userId: string) {
-    console.log(userId);
     const headers = new HttpHeaders()
       .set(
         'Content-Type',
         'application/json'
       );
     recipe.setId(JSON.parse(sessionStorage.getItem('RecipeID')));
-    console.log(recipe.getId().valueOf());
     const body = JSON.stringify(recipe);
-    console.log(body);
     return this.http.post<number>('http://localhost:8080/recipes/add?userId=' + userId, body, {headers});
   }
 
@@ -36,7 +33,6 @@ export class RecipeDetailService {
         'Content-Type',
         'application/json'
       );
-    console.log('recipeID: ' + recipeId);
     return this.http.post<number>('http://localhost:8080/recipes/delete?recipeId=' + recipeId + '&userId=' + userId, null, {headers});
   }
 

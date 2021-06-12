@@ -57,7 +57,6 @@ export class LoginDataComponent implements OnInit {
       if (this.hasError === false) {
         this.loginSuccess = true;
         this.userId = +result;
-        console.log(this.userId);
         if (this.userId >= 60) {
           localStorage.setItem('UserID', JSON.stringify(this.userId));
           this.router.navigate(['/']);

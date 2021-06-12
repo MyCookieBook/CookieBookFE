@@ -8,12 +8,4 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'myCookieBook';
 
-  /*constructor(private router: ActivatedRoute) {
-
-  }
-  ngOnInit() {
-    this.route.queryParams.subscribe(params => {
-      this.id = params['userId']
-      });
-  }*/
 }

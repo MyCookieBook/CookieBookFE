@@ -48,8 +48,6 @@ export class RecipeOverviewPageComponent implements OnInit {
 
   init(): void {
     // this.recipes = this.recipeList;
-    console.log('init: ' + this.recipes);
-    // console.log(JSON.stringify(this.recipes[0]));
     if (this.recipes.length > 0) {
       this.empty = false;
     } else {
@@ -63,9 +61,7 @@ export class RecipeOverviewPageComponent implements OnInit {
   }
 
   clickRecipe(index: number) {
-    console.log(index);
     sessionStorage.setItem('RecipeID', JSON.stringify(this.recipes[index].getId()));
-    console.log(this.recipes[index]);
     sessionStorage.setItem('Recipe', this.recipes[index].getRecipe());
     this.router.navigate(['/recipe/']);
   }
@@ -75,24 +71,20 @@ export class RecipeOverviewPageComponent implements OnInit {
   }
 
   handleSearchRecipe() {
-    console.log(this.search);
     if (localStorage.getItem('Searchfield') === 'category') {
       this.recipeOverviewService.getRecipeListbyCategory(this.userId, this.search).subscribe((res) => {
         for (let i = 0; i < res.length; i++) {
           this.recipe = new Recipe();
           this.recipe.setRecipe(res[i]);
-          console.log(this.recipe);
           this.recipes.push(this.recipe);
         }
         this.init();
       });
     } else if (localStorage.getItem('Searchfield') === 'subcategory') {
       this.recipeOverviewService.getRecipeListbySubcategory(this.userId, this.search).subscribe((res) => {
-        console.log(res);
         for (let i = 0; i < res.length; i++) {
           this.recipe = new Recipe();
           this.recipe.setRecipe(res[i]);
-          console.log(this.recipe);
           this.recipes.push(this.recipe);
         }
         this.init();
@@ -102,7 +94,6 @@ export class RecipeOverviewPageComponent implements OnInit {
         for (let i = 0; i < res.length; i++) {
           this.recipe = new Recipe();
           this.recipe.setRecipe(res[i]);
-          console.log(this.recipe);
           this.recipes.push(this.recipe);
         }
         this.init();
