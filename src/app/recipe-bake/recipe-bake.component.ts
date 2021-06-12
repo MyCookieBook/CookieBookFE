@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
-import {Step} from "../classes/step";
+import {Step} from '../classes/step';
 
 @Component({
   selector: 'app-recipe-bake',
@@ -10,18 +10,18 @@ import {Step} from "../classes/step";
 export class RecipeBakeComponent implements OnInit {
 
   steps: Array<string>;
-  recipe_id: string;
+  recipe: string;
 
   currentStep;
 
   constructor(private router: Router) {}
 
   ngOnInit(): void {
-    this.recipe_id = localStorage.getItem('RecipeID');
-    localStorage.removeItem('RecipeID');
+    this.recipe = localStorage.getItem('Recipe');
+    localStorage.removeItem('Recipe');
     this.currentStep = 0;
     this.steps = JSON.parse(localStorage.getItem('Steps'));
-    //this.steps = ['Nasszutaten verrühren','Trockenzutaten vermengen','Trockenzutaten unter Nasszutaten unterheben','Aus Teig Kugeln formen und auf Blech auslegen','Auf 180°C Ober/Unterhitze 40 min backen','Abkühlen lassen und von Blech nehmen'];
+    // this.steps = ['Nasszutaten verrühren','Trockenzutaten vermengen','Trockenzutaten unter Nasszutaten unterheben','Aus Teig Kugeln formen und auf Blech auslegen','Auf 180°C Ober/Unterhitze 40 min backen','Abkühlen lassen und von Blech nehmen'];
   }
 
   clickNext() {
@@ -41,7 +41,7 @@ export class RecipeBakeComponent implements OnInit {
   }
 
   clickSkip() {
-    sessionStorage.setItem('RecipeID', this.recipe_id);
+    sessionStorage.setItem('Recipe', this.recipe);
     this.router.navigate(['/recipe']);
   }
 

@@ -40,4 +40,22 @@ export class RecipeDetailService {
     console.log('recipeID: ' + recipeId);
     return this.http.post<number>('http://localhost:8080/recipes/delete?recipeId=' + recipeId + '&userId=' + userId, null, {headers});
   }
+
+  addBookmark(recipeId: Number, userId: string) {
+    const headers = new HttpHeaders()
+      .set(
+        'Content-Type',
+        'application/json'
+      );
+    return this.http.post<number>('http://localhost:8080/recipe/bookmark?recipeId=' + recipeId + '&userId=' + userId, null, {headers});
+  }
+
+  deleteBookmark(recipeId: Number, userId: string) {
+    const headers = new HttpHeaders()
+      .set(
+        'Content-Type',
+        'application/json'
+      );
+    return this.http.post<number>('http://localhost:8080/recipe/deleteBookmark?recipeId=' + recipeId + '&userId=' + userId, null, {headers});
+  }
 }

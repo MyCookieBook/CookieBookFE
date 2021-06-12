@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {MatMenuModule} from '@angular/material/menu';
 import {Router} from '@angular/router';
 import {UserLogoutService} from './service/user-logout.service';
@@ -16,14 +16,14 @@ export class NavbarComponent {
 
   search = new FormControl('');
 
-  constructor(private userLogoutService: UserLogoutService, private router: Router) { }
+  constructor(private userLogoutService: UserLogoutService, private router: Router) {
+  }
 
-  /*clickLogin() {
-    //showLoginPage();
-  }*/
+  clickNewRecipe() {
+    sessionStorage.setItem('RecipeID', '0');
+    this.router.navigate(['/recipe']);
+  }
 
-  /*ngOnInit(): void {
-  }*/
   clickSearch() {
     this.handleSearchRecipe(this.search.value, 'freeSearch');
   }
@@ -31,7 +31,7 @@ export class NavbarComponent {
   handleSearchRecipe(search: string, searchfield: string) {
     localStorage.setItem('Search', search);
     localStorage.setItem('Searchfield', searchfield);
-    if(this.router.url === '/recipe/search') {
+    if (this.router.url === '/recipe/search') {
       const currentUrl = this.router.url;
       this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
         this.router.navigate([currentUrl]);

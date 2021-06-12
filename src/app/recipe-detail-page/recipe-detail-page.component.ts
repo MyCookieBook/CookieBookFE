@@ -45,20 +45,26 @@ export class RecipeDetailPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.user_Id = localStorage.getItem('UserID');
-    this.recipe_id = 0;
+    this.recipe_id = +sessionStorage.getItem('RecipeID');
     if (this.recipe_id === 0) {
       this.recipe_old = new Recipe();
       this.createEmptyRecipe();
       this.color = 'basic';
       this.high = this.highedit;
       this.edit = true;
+    } else {
+      console.log('test' + sessionStorage.getItem('Recipe'));
+      this.recipe_old = new Recipe();
+      this.recipe_old.setRecipe(sessionStorage.getItem('Recipe'));
+      console.log('old' + this.recipe_old);
     }
     this.init();
   }
 
+
   init() {
     this.recipe_new.copy(this.recipe_old);
-
+    console.log('new' + this.recipe_new);
     this.setFormControl();
   }
 
@@ -117,12 +123,7 @@ export class RecipeDetailPageComponent implements OnInit {
     }
   }
 
-  bookmark() {
-    // eventuell auch wieder beides in handleBookmark ausführen
-    this.recipe_old.setBookmark(!this.recipe_old.getBookmark());
-    this.recipe_new.setBookmark(this.recipe_old.getBookmark());
-    // this.handleBookmark();
-  }
+
 
   inputDuration(event) {
     const duration = event.target.value;
@@ -265,7 +266,7 @@ export class RecipeDetailPageComponent implements OnInit {
     }
   }
 
-  clickCancel(){
+  clickCancel() {
     if (this.recipe_id === 0) {
       this.router.navigate(['/']);
     } else {
@@ -275,13 +276,13 @@ export class RecipeDetailPageComponent implements OnInit {
     }
   }
 
-  clickBake(){
-    localStorage.setItem('RecipeID', this.recipe_old.getId().toString());
+  clickBake() {
+    localStorage.setItem('Recipe', this.recipe_old.getRecipe());
     localStorage.setItem('Steps', JSON.stringify(this.recipe_old.getStep()));
     this.router.navigate(['/bake_recipe']);
   }
 
-  clickEdit(){
+  clickEdit() {
     this.edit = true;
     this.high = this.highedit;
     this.recipeId = this.response;
@@ -290,7 +291,7 @@ export class RecipeDetailPageComponent implements OnInit {
     this.setFormControl();
   }
 
-  clickDelete(){
+  clickDelete() {
     this.recipeId = this.response;
     this.handleDeleteRecipe();
   }
@@ -309,7 +310,7 @@ export class RecipeDetailPageComponent implements OnInit {
     }
   }
 
-  setFormControl(){
+  setFormControl() {
     this.title = new FormControl(this.recipe_new.getTitle(), [Validators.required, Validators.maxLength(255)]);
     this.author = new FormControl(this.recipe_new.getAuthor(), [Validators.required, Validators.maxLength(255)]);
     this.duration = new FormControl(this.recipe_new.getDuration(), [Validators.maxLength(11)]);
@@ -318,13 +319,14 @@ export class RecipeDetailPageComponent implements OnInit {
     this.other = new FormControl(this.recipe_new.getOther(), [Validators.maxLength(255)]);
   }
 
-  handleAddRecipe(){
+  handleAddRecipe() {
     this.recipeDetailService.addRecipe(this.recipe_new, this.user_Id, this.recipeId).subscribe((res) => {
       this.response = res.valueOf();
       if (this.response !== 0) {
         this.recipe_old.copy(this.recipe_new);
         this.edit = false;
         this.high = this.highview;
+        sessionStorage.setItem('RecipeID', JSON.stringify(res));
       } else if (this.response === 0) {
         this.router.navigate(['/login']);
       }
@@ -336,9 +338,28 @@ export class RecipeDetailPageComponent implements OnInit {
       if (res === 20) {
         console.log('deletion successful');
         this.router.navigate(['/']);
-      }else {
+      } else {
         console.log('deletion failed');
       }
     });
   }
+
+  handleBookmark(bookmarked: boolean) {
+    this.recipe_old.setBookmark(bookmarked);
+    this.recipe_new.setBookmark(bookmarked);
+    if (bookmarked === true) {
+      this.recipeDetailService.addBookmark(this.recipe_id , this.user_Id).subscribe((res) => {
+      });
+    } else {
+      this.recipeDetailService.deleteBookmark(this.recipe_id , this.user_Id).subscribe((res) => {
+      });
+    }
+  }
+  //
+  // bookmark() {
+  //   // eventuell auch wieder beides in handleBookmark ausführen
+  //   this.recipe_old.setBookmark(!this.recipe_old.getBookmark());
+  //   this.recipe_new.setBookmark(this.recipe_old.getBookmark());
+  //   // this.handleBookmark();
+  // }
 }

@@ -1,8 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import {FormControl, Validators} from '@angular/forms';
-import {Router} from "@angular/router";
+import {Router} from '@angular/router';
 
-import {UserLoginService} from "./service/user-login.service";
+import {UserLoginService} from './service/user-login.service';
 
 @Component({
   selector: 'app-login-data',
@@ -54,10 +54,10 @@ export class LoginDataComponent implements OnInit {
 
   handleLogin() {
     this.userLoginService.loginUser(this.email.value, this.password.value).subscribe((result) => {
-      if (this.hasError == false) {
+      if (this.hasError === false) {
         this.loginSuccess = true;
         this.userId = +result;
-        console.log(this.userId)
+        console.log(this.userId);
         if (this.userId >= 60) {
           localStorage.setItem('UserID', JSON.stringify(this.userId));
           this.router.navigate(['/']);
@@ -67,4 +67,11 @@ export class LoginDataComponent implements OnInit {
       this.loginSuccess = false;
     });
   }
+
+  // @HostListener('pressed login')
+  // keyBoardEvent(event: KeyboardEvent) {
+  //   if (event.key === 'Enter') {
+  //     this.handleLogin();
+  //   }
+  // }
 }

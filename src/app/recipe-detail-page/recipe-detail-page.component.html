@@ -58,9 +58,9 @@
             <b>{{recipe_old.getTitle()}}</b> &nbsp; by {{recipe_old.getAuthor()}}
             &nbsp;&nbsp;&nbsp;&nbsp;
             <button mat-icon-button
-                    matSuffix (click)="bookmark()"
+                    matSuffix (click)="handleBookmark(!recipe_old.getBookmark())"
                     [attr.aria-label]="'bookmark recipe'"
-                    [attr.aria-pressed]="bookmark">
+                    [attr.aria-pressed]="handleBookmark">
               <mat-icon>{{recipe_old.getBookmark() ? 'favorite' : 'favorite_border'}}</mat-icon>
             </button>
           </mat-card-title>
@@ -80,9 +80,9 @@
             </mat-form-field>
             &nbsp;&nbsp;&nbsp;&nbsp;
             <button mat-icon-button
-                    matSuffix (click)="bookmark()"
+                    matSuffix (click)="handleBookmark(!recipe_old.getBookmark())"
                     [attr.aria-label]="'bookmark recipe'"
-                    [attr.aria-pressed]="bookmark">
+                    [attr.aria-pressed]="handleBookmark">
               <mat-icon>{{recipe_old.getBookmark() ? 'favorite' : 'favorite_border'}}</mat-icon>
             </button>
           </mat-card-title>

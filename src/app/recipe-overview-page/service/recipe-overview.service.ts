@@ -19,36 +19,32 @@ export class RecipeOverviewService {
   }
 
   getRecipeListbySearch(userId: string, search: string) {
-    return this.http.get<Array<Recipe>>('http://localhost:8080/recipeslist?userId=' + userId);
-  }
-
-  getRecipeListFavorites(userId: string) {
-    return this.http.get<Array<Recipe>>('http://localhost:8080/recipelist/favorite?userId=' + userId);
+    return this.http.get<Array<string>>('http://localhost:8080/recipeslist/search?term=' + search + '&userId=' + userId);
   }
 
   getRecipeListbyCategory(userId: string, category: string) {
-    return this.http.get<Array<Recipe>>('http://localhost:8080/recipeslist/byCategory/' + category + '?userId=' + userId);
+    return this.http.get<Array<string>>('http://localhost:8080/recipeslist/byCategory/' + category + '?userId=' + userId);
   }
 
   getRecipeListbySubcategory(userId: string, subcategory: string){
     return this.http.get<Array<string>>('http://localhost:8080/recipeslist/bySubcategory/' + subcategory + '?userId=' + userId);
   }
-
-  addBookmark(recipeId: number, userId: string) {
-    const headers = new HttpHeaders()
-      .set(
-        'Content-Type',
-        'application/json'
-      );
-    return this.http.post('http://localhost:8080/recipe/bookmark?recipeId=' + recipeId + '&userId=' + userId, null, {headers});
-  }
-
-  deleteBookmark(recipeId: number, userId: string) {
-    const headers = new HttpHeaders()
-      .set(
-        'Content-Type',
-        'application/json'
-      );
-    return this.http.post('http://localhost:8080/recipe/deleteBookmark?recipeId=' + recipeId + '&userId=' + userId, null, {headers});
-  }
+  //
+  // addBookmark(recipeId: Number, userId: string) {
+  //   const headers = new HttpHeaders()
+  //     .set(
+  //       'Content-Type',
+  //       'application/json'
+  //     );
+  //   return this.http.post<number>('http://localhost:8080/recipe/bookmark?recipeId=' + recipeId + '&userId=' + userId, null, {headers});
+  // }
+  //
+  // deleteBookmark(recipeId: Number, userId: string) {
+  //   const headers = new HttpHeaders()
+  //     .set(
+  //       'Content-Type',
+  //       'application/json'
+  //     );
+  //   return this.http.post<number>('http://localhost:8080/recipe/deleteBookmark?recipeId=' + recipeId + '&userId=' + userId, null, {headers});
+  // }
 }
