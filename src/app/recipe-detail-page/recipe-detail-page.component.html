@@ -159,6 +159,7 @@
           <mat-list role="list">
             <mat-list-item role="listitem" *ngFor="let material of recipe_old.getMaterial()">{{material}}</mat-list-item>
           </mat-list>
+          <p *ngIf="recipe_old.getMaterial().length === 0">&nbsp;-</p>
           <br>
           <p>
             <b>Steps</b>

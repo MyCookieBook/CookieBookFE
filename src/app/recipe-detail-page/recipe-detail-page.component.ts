@@ -57,6 +57,13 @@ export class RecipeDetailPageComponent implements OnInit {
       this.recipe_old = new Recipe();
       this.recipe_old.setRecipe(sessionStorage.getItem('Recipe'));
       console.log('old' + this.recipe_old);
+      this.highview += this.recipe_old.getIngredient().length-1;
+      this.highview += this.recipe_old.getMaterial().length-1;
+      this.highview += this.recipe_old.getStep().length-1;
+      this.highedit += this.recipe_old.getIngredient().length-1;
+      this.highedit += this.recipe_old.getMaterial().length-1;
+      this.highedit += this.recipe_old.getStep().length-1;
+      this.high = this.highview;
     }
     this.init();
   }
