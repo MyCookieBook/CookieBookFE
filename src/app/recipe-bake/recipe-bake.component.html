@@ -1,0 +1,39 @@
+<div>
+  <mat-grid-list cols="1" rows="1" rowHeight="5:2">
+    <mat-grid-tile>
+      <h1 style="font-size: 45px">
+        <b>{{steps[currentStep]}}</b>
+      </h1>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
+
+<div class="div-margin">
+  <mat-grid-list cols="3" rows="1" rowHeight="12:1">
+    <mat-grid-tile colspan="1" rowspan="1">
+      <button mat-raised-button color="basic" style="font-size:16pt" (click)="clickBack()">
+        <mat-icon>arrow_back</mat-icon>
+        &nbsp;&nbsp;
+        Back
+      </button>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="1" rowspan="1"> </mat-grid-tile>
+    <mat-grid-tile colspan="1" rowspan="1">
+      <button mat-raised-button color="primary" style="font-size:18pt" (click)="clickNext()">
+        Next
+        &nbsp;&nbsp;
+        <mat-icon>arrow_forward</mat-icon>
+      </button>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="2" rowspan="1"> </mat-grid-tile>
+    <mat-grid-tile colspan="1" rowspan="1">
+      <button mat-raised-button color="basic" style="font-size:16pt" (click)="clickSkip()">
+        Skip
+        &nbsp;&nbsp;
+        <mat-icon>keyboard_tab</mat-icon>
+      </button>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
+
+<router-outlet></router-outlet>

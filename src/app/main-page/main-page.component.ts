@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {Router} from "@angular/router";
+import {Router} from '@angular/router';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-main-page',
@@ -13,8 +14,9 @@ export class MainPageComponent /*implements OnInit*/ {
   /*ngOnInit(): void {
   }*/
 
-  handleSearchRecipe(search: string) {
+  handleSearchRecipe(search: string): any {
     localStorage.setItem('Search', search);
+    localStorage.setItem('Searchfield', 'category');
     this.router.navigate(['/recipe/search']);
   }
 

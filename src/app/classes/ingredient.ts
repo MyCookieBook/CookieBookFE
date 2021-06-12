@@ -1,24 +1,24 @@
 export class Ingredient {
-  private _id: Number;
-  private _ingredientName: string;
+  private id: Number;
+  private ingredientName: string;
 
   constructor(id: Number, ingredientName: string ){
     if(id === null) {
-      this._id = 0;
+      this.id = 0;
     } else {
-      this._id = id;
+      this.id = id;
     }
-    this._ingredientName = ingredientName;
+    this.ingredientName = ingredientName;
   }
-  public get id() {
-    return this._id;
-  }
-
-  public get ingredientName() {
-    return this._ingredientName;
+  public getId() {
+    return this.id;
   }
 
-  public set ingredientName(ingredientName:string) {
-    this._ingredientName = ingredientName;
+  public getIngredientName() {
+    return this.ingredientName;
+  }
+
+  public setIngredientName(ingredientName:string) {
+    this.ingredientName = ingredientName;
   }
 }

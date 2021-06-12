@@ -1,8 +1,8 @@
 import {Category} from '../classes/category';
-import {Material} from "./material";
-import {Ingredient} from "./ingredient";
-import {Step} from "./step";
-import {of} from "rxjs";
+import {Material} from './material';
+import {Ingredient} from './ingredient';
+import {Step} from './step';
+import {of} from 'rxjs';
 
 export class Recipe {
 
@@ -21,16 +21,219 @@ export class Recipe {
   private steps: Array<Step>;
   // private _picture: string;
   private link: string;
-  private other: string; //other
+  private other: string;
 
-  public Recipe() {};
+  private splitter = '&&&';
+  private attribute = '%%%';
+  private empty = '§§§';
+
+  public Recipe() {
+  };
+
+  getRecipe() {
+    var recipe = '';
+    if (this.id === null) {
+      recipe += this.empty;
+    } else {
+      recipe += this.id.toString();
+    }
+    recipe += this.splitter;
+    if (this.category === null || this.category === '') {
+      recipe += this.empty;
+    } else {
+      recipe += this.category;
+    }
+    recipe += this.splitter;
+    if (this.subcategory === null || this.subcategory === '') {
+      recipe += this.empty;
+    } else {
+      recipe += this.subcategory;
+    }
+    recipe += this.splitter;
+    if (this.title === null || this.title === '') {
+      recipe += this.empty;
+    } else {
+      recipe += this.title;
+    }
+    recipe += this.splitter;
+    if (this.author === null || this.author === '') {
+      recipe += this.empty;
+    } else {
+      recipe += this.author;
+    }
+    recipe += this.splitter;
+    if (this.bookmark === null) {
+      recipe += this.empty;
+    } else {
+      recipe += this.bookmark.toString();
+    }
+    recipe += this.splitter;
+    if (this.duration === null) {
+      recipe += this.empty;
+    } else {
+      recipe += this.duration.toString();
+    }
+    recipe += this.splitter;
+    if (this.calory === null || this.calory === '') {
+      recipe += this.empty;
+    } else {
+      recipe += this.calory;
+    }
+    recipe += this.splitter;
+    if (this.difficultyLevel === null || this.difficultyLevel === 0) {
+      recipe += this.empty;
+    } else {
+      recipe += this.difficultyLevel.toString();
+    }
+    recipe += this.splitter;
+    if (this.ingredients === null || this.ingredients.length === 0) {
+      recipe += this.empty;
+    } else {
+      for (let i = 0; i < this.ingredients.length; i++) {
+        if (this.ingredients[i].getIngredientName() !== '') {
+          recipe += this.ingredients[i].getIngredientName();
+          if (i != this.ingredients.length - 1) {
+            recipe += this.attribute;
+          }
+        } else if (this.ingredients[i].getIngredientName() === null) {
+          recipe += this.empty;
+          break;
+        }
+      }
+    }
+    recipe += this.splitter;
+    if (this.material === null || this.material.length === 0) {
+      recipe += this.empty;
+    } else {
+      for (let i = 0; i < this.material.length; i++) {
+        if (this.material[i].getMaterialName() !== '') {
+          recipe += this.material[i].getMaterialName();
+          if (i != this.material.length - 1) {
+            recipe += this.attribute;
+          }
+        } else if (this.material[i].getMaterialName() === null) {
+          recipe += this.empty;
+          break;
+        }
+      }
+    }
+    recipe += this.splitter;
+    if (this.steps === null || this.steps.length === 0) {
+      recipe += this.empty;
+    } else {
+      for (let i = 0; i < this.steps.length; i++) {
+        if (this.steps[i].getStepName() !== '') {
+          recipe += this.steps[i].getStepName();
+          if (i != this.steps.length - 1) {
+            recipe += this.attribute;
+          }
+        } else if (this.steps[i].getStepName() === null) {
+          recipe += this.empty;
+          break;
+        }
+      }
+    }
+    recipe += this.splitter;
+    if (this.link === null || this.link === '') {
+      recipe += this.empty;
+    } else {
+      recipe += this.link;
+    }
+    recipe += this.splitter;
+    if (this.other === null || this.other === '') {
+      recipe += this.empty;
+    } else {
+      recipe += this.other;
+    }
+    return recipe;
+  }
+
+  setRecipe(recipe: string) {
+    var bigSplit = recipe.split(this.splitter);
+    if (bigSplit[0] != this.empty) {
+      this.id = +bigSplit[0];
+    } else {
+      this.id = 0;
+    }
+    if (bigSplit[1] != this.empty) {
+      this.category = bigSplit[1];
+    } else {
+      this.category = 'OTHER';
+    }
+    if (bigSplit[2] != this.empty) {
+      this.subcategory = bigSplit[2];
+    } else {
+      this.subcategory = 'DEFAULT';
+    }
+    if (bigSplit[3] != this.empty) {
+      this.title = bigSplit[3];
+    } else {
+      this.title = '';
+    }
+    if (bigSplit[4] != this.empty) {
+      this.author = bigSplit[4];
+    } else {
+      this.author = '';
+    }
+    if (bigSplit[5] != this.empty) {
+      this.bookmark = (bigSplit[5] === 'true');
+    } else {
+      this.bookmark = false;
+    }
+    if (bigSplit[6] != this.empty) {
+      this.duration = +bigSplit[6];
+    } else {
+      this.duration = 0;
+    }
+    if (bigSplit[7] != this.empty) {
+      this.calory = bigSplit[7];
+    } else {
+      this.calory = '';
+    }
+    if (bigSplit[8] != this.empty) {
+      this.difficultyLevel = +bigSplit[8];
+    } else {
+      this.difficultyLevel = 1;
+    }
+    var ingredients = bigSplit[9].split(this.attribute);
+    this.ingredients = [];
+    for (let i = 0; i < ingredients.length; i++) {
+      if (ingredients[i] != this.empty) {
+        this.ingredients.push(new Ingredient(null, ingredients[i]));
+      }
+    }
+    var material = bigSplit[10].split(this.attribute);
+    this.material = [];
+    for (let i = 0; i < material.length; i++) {
+      if (material[i] != this.empty) {
+        this.material.push(new Material(null, material[i]));
+      }
+    }
+    var step = bigSplit[11].split(this.attribute);
+    this.steps = [];
+    for (let i = 0; i < step.length; i++) {
+      if (step[i] != this.empty) {
+        this.steps.push(new Step(null, step[i]));
+      }
+    }
+    if (bigSplit[12] != this.empty) {
+      this.link = bigSplit[12];
+    } else {
+      this.link = '';
+    }
+    if (bigSplit[13] != this.empty) {
+      this.other = bigSplit[13];
+    } else {
+      this.other = '';
+    }
+  }
 
   public getId() {
     return this.id;
   }
 
-  public setId (id: Number){
-    if(id === null) {
+  public setId(id: Number) {
+    if (id === null) {
       this.id = 0;
     } else {
       this.id = id;
@@ -116,7 +319,7 @@ export class Recipe {
   public getIngredient() {
     var ingredients = [];
     this.ingredients.forEach((value) => {
-      ingredients.push(value.ingredientName);
+      ingredients.push(value.getIngredientName());
       console.log(value);
     });
     return ingredients;
@@ -126,8 +329,8 @@ export class Recipe {
     // löschen this.ingredients
     this.ingredients = [];
     ingredient.forEach((value) => {
-      this.ingredients.push(new Ingredient(null, value))
-    })
+      this.ingredients.push(new Ingredient(null, value));
+    });
   }
 
   public addIngredient(ingredient: string, index: number) {
@@ -142,7 +345,7 @@ export class Recipe {
     if (index === 0) {
       if (this.ingredients.length === 1) {
         this.ingredients = [];
-        this.ingredients.push(new Ingredient(null, ""));
+        this.ingredients.push(new Ingredient(null, ''));
       } else {
         this.ingredients.shift();
       }
@@ -162,7 +365,7 @@ export class Recipe {
   public getMaterial() {
     var materials = [];
     this.material.forEach((value) => {
-      materials.push(value.materialName);
+      materials.push(value.getMaterialName());
       console.log(value);
     });
     return materials;
@@ -171,8 +374,8 @@ export class Recipe {
   public setMaterial(material: Array<string>) {
     this.material = [];
     material.forEach((value) => {
-      this.material.push(new Material(null, value))
-    })
+      this.material.push(new Material(null, value));
+    });
   }
 
   public addMaterial(material: string, index: number) {
@@ -187,7 +390,7 @@ export class Recipe {
     if (index === 0) {
       if (this.material.length === 1) {
         this.material = [];
-        this.material.push(new Material(null, ""));
+        this.material.push(new Material(null, ''));
       } else {
         this.material.shift();
       }
@@ -207,8 +410,7 @@ export class Recipe {
   public getStep() {
     var steps = [];
     this.steps.forEach((value) => {
-      steps.push(value.stepName);
-      console.log(value);
+      steps.push(value.getStepName());
     });
     return steps;
   }
@@ -216,8 +418,8 @@ export class Recipe {
   public setStep(step: Array<string>) {
     this.steps = [];
     step.forEach((value) => {
-      this.steps.push(new Step(null, value))
-    })
+      this.steps.push(new Step(null, value));
+    });
   }
 
   public addStep(step: string, index: number) {
@@ -232,12 +434,12 @@ export class Recipe {
     if (index === 0) {
       if (this.steps.length === 1) {
         this.steps = [];
-        this.steps.push(new Step(null, ""));
+        this.steps.push(new Step(null, ''));
       } else {
         this.steps.shift();
       }
     } else {
-      this.steps.splice(index,1);
+      this.steps.splice(index, 1);
     }
   }
 

@@ -2,10 +2,10 @@ import {Component, OnInit} from '@angular/core';
 import {FormControl, Validators} from '@angular/forms';
 import {Recipe} from '../classes/recipe';
 import {Router} from '@angular/router';
-import {RecipeDetailService} from "./service/recipe-detail.service";
-import {Ingredient} from "../classes/ingredient";
-import {Material} from "../classes/material";
-import {Step} from "../classes/step";
+import {RecipeDetailService} from './service/recipe-detail.service';
+import {Ingredient} from '../classes/ingredient';
+import {Material} from '../classes/material';
+import {Step} from '../classes/step';
 
 
 @Component({
@@ -17,14 +17,14 @@ import {Step} from "../classes/step";
 export class RecipeDetailPageComponent implements OnInit {
 
   edit = false;
-  color = "primary";
+  color = 'primary';
   high = 5;
   highview = 5;
   highedit = 8;
 
   response: number;
 
-  recipe_old: Recipe;
+  recipe_old = new Recipe();
   recipe_new = new Recipe();
 
   recipe_id: number;
@@ -35,48 +35,59 @@ export class RecipeDetailPageComponent implements OnInit {
   author: FormControl;
   duration: FormControl;
   calory: FormControl;
+  difficulty: FormControl;
   link: FormControl;
   other: FormControl;
 
-  cookie = "https://raw.githubusercontent.com/MyCookieBook/CookieBookFE/master/src/pictures/Logo.jpg";
+  cookie = 'https://raw.githubusercontent.com/MyCookieBook/CookieBookFE/master/src/pictures/Logo.jpg';
 
   constructor(private recipeDetailService: RecipeDetailService, private router: Router) {
   }
 
   ngOnInit(): void {
-    this.user_Id = localStorage.getItem("UserID");
-    this.recipe_id = 0;
-    if(this.recipe_id === 0) {
-      this.recipe_old = new Recipe();
+    this.user_Id = localStorage.getItem('UserID');
+    this.recipe_id = +sessionStorage.getItem('RecipeID');
+    if (this.recipe_id === 0) {
       this.createEmptyRecipe();
-      this.color = "basic";
+      this.color = 'basic';
       this.high = this.highedit;
       this.edit = true;
+    } else {
+      console.log('test' + sessionStorage.getItem('Recipe'));
+      this.recipe_old.setRecipe(sessionStorage.getItem('Recipe'));
+      console.log('old' + JSON.stringify(this.recipe_old));
+      this.highview += this.recipe_old.getIngredient().length - 1;
+      this.highview += this.recipe_old.getMaterial().length - 1;
+      this.highview += this.recipe_old.getStep().length - 1;
+      this.highedit += this.recipe_old.getIngredient().length - 1;
+      this.highedit += this.recipe_old.getMaterial().length - 1;
+      this.highedit += this.recipe_old.getStep().length - 1;
+      this.high = this.highview;
     }
     this.init();
   }
 
   init() {
     this.recipe_new.copy(this.recipe_old);
-
+    console.log('new' + JSON.stringify(this.recipe_new));
     this.setFormControl();
   }
 
   createEmptyRecipe() {
     this.recipeId = 0;
     this.recipe_old.setId(0);
-    this.recipe_old.setCategoryFE("Other");
-    this.recipe_old.setTitle("");
-    this.recipe_old.setAuthor("");
+    this.recipe_old.setCategoryFE('Other');
+    this.recipe_old.setTitle('');
+    this.recipe_old.setAuthor('');
     this.recipe_old.setDuration(0);
-    this.recipe_old.setCalory("");
-    this.recipe_old.setDifficulty(0);
-    this.recipe_old.setIngredient([""]);
-    this.recipe_old.setMaterial([""]);
-    this.recipe_old.setStep([""]);
+    this.recipe_old.setCalory('');
+    this.recipe_old.setDifficulty(1);
+    this.recipe_old.setIngredient(['']);
+    this.recipe_old.setMaterial(['']);
+    this.recipe_old.setStep(['']);
     // this.recipe_old.picture = "https://raw.githubusercontent.com/MyCookieBook/CookieBookFE/master/src/pictures/DefaultRecipePicture.jpg";
-    this.recipe_old.setLink("");
-    this.recipe_old.setOther("");
+    this.recipe_old.setLink('');
+    this.recipe_old.setOther('');
   }
 
   setCategory(category: string) {
@@ -90,11 +101,11 @@ export class RecipeDetailPageComponent implements OnInit {
   }
 
   getErrorMessageTitle() {
-    this.color = "basic"
-    if(this.title.hasError('required')) {
+    this.color = 'basic';
+    if (this.title.hasError('required')) {
       return 'Please enter a title for your recipe!';
-    } else if(this.title.hasError('maxlength')) {
-      return 'Your title is too long. (Max length 255)'
+    } else if (this.title.hasError('maxlength')) {
+      return 'Your title is too long. (Max length 255)';
     } else {
       return '';
     }
@@ -107,22 +118,16 @@ export class RecipeDetailPageComponent implements OnInit {
   }
 
   getErrorMessageAuthor() {
-    this.color = "basic"
-    if(this.author.hasError('required')) {
+    this.color = 'basic';
+    if (this.author.hasError('required')) {
       return 'Please enter a author for your recipe!';
-    } else if(this.title.hasError('maxlength')) {
-      return 'Your authorname is too long. (Max length 255)'
+    } else if (this.title.hasError('maxlength')) {
+      return 'Your authorname is too long. (Max length 255)';
     } else {
       return '';
     }
   }
 
-  bookmark() {
-    //eventuell auch wieder beides in handleBookmark ausführen
-    this.recipe_old.setBookmark(!this.recipe_old.getBookmark());
-    this.recipe_new.setBookmark(this.recipe_old.getBookmark());
-    //this.handleBookmark();
-  }
 
   inputDuration(event) {
     const duration = event.target.value;
@@ -131,8 +136,8 @@ export class RecipeDetailPageComponent implements OnInit {
   }
 
   getErrorMessageDuration() {
-    this.color = "basic";
-    if(this.duration.hasError('maxlength')) {
+    this.color = 'basic';
+    if (this.duration.hasError('maxlength')) {
       return 'Your duration is too long. Max 11 signs.';
     } else {
       return '';
@@ -146,7 +151,7 @@ export class RecipeDetailPageComponent implements OnInit {
   }
 
   getErrorMessageCalory() {
-    this.color = "basic";
+    this.color = 'basic';
     if (this.calory.hasError('maxlength')) {
       return 'Your nutritional values are too long. Max 255 signs.';
     } else {
@@ -161,7 +166,7 @@ export class RecipeDetailPageComponent implements OnInit {
   }
 
   addIngredient() {
-    this.recipe_new.addIngredient("", -1);
+    this.recipe_new.addIngredient('', -1);
     this.highedit++;
     this.highview++;
     this.high = this.highedit;
@@ -169,7 +174,7 @@ export class RecipeDetailPageComponent implements OnInit {
 
   deleteIngredient(index: number) {
     this.recipe_new.deleteIngredient(index);
-    if(this.recipe_new.getIngredient.length > 1) {
+    if (this.recipe_new.getIngredient.length > 1) {
       this.highedit--;
       this.highview--;
       this.high = this.highedit;
@@ -183,7 +188,7 @@ export class RecipeDetailPageComponent implements OnInit {
   }
 
   addMaterial() {
-    this.recipe_new.addMaterial("", -1);
+    this.recipe_new.addMaterial('', -1);
     this.highedit++;
     this.highview++;
     this.high = this.highedit;
@@ -191,7 +196,7 @@ export class RecipeDetailPageComponent implements OnInit {
 
   deleteMaterial(index: number) {
     this.recipe_new.deleteMaterial(index);
-    if(this.recipe_new.getMaterial().length > 1) {
+    if (this.recipe_new.getMaterial().length > 1) {
       this.highedit--;
       this.highview--;
       this.high = this.highedit;
@@ -205,7 +210,7 @@ export class RecipeDetailPageComponent implements OnInit {
   }
 
   addStep() {
-    this.recipe_new.addStep("", -1);
+    this.recipe_new.addStep('', -1);
     this.highedit++;
     this.highview++;
     this.high = this.highedit;
@@ -213,7 +218,7 @@ export class RecipeDetailPageComponent implements OnInit {
 
   deleteStep(index: number) {
     this.recipe_new.deleteStep(index);
-    if(this.recipe_new.getStep().length > 1) {
+    if (this.recipe_new.getStep().length > 1) {
       this.highedit--;
       this.highview--;
       this.high = this.highedit;
@@ -227,8 +232,8 @@ export class RecipeDetailPageComponent implements OnInit {
   }
 
   getErrorMessageLink() {
-    this.color = "basic";
-    if(this.link.hasError('maxlength')) {
+    this.color = 'basic';
+    if (this.link.hasError('maxlength')) {
       return 'Your link is too long. Max 255 signs.';
     } else {
       return '';
@@ -242,8 +247,8 @@ export class RecipeDetailPageComponent implements OnInit {
   }
 
   getErrorMessageOther() {
-    this.color = "basic";
-    if(this.other.hasError('maxlength')) {
+    this.color = 'basic';
+    if (this.other.hasError('maxlength')) {
       return 'Your information is too long. Max 255 signs.';
     } else {
       return '';
@@ -260,7 +265,7 @@ export class RecipeDetailPageComponent implements OnInit {
   }
 
   clickSave() {
-    if (this.color === "primary") {
+    if (this.color === 'primary') {
       this.handleAddRecipe();
     }
   }
@@ -273,6 +278,12 @@ export class RecipeDetailPageComponent implements OnInit {
       this.high = this.highview;
       this.recipe_new.copy(this.recipe_old);
     }
+  }
+
+  clickBake() {
+    localStorage.setItem('Recipe', this.recipe_old.getRecipe());
+    localStorage.setItem('Steps', JSON.stringify(this.recipe_old.getStep()));
+    this.router.navigate(['/bake_recipe']);
   }
 
   clickEdit() {
@@ -290,16 +301,16 @@ export class RecipeDetailPageComponent implements OnInit {
   }
 
   checkInvalid() {
-    if(!this.title.invalid &&
+    if (!this.title.invalid &&
       !this.author.invalid &&
       !this.duration.invalid &&
       !this.calory.invalid &&
       this.recipe_new.getDifficulty() > 0 &&
-      !(this.recipe_new.getIngredient[0] === "") &&
-      !(this.recipe_new.getStep[0] === "") &&
+      !(this.recipe_new.getIngredient[0] === '') &&
+      !(this.recipe_new.getStep[0] === '') &&
       !this.link.invalid &&
       !this.other.invalid) {
-      this.color = "primary";
+      this.color = 'primary';
     }
   }
 
@@ -308,17 +319,19 @@ export class RecipeDetailPageComponent implements OnInit {
     this.author = new FormControl(this.recipe_new.getAuthor(), [Validators.required, Validators.maxLength(255)]);
     this.duration = new FormControl(this.recipe_new.getDuration(), [Validators.maxLength(11)]);
     this.calory = new FormControl(this.recipe_new.getCalory(), [Validators.maxLength(255)]);
+    this.difficulty = new FormControl(this.recipe_new.getDifficulty());
     this.link = new FormControl(this.recipe_new.getLink(), [Validators.maxLength(22)]);
     this.other = new FormControl(this.recipe_new.getOther(), [Validators.maxLength(255)]);
   }
 
   handleAddRecipe() {
-    this.recipeDetailService.addRecipe(this.recipe_new, this.user_Id, this.recipeId).subscribe((res) => {
+    this.recipeDetailService.addRecipe(this.recipe_new, this.user_Id).subscribe((res) => {
       this.response = res.valueOf();
-      if (this.response != 0) {
+      if (this.response !== 0) {
         this.recipe_old.copy(this.recipe_new);
         this.edit = false;
         this.high = this.highview;
+        sessionStorage.setItem('RecipeID', JSON.stringify(res));
       } else if (this.response === 0) {
         this.router.navigate(['/login']);
       }
@@ -326,13 +339,30 @@ export class RecipeDetailPageComponent implements OnInit {
   }
 
   handleDeleteRecipe() {
-    this.recipeDetailService.deleteRecipe(this.recipeId, this.user_Id).subscribe((res) => {
-      if (res === 20) {
-        console.log("deletion successful");
+    this.recipe_id = +sessionStorage.getItem('RecipeID');
+    this.recipeDetailService.deleteRecipe(this.recipe_id, this.user_Id).subscribe((res) => {
+      this.response = res.valueOf();
+      console.log(this.response);
+      if (this.response === 20) {
+        console.log('deletion successful');
         this.router.navigate(['/']);
-      }else {
-        console.log("deletion failed")
+      } else {
+        console.log('deletion failed');
       }
     });
+  }
+
+  handleBookmark(bookmarked: boolean) {
+    this.recipe_old.setBookmark(bookmarked);
+    this.recipe_new.setBookmark(bookmarked);
+    console.log(bookmarked);
+    if (bookmarked === true) {
+      this.recipeDetailService.addBookmark(this.recipe_id, this.user_Id).subscribe((res) => {
+      });
+    } else if (bookmarked === false) {
+      console.log('test');
+      this.recipeDetailService.deleteBookmark(this.recipe_id, this.user_Id).subscribe((res) => {
+      });
+    }
   }
 }

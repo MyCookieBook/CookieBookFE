@@ -16,12 +16,14 @@ import { ContactPageComponent } from './contact-page/contact-page.component';
 import { InformationPrivacyPageComponent } from './information-privacy-page/information-privacy-page.component';
 import { TeamPageComponent } from './team-page/team-page.component';
 import { MorePageComponent } from './more-page/more-page.component';
+import { RecipeBakeComponent } from './recipe-bake/recipe-bake.component';
 
 const routes: Routes = [
   {path: 'login', component: LoginPageComponent},
   {path: '', component: MainPageComponent},
   {path: 'profile', component: ProfilePageComponent},
   {path: 'recipe', component: RecipeDetailPageComponent},
+  {path: 'bake_recipe', component: RecipeBakeComponent},
   {path: 'recipe/search', component: RecipeOverviewPageComponent},
   {path: 'help', component: HelpPageComponent},
   {path: 'contact', component: ContactPageComponent},

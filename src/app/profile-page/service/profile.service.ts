@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {map} from "rxjs/operators";
-import {Observable} from "rxjs";
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {map} from 'rxjs/operators';
+import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -22,29 +22,29 @@ export class ProfileService {
         'Content-Type',
         'application/json'
       );
-    return this.http.post<number>("http://localhost:8080/users/edit", {
-      "id": id,
-      "email": email,
-      "username": username
-    }, {"headers": headers})
+    return this.http.post<number>('http://localhost:8080/users/edit', {
+      id,
+      email,
+      username
+    }, {headers});
   }
 
-  changePassword(id: string, email: string, password: string):Observable<number>{
+  changePassword(id: string, email: string, password: string): Observable<number>{
     const headers = new HttpHeaders()
       .set(
         'Content-Type',
         'application/json'
       );
-    return this.http.post<number>("http://localhost:8080/users/changePassword?newPassword="+password, {
-      "id": id,
-      "email": email
-    }, {"headers": headers})
+    return this.http.post<number>('http://localhost:8080/users/changePassword?newPassword=' + password, {
+      id,
+      email
+    }, {headers});
   }
 
   getUser(id: string) {
-    return this.http.get("http://localhost:8080/user?UserId="+id).pipe(
-      map((data:string[]) =>{
-        return data
+    return this.http.get('http://localhost:8080/user?UserId=' + id).pipe(
+      map((data: string[]) => {
+        return data;
       })
     );
   }
