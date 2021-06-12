@@ -14,16 +14,14 @@
 </div>
 <div [hidden]="empty" class="bodytext">
   <br>
-  <h1><b>Your results for <i>'{{search}}'</i>:</b></h1>
+  <h1><b>Your results for <i>'{{search}}'</i> :</b></h1>
   <mat-selection-list [multiple]="false" *ngFor="let recipe of recipes, let ind = index">
     <p></p>
-    <mat-list-item (click)="clickRecipe(ind)">
-      <mat-icon matListIcon color="primary">{{recipe.getBookmark() ? 'favorite' : 'favorite_border'}}</mat-icon>
     <mat-list-item (click)="clickRecipe(ind)">
       <button mat-icon-button
               matSuffix (click)="handleBookmark(recipe.getId(), !recipe.getBookmark(), ind)"
               [attr.aria-label]="'bookmark recipe'"
-              [attr.aria-pressed]="bookmark">
+              [attr.aria-pressed]="handleBookmark()">
         <mat-icon matListIcon color="primary">{{recipe.getBookmark() ? 'favorite' : 'favorite_border'}}</mat-icon>
       </button>
       <p matLine>

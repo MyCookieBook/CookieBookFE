@@ -52,13 +52,13 @@ export class RecipeDetailPageComponent implements OnInit {
     this.init();
   }
 
-  init(): any {
+  init() {
     this.recipe_new.copy(this.recipe_old);
 
     this.setFormControl();
   }
 
-  createEmptyRecipe(): any {
+  createEmptyRecipe() {
     this.recipeId = 0;
     this.recipe_old.setId(0);
     this.recipe_old.setCategoryFE('Other');
@@ -75,17 +75,17 @@ export class RecipeDetailPageComponent implements OnInit {
     this.recipe_old.setOther('');
   }
 
-  setCategory(category: string): any {
+  setCategory(category: string) {
     this.recipe_new.setCategoryFE(category);
   }
 
-  inputTitle(event): any {
+  inputTitle(event) {
     const title = event.target.value;
     this.recipe_new.setTitle(title);
     this.checkInvalid();
   }
 
-  getErrorMessageTitle(): any {
+  getErrorMessageTitle() {
     this.color = 'basic';
     if (this.title.hasError('required')) {
       return 'Please enter a title for your recipe!';
@@ -96,13 +96,13 @@ export class RecipeDetailPageComponent implements OnInit {
     }
   }
 
-  inputAuthor(event): any {
+  inputAuthor(event) {
     const author = event.target.value;
     this.recipe_new.setAuthor(author);
     this.checkInvalid();
   }
 
-  getErrorMessageAuthor(): any {
+  getErrorMessageAuthor() {
     this.color = 'basic';
     if (this.author.hasError('required')) {
       return 'Please enter a author for your recipe!';
@@ -113,20 +113,20 @@ export class RecipeDetailPageComponent implements OnInit {
     }
   }
 
-  bookmark(): any {
+  bookmark() {
     // eventuell auch wieder beides in handleBookmark ausführen
     this.recipe_old.setBookmark(!this.recipe_old.getBookmark());
     this.recipe_new.setBookmark(this.recipe_old.getBookmark());
     // this.handleBookmark();
   }
 
-  inputDuration(event): any {
+  inputDuration(event) {
     const duration = event.target.value;
     this.recipe_new.setDuration(duration);
     this.checkInvalid();
   }
 
-  getErrorMessageDuration(): any {
+  getErrorMessageDuration() {
     this.color = 'basic';
     if (this.duration.hasError('maxlength')) {
       return 'Your duration is too long. Max 11 signs.';
@@ -135,13 +135,13 @@ export class RecipeDetailPageComponent implements OnInit {
     }
   }
 
-  inputCalory(event): any {
+  inputCalory(event) {
     const calory = event.target.value;
     this.recipe_new.setCalory(calory);
     this.checkInvalid();
   }
 
-  getErrorMessageCalory(): any {
+  getErrorMessageCalory() {
     this.color = 'basic';
     if (this.calory.hasError('maxlength')) {
       return 'Your nutritional values are too long. Max 255 signs.';
@@ -150,20 +150,20 @@ export class RecipeDetailPageComponent implements OnInit {
     }
   }
 
-  inputIngredient(event, ind: number): any {
+  inputIngredient(event, ind: number) {
     const ingredient = event.target.value;
     this.recipe_new.addIngredient(ingredient, ind);
     this.checkInvalid();
   }
 
-  addIngredient(): any {
+  addIngredient() {
     this.recipe_new.addIngredient('', -1);
     this.highedit++;
     this.highview++;
     this.high = this.highedit;
   }
 
-  deleteIngredient(index: number): any {
+  deleteIngredient(index: number) {
     this.recipe_new.deleteIngredient(index);
     if (this.recipe_new.getIngredient.length > 1) {
       this.highedit--;
@@ -172,20 +172,20 @@ export class RecipeDetailPageComponent implements OnInit {
     }
   }
 
-  inputMaterial(event, ind: number): any {
+  inputMaterial(event, ind: number) {
     const material = event.target.value;
     this.recipe_new.addMaterial(material, ind);
     this.checkInvalid();
   }
 
-  addMaterial(): any {
+  addMaterial() {
     this.recipe_new.addMaterial('', -1);
     this.highedit++;
     this.highview++;
     this.high = this.highedit;
   }
 
-  deleteMaterial(index: number): any {
+  deleteMaterial(index: number) {
     this.recipe_new.deleteMaterial(index);
     if (this.recipe_new.getMaterial().length > 1) {
       this.highedit--;
@@ -194,20 +194,20 @@ export class RecipeDetailPageComponent implements OnInit {
     }
   }
 
-  inputStep(event, ind: number): any {
+  inputStep(event, ind: number) {
     const step = event.target.value;
     this.recipe_new.addStep(step, ind);
     this.checkInvalid();
   }
 
-  addStep(): any {
+  addStep() {
     this.recipe_new.addStep('', -1);
     this.highedit++;
     this.highview++;
     this.high = this.highedit;
   }
 
-  deleteStep(index: number): any {
+  deleteStep(index: number) {
     this.recipe_new.deleteStep(index);
     if (this.recipe_new.getStep().length > 1) {
       this.highedit--;
@@ -216,13 +216,13 @@ export class RecipeDetailPageComponent implements OnInit {
     }
   }
 
-  inputLink(event): any {
+  inputLink(event) {
     const link = event.target.value;
     this.recipe_new.setLink(link);
     this.checkInvalid();
   }
 
-  getErrorMessageLink(): any {
+  getErrorMessageLink() {
     this.color = 'basic';
     if (this.link.hasError('maxlength')) {
       return 'Your link is too long. Max 255 signs.';
@@ -231,13 +231,13 @@ export class RecipeDetailPageComponent implements OnInit {
     }
   }
 
-  inputOther(event): any {
+  inputOther(event) {
     const other = event.target.value;
     this.recipe_new.setOther(other);
     this.checkInvalid();
   }
 
-  getErrorMessageOther(): any {
+  getErrorMessageOther() {
     this.color = 'basic';
     if (this.other.hasError('maxlength')) {
       return 'Your information is too long. Max 255 signs.';
@@ -246,22 +246,22 @@ export class RecipeDetailPageComponent implements OnInit {
     }
   }
 
-  setDifficulty(value: number): any {
+  setDifficulty(value: number) {
     this.recipe_new.setDifficulty(value);
     this.checkInvalid();
   }
 
-  getDifficulty(): any {
+  getDifficulty() {
     return new Array(this.recipe_old.getDifficulty());
   }
 
-  clickSave(): any {
+  clickSave() {
     if (this.color === 'primary') {
       this.handleAddRecipe();
     }
   }
 
-  clickCancel(): any {
+  clickCancel(){
     if (this.recipe_id === 0) {
       this.router.navigate(['/']);
     } else {
@@ -271,13 +271,13 @@ export class RecipeDetailPageComponent implements OnInit {
     }
   }
 
-  clickBake(): any {
+  clickBake(){
     localStorage.setItem('RecipeID', this.recipe_old.getId().toString());
     // localStorage.setItem('Steps', this.recipe_old.getStep());
     this.router.navigate(['/bake_recipe']);
   }
 
-  clickEdit(): any {
+  clickEdit(){
     this.edit = true;
     this.high = this.highedit;
     this.recipeId = this.response;
@@ -286,12 +286,12 @@ export class RecipeDetailPageComponent implements OnInit {
     this.setFormControl();
   }
 
-  clickDelete(): any {
+  clickDelete(){
     this.recipeId = this.response;
     this.handleDeleteRecipe();
   }
 
-  checkInvalid(): any {
+  checkInvalid(){
     if (!this.title.invalid &&
       !this.author.invalid &&
       !this.duration.invalid &&
@@ -305,7 +305,7 @@ export class RecipeDetailPageComponent implements OnInit {
     }
   }
 
-  setFormControl(): any {
+  setFormControl(){
     this.title = new FormControl(this.recipe_new.getTitle(), [Validators.required, Validators.maxLength(255)]);
     this.author = new FormControl(this.recipe_new.getAuthor(), [Validators.required, Validators.maxLength(255)]);
     this.duration = new FormControl(this.recipe_new.getDuration(), [Validators.maxLength(11)]);
@@ -314,7 +314,7 @@ export class RecipeDetailPageComponent implements OnInit {
     this.other = new FormControl(this.recipe_new.getOther(), [Validators.maxLength(255)]);
   }
 
-  handleAddRecipe(): any {
+  handleAddRecipe(){
     this.recipeDetailService.addRecipe(this.recipe_new, this.user_Id, this.recipeId).subscribe((res) => {
       this.response = res.valueOf();
       if (this.response !== 0) {
@@ -327,7 +327,7 @@ export class RecipeDetailPageComponent implements OnInit {
     });
   }
 
-  handleDeleteRecipe(): any {
+  handleDeleteRecipe(){
     this.recipeDetailService.deleteRecipe(this.recipeId, this.user_Id).subscribe((res) => {
       if (res === 20) {
         console.log('deletion successful');

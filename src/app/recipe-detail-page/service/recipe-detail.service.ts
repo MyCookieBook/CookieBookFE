@@ -27,7 +27,7 @@ export class RecipeDetailService {
     console.log(recipe.getId());
     const body = JSON.stringify(recipe);
     console.log(body);
-    return this.http.post<number>('http://localhost:8080/recipes/add?userId=' + userId, body, {headers: headers});
+    return this.http.post<number>('http://localhost:8080/recipes/add?userId=' + userId, body, {headers});
   }
 
   // tslint:disable-next-line:ban-types
@@ -38,6 +38,6 @@ export class RecipeDetailService {
         'application/json'
       );
     console.log('recipeID: ' + recipeId);
-    return this.http.post<number>('http://localhost:8080/recipes/delete?recipeId=' + recipeId + '&userId=' + userId, null, {headers: headers});
+    return this.http.post<number>('http://localhost:8080/recipes/delete?recipeId=' + recipeId + '&userId=' + userId, null, {headers});
   }
 }

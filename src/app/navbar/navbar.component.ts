@@ -40,7 +40,7 @@ export class NavbarComponent {
       this.router.navigate(['/recipe/search']);
     }
     console.log(this.router.url);
-    this.router.navigate(['/recipe/search']);
+    // this.router.navigate(['/recipe/search']);
   }
 
   handleLogout() {

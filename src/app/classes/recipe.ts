@@ -1,8 +1,8 @@
 import {Category} from '../classes/category';
-import {Material} from "./material";
-import {Ingredient} from "./ingredient";
-import {Step} from "./step";
-import {of} from "rxjs";
+import {Material} from './material';
+import {Ingredient} from './ingredient';
+import {Step} from './step';
+import {of} from 'rxjs';
 
 export class Recipe {
 
@@ -25,7 +25,7 @@ export class Recipe {
 
   private splitter = '&&&';
   private attribute = '%%%';
-  private empty= '§§§';
+  private empty = '§§§';
 
   public Recipe() {};
 
@@ -215,8 +215,8 @@ export class Recipe {
     return this.id;
   }
 
-  public setId (id: Number){
-    if(id === null) {
+  public setId(id: Number) {
+    if (id === null) {
       this.id = 0;
     } else {
       this.id = id;
@@ -312,8 +312,8 @@ export class Recipe {
     // löschen this.ingredients
     this.ingredients = [];
     ingredient.forEach((value) => {
-      this.ingredients.push(new Ingredient(null, value))
-    })
+      this.ingredients.push(new Ingredient(null, value));
+    });
   }
 
   public addIngredient(ingredient: string, index: number) {
@@ -328,7 +328,7 @@ export class Recipe {
     if (index === 0) {
       if (this.ingredients.length === 1) {
         this.ingredients = [];
-        this.ingredients.push(new Ingredient(null, ""));
+        this.ingredients.push(new Ingredient(null, ''));
       } else {
         this.ingredients.shift();
       }
@@ -357,8 +357,8 @@ export class Recipe {
   public setMaterial(material: Array<string>) {
     this.material = [];
     material.forEach((value) => {
-      this.material.push(new Material(null, value))
-    })
+      this.material.push(new Material(null, value));
+    });
   }
 
   public addMaterial(material: string, index: number) {
@@ -373,7 +373,7 @@ export class Recipe {
     if (index === 0) {
       if (this.material.length === 1) {
         this.material = [];
-        this.material.push(new Material(null, ""));
+        this.material.push(new Material(null, ''));
       } else {
         this.material.shift();
       }
@@ -402,8 +402,8 @@ export class Recipe {
   public setStep(step: Array<string>) {
     this.steps = [];
     step.forEach((value) => {
-      this.steps.push(new Step(null, value))
-    })
+      this.steps.push(new Step(null, value));
+    });
   }
 
   public addStep(step: string, index: number) {
@@ -418,12 +418,12 @@ export class Recipe {
     if (index === 0) {
       if (this.steps.length === 1) {
         this.steps = [];
-        this.steps.push(new Step(null, ""));
+        this.steps.push(new Step(null, ''));
       } else {
         this.steps.shift();
       }
     } else {
-      this.steps.splice(index,1);
+      this.steps.splice(index, 1);
     }
   }
 
