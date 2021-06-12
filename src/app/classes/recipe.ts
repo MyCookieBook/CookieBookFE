@@ -208,7 +208,6 @@ export class Recipe {
     var steps = [];
     this.steps.forEach((value) => {
       steps.push(value.stepName);
-      console.log(value);
     });
     return steps;
   }
