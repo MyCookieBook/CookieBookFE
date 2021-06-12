@@ -79,7 +79,7 @@
               <mat-error *ngIf="author.invalid">{{getErrorMessageAuthor()}}</mat-error>
             </mat-form-field>
             &nbsp;&nbsp;&nbsp;&nbsp;
-            <button mat-icon-button
+            <button mat-icon-button *ngIf="recipe_new.getId() !== 0"
                     matSuffix (click)="handleBookmark(!recipe_old.getBookmark())"
                     [attr.aria-label]="'bookmark recipe'"
                     [attr.aria-pressed]="handleBookmark">
