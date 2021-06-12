@@ -2,7 +2,11 @@ import {Component, OnInit} from '@angular/core';
 import {FormControl, Validators} from '@angular/forms';
 import {Recipe} from '../classes/recipe';
 import {Router} from '@angular/router';
-import {RecipeDetailService} from './service/recipe-detail.service';
+import {RecipeDetailService} from "./service/recipe-detail.service";
+import {Ingredient} from "../classes/ingredient";
+import {Material} from "../classes/material";
+import {Step} from "../classes/step";
+
 
 @Component({
   selector: 'app-recipe-detail-page',
@@ -273,7 +277,7 @@ export class RecipeDetailPageComponent implements OnInit {
 
   clickBake(){
     localStorage.setItem('RecipeID', this.recipe_old.getId().toString());
-    // localStorage.setItem('Steps', this.recipe_old.getStep());
+    localStorage.setItem('Steps', JSON.stringify(this.recipe_old.getStep()));
     this.router.navigate(['/bake_recipe']);
   }
 
@@ -291,8 +295,8 @@ export class RecipeDetailPageComponent implements OnInit {
     this.handleDeleteRecipe();
   }
 
-  checkInvalid(){
-    if (!this.title.invalid &&
+  checkInvalid() {
+    if(!this.title.invalid &&
       !this.author.invalid &&
       !this.duration.invalid &&
       !this.calory.invalid &&
@@ -327,7 +331,7 @@ export class RecipeDetailPageComponent implements OnInit {
     });
   }
 
-  handleDeleteRecipe(){
+  handleDeleteRecipe() {
     this.recipeDetailService.deleteRecipe(this.recipeId, this.user_Id).subscribe((res) => {
       if (res === 20) {
         console.log('deletion successful');
