@@ -64,18 +64,13 @@
     </mat-form-field>
   </div>
   <div class="example-button-container">
-    <button mat-icon-button>
-      <mat-icon>
-        <a routerLink="/profile" routerLinkActive="active" style="text-decoration:none; color:white">account_circle</a>
-      </mat-icon>
+    <button mat-icon-button (click)="clickProfile()">
+      <mat-icon>account_circle</mat-icon>
     </button>
   </div>
   <div class="example-button-container">
     <button mat-icon-button (click)="handleLogout()">
-      <mat-icon>
-<!--        <a routerLink="/login" routerLinkActive="active" style="text-decoration:none; color:white">logout</a>-->
-        <a style="text-decoration:none; color:white">logout</a>
-      </mat-icon>
+      <mat-icon>logout</mat-icon>
     </button>
   </div>
 </mat-toolbar>

@@ -8,6 +8,4 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'myCookieBook';
 
-  /*constructor(private router: ActivatedRoute) {
-
 }

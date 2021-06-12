@@ -49,6 +49,17 @@ export class NavbarComponent {
     // this.router.navigate(['/recipe/search']);
   }
 
+  clickProfile() {
+  if (this.router.url === '/profile') {
+    const currentUrl = this.router.url;
+    this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+      this.router.navigate([currentUrl]);
+    });
+  } else {
+    this.router.navigate(['/profile']);
+  }
+  }
+
   handleLogout() {
     this.userLogoutService.logoutUser(JSON.parse(localStorage.getItem('UserID'))).subscribe((result) => {
       localStorage.removeItem('UserID');
