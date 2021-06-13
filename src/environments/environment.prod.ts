@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  domain: 'http://mycookiebook.ddns.net'
+  domain: 'http://mycookiebookbackend.ddns.net'
 };
