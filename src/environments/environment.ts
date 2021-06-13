@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  domain: 'http://mycookiebook.ddns.net'
+  domain: 'http://mycookiebookbackend.ddns.net'
 };
 
 /*
