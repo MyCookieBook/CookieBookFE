@@ -42,6 +42,12 @@ export class RecipeDetailPageComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+
+    var userId = localStorage.getItem('UserID');
+    if (userId === null) {
+      this.router.navigate(['/login']);
+    }
+
     this.user_Id = localStorage.getItem('UserID');
     this.recipe_id = +sessionStorage.getItem('RecipeID');
     if (this.recipe_id === 0) {
@@ -344,7 +350,7 @@ export class RecipeDetailPageComponent implements OnInit, OnDestroy {
       this.response = res.valueOf();
       if (this.response === 20) {
         this.router.navigate(['/']);
-      } else if(this.response === 40) {
+      } else if (this.response === 40) {
         this.router.navigate(['/login']);
       }
     });
@@ -366,8 +372,8 @@ export class RecipeDetailPageComponent implements OnInit, OnDestroy {
     }
   }
 
-  directLogin(){
-    if (this.response === 40){
+  directLogin() {
+    if (this.response === 40) {
       this.router.navigate(['/login']);
     }
   }
