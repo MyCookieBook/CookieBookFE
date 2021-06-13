@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  domain: 'http://mycookiebook-database.herokuapp.com'
+  domain: 'https://mycookiebook-database.herokuapp.com'
 };
 
 /*
