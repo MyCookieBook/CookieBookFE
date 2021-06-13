@@ -18,6 +18,12 @@ export class RecipeBakeComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    var userId = localStorage.getItem('UserID');
+    if (userId === null) {
+      this.router.navigate(['/login']);
+    }
+
     this.recipe = localStorage.getItem('Recipe');
     localStorage.removeItem('Recipe');
     this.currentStep = 0;

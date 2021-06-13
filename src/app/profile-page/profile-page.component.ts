@@ -52,6 +52,12 @@ export class ProfilePageComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    var userId = localStorage.getItem('UserID');
+    if (userId === null) {
+      this.router.navigate(['/login']);
+    }
+
     this.userId = localStorage.getItem('UserID');
     this.getUser();
 
