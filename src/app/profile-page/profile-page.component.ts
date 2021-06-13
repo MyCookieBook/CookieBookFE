@@ -3,9 +3,9 @@ import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule, MatFormField, MatLabel} from '@angular/material/form-field';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {FormControl, Validators, ReactiveFormsModule} from '@angular/forms';
-import {ProfileService} from "./service/profile.service";
-import {UserRegisterService} from "../login-register/service/user-register.service";
-import {Router} from "@angular/router";
+import {ProfileService} from './service/profile.service';
+import {UserRegisterService} from '../login-register/service/user-register.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-profile-page',
@@ -15,8 +15,8 @@ import {Router} from "@angular/router";
 export class ProfilePageComponent implements OnInit {
 
   edit = false;
-  color = "primary";
-  colorPw = "basic";
+  color = 'primary';
+  colorPw = 'basic';
 
   userId: string;
   response: number;
@@ -45,7 +45,7 @@ export class ProfilePageComponent implements OnInit {
   pw_new: FormControl;
   pw_confirm: FormControl;
 
-  picturescr = "https://raw.githubusercontent.com/MyCookieBook/CookieBookFE/master/src/pictures/avatar.jpg";
+  picturescr = 'https://raw.githubusercontent.com/MyCookieBook/CookieBookFE/master/src/pictures/avatar.jpg';
 
 
   constructor(private profileService: ProfileService, private router: Router) {
@@ -54,9 +54,6 @@ export class ProfilePageComponent implements OnInit {
   ngOnInit() {
     this.userId = localStorage.getItem('UserID');
     this.getUser();
-
-    // this.username_old = "username"; //BE
-    // this.usermail_old = "user@mail";  //BE
 
     this.username_new = this.username_old;
     this.usermail_new = this.usermail_old;
@@ -73,7 +70,7 @@ export class ProfilePageComponent implements OnInit {
   }
 
   getErrorMessageName() {
-    this.color = "basic";
+    this.color = 'basic';
     if (this.name.hasError('required')) {
       return 'Please enter a username!';
     } else if (this.name.hasError('minlength')) {
@@ -90,7 +87,7 @@ export class ProfilePageComponent implements OnInit {
   }
 
   getErrorMessageMail() {
-    this.color = "basic";
+    this.color = 'basic';
     if (this.email.hasError('required')) {
       return 'Please enter your mail address!';
     } else if (this.email.hasError('email')) {
@@ -102,7 +99,7 @@ export class ProfilePageComponent implements OnInit {
 
   checkInvalid() {
     if (!this.email.invalid && !this.name.invalid) {
-      this.color = "primary";
+      this.color = 'primary';
     }
   }
 
@@ -111,14 +108,14 @@ export class ProfilePageComponent implements OnInit {
     this.hidePwNew = true;
     this.hidePwConfirm = true;
     this.setFormControlPassword();
-    this.savePw = false;
+    // this.savePw = false;
   }
 
   clearPasswords() {
-    this.password_old = "";
-    this.password_new = "";
-    this.password_confirm = "";
-    this.colorPw = "basic";
+    this.password_old = '';
+    this.password_new = '';
+    this.password_confirm = '';
+    this.colorPw = 'basic';
   }
 
   inputPasswordOld(event) {
@@ -128,7 +125,7 @@ export class ProfilePageComponent implements OnInit {
   }
 
   getErrorMessagePasswordOld() {
-    this.colorPw = "basic";
+    this.colorPw = 'basic';
     if (this.pw_old.hasError('required')) {
       return 'Please enter the password!';
     } else if (this.pw_old.hasError('minlength')) {
@@ -145,7 +142,7 @@ export class ProfilePageComponent implements OnInit {
   }
 
   getErrorMessagePasswordNew() {
-    this.colorPw = "basic";
+    this.colorPw = 'basic';
     if (this.pw_new.hasError('required')) {
       return 'Please enter the password!';
     } else if (this.pw_new.hasError('minlength')) {
@@ -174,7 +171,7 @@ export class ProfilePageComponent implements OnInit {
   }
 
   getErrorMessagePasswordConfirm() {
-    this.colorPw = "basic";
+    this.colorPw = 'basic';
     if (this.pw_confirm.hasError('required')) {
       return 'Please enter the password!';
     } else if (this.pw_confirm.hasError('minlength')) {
@@ -188,12 +185,12 @@ export class ProfilePageComponent implements OnInit {
 
   checkInvalidPw() {
     if (!this.pw_old.invalid && !this.pw_new.invalid && !this.confirmInvalid()) {
-      this.colorPw = "primary";
+      this.colorPw = 'primary';
     }
   }
 
   clickSavePw() {
-    if (this.colorPw === "primary") {
+    if (this.colorPw === 'primary') {
       this.handleChangePassword();
     }
   }
@@ -205,11 +202,14 @@ export class ProfilePageComponent implements OnInit {
 
   clickEdit() {
     this.edit = true;
+    this.color = 'primary';
+    this.username_new = this.username_old;
+    this.usermail_new = this.usermail_old;
     this.setFormControl();
   }
 
   clickSave() {
-    if (this.color === "primary") {
+    if (this.color === 'primary') {
       this.handleEditProfile();
     }
   }
