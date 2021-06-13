@@ -26,6 +26,12 @@ export class RecipeOverviewPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    var userId = localStorage.getItem('UserID');
+    if (userId === null) {
+      this.router.navigate(['/login']);
+    }
+
     this.userId = localStorage.getItem('UserID');
     this.search = localStorage.getItem('Search');
     localStorage.removeItem('Search');

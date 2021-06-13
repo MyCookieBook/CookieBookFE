@@ -42,6 +42,12 @@ export class RecipeDetailPageComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+
+    var userId = localStorage.getItem('UserID');
+    if (userId === null) {
+      this.router.navigate(['/login']);
+    }
+
     this.user_Id = localStorage.getItem('UserID');
     this.recipe_id = +sessionStorage.getItem('RecipeID');
     if (this.recipe_id === 0) {
