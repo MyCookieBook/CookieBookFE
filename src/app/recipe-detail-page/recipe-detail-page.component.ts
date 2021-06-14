@@ -339,9 +339,11 @@ export class RecipeDetailPageComponent implements OnInit {
     this.recipeDetailService.addRecipe(this.recipe_new, this.user_Id).subscribe((res) => {
       this.response = res.valueOf();
       if (this.response !== 0) {
+        this.recipe_new.setId(res);
         this.recipe_old.copy(this.recipe_new);
         this.edit = false;
         this.high = this.highview;
+        this.recipe_id = res;
         sessionStorage.setItem('RecipeID', JSON.stringify(res));
       } else if (this.response === 0) {
         localStorage.removeItem('UserID');
