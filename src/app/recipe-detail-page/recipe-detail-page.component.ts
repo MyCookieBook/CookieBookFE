@@ -352,6 +352,8 @@ export class RecipeDetailPageComponent implements OnInit {
     this.recipeDetailService.deleteRecipe(this.recipe_id, this.user_Id).subscribe((res) => {
       this.response = res.valueOf();
       if (this.response === 20) {
+        sessionStorage.removeItem('RecipeID');
+        sessionStorage.removeItem('Recipe');
         this.router.navigate(['/']);
       } else if (this.response === 40) {
         this.router.navigate(['/login']);
