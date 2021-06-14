@@ -11,7 +11,7 @@ import {RecipeDetailService} from './service/recipe-detail.service';
   styleUrls: ['./recipe-detail-page.component.scss']
 })
 
-export class RecipeDetailPageComponent implements OnInit, OnDestroy {
+export class RecipeDetailPageComponent implements OnInit {
 
   edit = false;
   color = 'primary';
@@ -73,10 +73,10 @@ export class RecipeDetailPageComponent implements OnInit, OnDestroy {
     this.setFormControl();
   }
 
-  ngOnDestroy() {
-    sessionStorage.removeItem('RecipeID');
-    sessionStorage.removeItem('Recipe');
-  }
+  // ngOnDestroy() {
+  //   sessionStorage.removeItem('RecipeID');
+  //   sessionStorage.removeItem('Recipe');
+  // }
 
   createEmptyRecipe() {
     this.recipeId = 0;
@@ -84,6 +84,7 @@ export class RecipeDetailPageComponent implements OnInit, OnDestroy {
     this.recipe_old.setCategoryFE('Other');
     this.recipe_old.setTitle('');
     this.recipe_old.setAuthor('');
+    this.recipe_old.setBookmark(false);
     this.recipe_old.setDuration(0);
     this.recipe_old.setCalory('');
     this.recipe_old.setDifficulty(1);
@@ -292,7 +293,6 @@ export class RecipeDetailPageComponent implements OnInit, OnDestroy {
   }
 
   clickBake() {
-    localStorage.setItem('Recipe', this.recipe_old.getRecipe());
     localStorage.setItem('Steps', JSON.stringify(this.recipe_old.getStep()));
     this.router.navigate(['/bake_recipe']);
   }

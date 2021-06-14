@@ -10,7 +10,6 @@ import {Step} from '../classes/step';
 export class RecipeBakeComponent implements OnInit {
 
   steps: Array<string>;
-  recipe: string;
 
   currentStep;
 
@@ -24,8 +23,6 @@ export class RecipeBakeComponent implements OnInit {
       this.router.navigate(['/login']);
     }
 
-    this.recipe = localStorage.getItem('Recipe');
-    localStorage.removeItem('Recipe');
     this.currentStep = 0;
     this.steps = JSON.parse(localStorage.getItem('Steps'));
     localStorage.removeItem('Steps');
@@ -48,7 +45,6 @@ export class RecipeBakeComponent implements OnInit {
   }
 
   clickSkip() {
-    sessionStorage.setItem('Recipe', this.recipe);
     this.router.navigate(['/recipe']);
   }
 
