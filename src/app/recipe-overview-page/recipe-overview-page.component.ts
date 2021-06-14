@@ -34,7 +34,6 @@ export class RecipeOverviewPageComponent implements OnInit {
 
     this.userId = localStorage.getItem('UserID');
     this.search = localStorage.getItem('Search');
-    localStorage.removeItem('Search');
     if (localStorage.getItem('Searchfield') === 'freeSearch') {
       this.searchtext = this.search;
     } else if (localStorage.getItem('Searchfield') === 'category') {
