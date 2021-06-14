@@ -22,15 +22,15 @@ export class RecipeOverviewService {
     this.url = environment.domain;
   }
 
-  getRecipeListbySearch(userId: string, search: string) {
+  getRecipeListbySearch(userId: number, search: string) {
     return this.http.get<Array<string>>(this.url + '/recipeslist/search?term=' + search + '&userId=' + userId);
   }
 
-  getRecipeListbyCategory(userId: string, category: string) {
+  getRecipeListbyCategory(userId: number, category: string) {
     return this.http.get<Array<string>>(this.url + '/recipeslist/byCategory/' + category + '?userId=' + userId);
   }
 
-  getRecipeListbySubcategory(userId: string, subcategory: string){
+  getRecipeListbySubcategory(userId: number, subcategory: string){
     return this.http.get<Array<string>>(this.url + '/recipeslist/bySubcategory/' + subcategory + '?userId=' + userId);
   }
 }

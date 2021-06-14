@@ -17,7 +17,7 @@ export class RecipeOverviewPageComponent implements OnInit {
   empty: boolean;
   search: string;
   searchtext: string;
-  userId: string;
+  userId: number;
   recipeList: Array<Recipe>;
   recipe: Recipe;
   response: string[];
@@ -27,12 +27,12 @@ export class RecipeOverviewPageComponent implements OnInit {
 
   ngOnInit(): void {
 
-    var userId = localStorage.getItem('UserID');
-    if (userId === null) {
+    var user_Id = localStorage.getItem('UserID');
+    if (user_Id === null) {
       this.router.navigate(['/login']);
     }
 
-    this.userId = localStorage.getItem('UserID');
+    this.userId = JSON.parse(localStorage.getItem('UserID'));
     this.search = localStorage.getItem('Search');
     if (localStorage.getItem('Searchfield') === 'freeSearch') {
       this.searchtext = this.search;
