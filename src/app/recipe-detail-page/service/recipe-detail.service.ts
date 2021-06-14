@@ -20,6 +20,7 @@ export class RecipeDetailService {
   }
 
   addRecipe(recipe: Recipe, userId: string) {
+    console.log('Add recipe');
     const headers = new HttpHeaders()
       .set(
         'Content-Type',
