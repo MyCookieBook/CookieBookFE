@@ -19,6 +19,12 @@ export class MainPageComponent /*implements OnInit*/ {
     }
 
   }
+  ngOnInit(): void {
+    var userId = localStorage.getItem('UserID');
+    if(userId === null){
+      this.router.navigate(['/login']);
+    }
+  }
 
   handleSearchRecipe(search: string): any {
     localStorage.setItem('Search', search);
