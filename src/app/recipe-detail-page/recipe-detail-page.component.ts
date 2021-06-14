@@ -168,6 +168,7 @@ export class RecipeDetailPageComponent implements OnInit {
   inputIngredient(event, ind: number) {
     const ingredient = event.target.value;
     this.recipe_new.addIngredient(ingredient, ind);
+    console.log('Ingredient index: ' + ind);
     this.checkInvalid();
   }
 
@@ -176,6 +177,7 @@ export class RecipeDetailPageComponent implements OnInit {
     this.highedit++;
     this.highview++;
     this.high = this.highedit;
+    console.log(' add ingredient');
   }
 
   deleteIngredient(index: number) {
@@ -190,6 +192,7 @@ export class RecipeDetailPageComponent implements OnInit {
   inputMaterial(event, ind: number) {
     const material = event.target.value;
     this.recipe_new.addMaterial(material, ind);
+    console.log('Material index: ' + ind);
     this.checkInvalid();
   }
 
@@ -198,6 +201,7 @@ export class RecipeDetailPageComponent implements OnInit {
     this.highedit++;
     this.highview++;
     this.high = this.highedit;
+    console.log('add material');
   }
 
   deleteMaterial(index: number) {
@@ -212,6 +216,7 @@ export class RecipeDetailPageComponent implements OnInit {
   inputStep(event, ind: number) {
     const step = event.target.value;
     this.recipe_new.addStep(step, ind);
+    console.log('Step index: '+ ind);
     this.checkInvalid();
   }
 
@@ -220,6 +225,7 @@ export class RecipeDetailPageComponent implements OnInit {
     this.highedit++;
     this.highview++;
     this.high = this.highedit;
+    console.log('add step');
   }
 
   deleteStep(index: number) {

@@ -328,7 +328,11 @@ export class Recipe {
     // löschen this.ingredients
     this.ingredients = [];
     ingredient.forEach((value) => {
-      this.ingredients.push(new Ingredient(null, value));
+      if (value.length <= 255) {
+        this.ingredients.push(new Ingredient(null, value));
+      } else {
+        this.ingredients.push(new Ingredient(null, value.slice(0, 255)));
+      }
     });
   }
 
@@ -336,7 +340,11 @@ export class Recipe {
     if (index === -1) {
       this.ingredients.push(new Ingredient(null, ingredient));
     } else {
-      this.ingredients[index] = new Ingredient(null, ingredient);
+      if (ingredient.length <= 255) {
+        this.ingredients[index] = (new Ingredient(null, ingredient));
+      } else {
+        this.ingredients[index] = (new Ingredient(null, ingredient.slice(0, 255)));
+      }
     }
   }
 
@@ -372,7 +380,11 @@ export class Recipe {
   public setMaterial(material: Array<string>) {
     this.material = [];
     material.forEach((value) => {
-      this.material.push(new Material(null, value));
+      if (value.length <= 255) {
+        this.material.push(new Material(null, value));
+      } else {
+        this.material.push(new Material(null, value.slice(0, 255)));
+      }
     });
   }
 
@@ -380,7 +392,11 @@ export class Recipe {
     if (index === -1) {
       this.material.push(new Material(null, material));
     } else {
-      this.material[index] = new Material(null, material);
+      if (material.length <= 255) {
+        this.material[index] = new Material(null, material);
+      } else {
+        this.material[index] = new Material(null, material.slice(0, 255));
+      }
     }
   }
 
@@ -416,7 +432,11 @@ export class Recipe {
   public setStep(step: Array<string>) {
     this.steps = [];
     step.forEach((value) => {
-      this.steps.push(new Step(null, value));
+      if (value.length <= 255) {
+        this.steps.push(new Step(null, value));
+      } else {
+        this.steps.push(new Step(null, value.slice(0, 255)));
+      }
     });
   }
 
@@ -424,7 +444,11 @@ export class Recipe {
     if (index === -1) {
       this.steps.push(new Step(null, step));
     } else {
-      this.steps[index] = new Step(null, step);
+      if (step.length <= 255) {
+        this.steps[index] = new Step(null, step);
+      } else {
+        this.steps[index] = new Step(null, step.slice(0, 255));
+      }
     }
   }
 
