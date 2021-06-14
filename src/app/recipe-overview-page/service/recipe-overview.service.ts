@@ -18,15 +18,15 @@ export class RecipeOverviewService {
   constructor(private http: HttpClient) {
   }
 
-  getRecipeListbySearch(userId: string, search: string) {
+  getRecipeListbySearch(userId: number, search: string) {
     return this.http.get<Array<string>>('http://localhost:8080/recipeslist/search?term=' + search + '&userId=' + userId);
   }
 
-  getRecipeListbyCategory(userId: string, category: string) {
+  getRecipeListbyCategory(userId: number, category: string) {
     return this.http.get<Array<string>>('http://localhost:8080/recipeslist/byCategory/' + category + '?userId=' + userId);
   }
 
-  getRecipeListbySubcategory(userId: string, subcategory: string){
+  getRecipeListbySubcategory(userId: number, subcategory: string){
     return this.http.get<Array<string>>('http://localhost:8080/recipeslist/bySubcategory/' + subcategory + '?userId=' + userId);
   }
 }

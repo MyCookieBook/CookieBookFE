@@ -17,7 +17,7 @@ export class RecipeOverviewPageComponent implements OnInit {
   empty: boolean;
   search: string;
   searchtext: string;
-  userId: string;
+  userId: number;
   recipeList: Array<Recipe>;
   recipe: Recipe;
   response: string[];
@@ -32,9 +32,8 @@ export class RecipeOverviewPageComponent implements OnInit {
       this.router.navigate(['/login']);
     }
 
-    this.userId = localStorage.getItem('UserID');
+    this.userId = JSON.parse(localStorage.getItem('UserID'));
     this.search = localStorage.getItem('Search');
-    localStorage.removeItem('Search');
     if (localStorage.getItem('Searchfield') === 'freeSearch') {
       this.searchtext = this.search;
     } else if (localStorage.getItem('Searchfield') === 'category') {

@@ -11,7 +11,7 @@ import {RecipeDetailService} from './service/recipe-detail.service';
   styleUrls: ['./recipe-detail-page.component.scss']
 })
 
-export class RecipeDetailPageComponent implements OnInit, OnDestroy {
+export class RecipeDetailPageComponent implements OnInit {
 
   edit = false;
   color = 'primary';
@@ -73,10 +73,10 @@ export class RecipeDetailPageComponent implements OnInit, OnDestroy {
     this.setFormControl();
   }
 
-  ngOnDestroy() {
-    sessionStorage.removeItem('RecipeID');
-    sessionStorage.removeItem('Recipe');
-  }
+  // ngOnDestroy() {
+  //   sessionStorage.removeItem('RecipeID');
+  //   sessionStorage.removeItem('Recipe');
+  // }
 
   createEmptyRecipe() {
     this.recipeId = 0;
@@ -84,6 +84,7 @@ export class RecipeDetailPageComponent implements OnInit, OnDestroy {
     this.recipe_old.setCategoryFE('Other');
     this.recipe_old.setTitle('');
     this.recipe_old.setAuthor('');
+    this.recipe_old.setBookmark(false);
     this.recipe_old.setDuration(0);
     this.recipe_old.setCalory('');
     this.recipe_old.setDifficulty(1);
@@ -286,7 +287,6 @@ export class RecipeDetailPageComponent implements OnInit, OnDestroy {
   }
 
   clickBake() {
-    localStorage.setItem('Recipe', this.recipe_old.getRecipe());
     localStorage.setItem('Steps', JSON.stringify(this.recipe_old.getStep()));
     this.router.navigate(['/bake_recipe']);
   }
@@ -333,10 +333,13 @@ export class RecipeDetailPageComponent implements OnInit, OnDestroy {
     this.recipeDetailService.addRecipe(this.recipe_new, this.user_Id).subscribe((res) => {
       this.response = res.valueOf();
       if (this.response !== 0) {
+        this.recipe_new.setId(res);
         this.recipe_old.copy(this.recipe_new);
         this.edit = false;
         this.high = this.highview;
+        this.recipe_id = res;
         sessionStorage.setItem('RecipeID', JSON.stringify(res));
+        sessionStorage.setItem('Recipe', this.recipe_old.getRecipe());
       } else if (this.response === 0) {
         localStorage.removeItem('UserID');
         this.router.navigate(['/login']);
@@ -359,6 +362,7 @@ export class RecipeDetailPageComponent implements OnInit, OnDestroy {
   handleBookmark(bookmarked: boolean) {
     this.recipe_old.setBookmark(bookmarked);
     this.recipe_new.setBookmark(bookmarked);
+    sessionStorage.setItem('Recipe', this.recipe_old.getRecipe());
     if (bookmarked === true) {
       this.recipeDetailService.addBookmark(this.recipe_id, this.user_Id).subscribe((res) => {
         this.response = res;
