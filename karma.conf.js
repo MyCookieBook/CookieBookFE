@@ -38,7 +38,7 @@ module.exports = function (config) {
     	}
     },
     browsers: ['Chrome', 'ChromeHeadlessNoSandbox'],
-    singleRun: false,
+    singleRun: true,
     restartOnFileChange: true
   });
 };
