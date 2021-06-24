@@ -1,39 +1,29 @@
-name: Build and Test
+name: Running Code Coverage
 
-on:
-  pull_request:
-    types: [opened, synchronize, reopened]
-    branches: [ master , codecov ]
-  push:
-    branches: [ master , codecov ]
-    
+on: [push, pull_request]
 
 jobs:
-
   build:
 
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        node-version: [10.x, 12.x, 14.x]
+
     steps:
-      - uses: actions/checkout@v1
-      - name: Install Node
+    - name: Checkout repository
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 2 
+
+    - name: Set up Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
-        with:
-          node-version: 12.8
-      - name: npm dependencies
-      run: npm install     
-      - name: Build
-      run: npm run build
+      with:
+        node-version: ${{ matrix.node-version }}
 
-      - name: Run Tests
-        run : ng test ngx-scrollbar --watch=false --no-progress --browsers=ChromeHeadless --code-coverage
-        
-      - name: Build Coverage Report
-        run : ./node_modules/.bin/codecov
+    - name: Install dependencies
+      run: npm install
 
-      - name: Upload to Codecov.io
-        env:
-          CODECOV_TOKEN: e0c1b68e-a6ba-445a-a32e-8e88fcec0d86
-        shell: bash
-        run: |
-          bash <(curl -s https://codecov.io/bash)
+    - name: Run the tests
+      run: npm test -- --coverage
