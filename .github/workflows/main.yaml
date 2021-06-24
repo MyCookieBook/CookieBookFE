@@ -27,7 +27,9 @@ jobs:
 
     - name: Run the tests
       run: npm test -- --code-coverage --browsers=ChromeHeadlessNoSandbox --watch=false
-    - name: Upload coverage to Codecov
-      uses: codecov/codecov-action@v1
-      with:
-         token: b49ed59b-7bbe-4f9a-9047-ffa74d5c8a1f
+    - name: Upload to Codecov.io
+      env:
+        CODECOV_TOKEN: b49ed59b-7bbe-4f9a-9047-ffa74d5c8a1f
+      shell: bash
+      run: |
+        bash <(curl -s https://codecov.io/bash)    
