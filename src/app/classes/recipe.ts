@@ -153,7 +153,7 @@ export class Recipe {
     if (bigSplit[0] != this.empty) {
       this.id = +bigSplit[0];
     } else {
-      this.id = 0;
+      this.setId(0);
     }
     if (bigSplit[1] != this.empty) {
       this.category = bigSplit[1];
@@ -168,32 +168,32 @@ export class Recipe {
     if (bigSplit[3] != this.empty) {
       this.title = bigSplit[3];
     } else {
-      this.title = '';
+      this.setTitle('');
     }
     if (bigSplit[4] != this.empty) {
       this.author = bigSplit[4];
     } else {
-      this.author = '';
+      this.setAuthor('');
     }
     if (bigSplit[5] != this.empty) {
       this.bookmark = (bigSplit[5] === 'true');
     } else {
-      this.bookmark = false;
+      this.setBookmark(false);
     }
     if (bigSplit[6] != this.empty) {
       this.duration = +bigSplit[6];
     } else {
-      this.duration = 0;
+      this.setDuration(0);
     }
     if (bigSplit[7] != this.empty) {
       this.calory = bigSplit[7];
     } else {
-      this.calory = '';
+      this.setCalory('');
     }
     if (bigSplit[8] != this.empty) {
       this.difficultyLevel = +bigSplit[8];
     } else {
-      this.difficultyLevel = 1;
+      this.setDifficulty(1);
     }
     var ingredients = bigSplit[9].split(this.attribute);
     this.ingredients = [];
@@ -219,12 +219,12 @@ export class Recipe {
     if (bigSplit[12] != this.empty) {
       this.link = bigSplit[12];
     } else {
-      this.link = '';
+      this.setLink('');
     }
     if (bigSplit[13] != this.empty) {
       this.other = bigSplit[13];
     } else {
-      this.other = '';
+      this.setOther('');
     }
   }
 
