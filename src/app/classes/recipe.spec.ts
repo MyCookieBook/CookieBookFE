@@ -13,4 +13,9 @@ describe('Recipe', () => {
 	let recipe = new Recipe();
 	expect(recipe.getRecipe()).toEqual("§§§&&&§§§&&&§§§&&&§§§&&&§§§&&&§§§&&&§§§&&&undefined&&&§§§&&&§§§&&&§§§&&&§§§&&&§§§&&&§§§");
   });
+  it('should set an empty recipe', () => {
+  let recipe = new Recipe();
+  recipe.setRecipe("§§§&&&§§§&&&§§§&&&§§§&&&§§§&&&§§§&&&§§§&&&undefined&&&§§§&&&§§§&&&§§§&&&§§§&&&§§§&&&§§§")
+    expect(recipe.getId()).toEqual(0);
+  });
 });
