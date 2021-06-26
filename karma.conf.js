@@ -22,7 +22,7 @@ module.exports = function (config) {
       dir: require('path').join(__dirname, './coverage/angular-de-tutorial'),
       subdir: '.',
       reporters: [
-        { type: 'xml' },
+        { type: 'cobertura' },
         { type: 'text-summary' }
       ]
     },
