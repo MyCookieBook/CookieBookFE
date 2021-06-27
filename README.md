@@ -1,6 +1,7 @@
-# AngularDeTutorial
+# MyCookieBook
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/eb171bc3e4f54b27b0fe00ed874b6806)](https://app.codacy.com/gh/MyCookieBook/CookieBookFE?utm_source=github.com&utm_medium=referral&utm_content=MyCookieBook/CookieBookFE&utm_campaign=Badge_Grade_Settings)
+[![codecov](https://img.shields.io/codecov/c/gh/MyCookieBook/CookieBookFE?color=green)](https://codecov.io/gh/MyCookieBook/CookieBookFE)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.2.
 
