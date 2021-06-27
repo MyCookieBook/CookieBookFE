@@ -32,43 +32,43 @@ export class Recipe {
 
   getRecipe() {
     var recipe = '';
-    if (this.id === null) {
+    if (this.id === undefined) {
       recipe += this.empty;
     } else {
       recipe += this.id.toString();
     }
     recipe += this.splitter;
-    if (this.category === null || this.category === '') {
+    if (this.category === null || this.category === undefined || this.category === '') {
       recipe += this.empty;
     } else {
       recipe += this.category;
     }
     recipe += this.splitter;
-    if (this.subcategory === null || this.subcategory === '') {
+    if (this.subcategory === null || this.subcategory === undefined || this.subcategory === '') {
       recipe += this.empty;
     } else {
       recipe += this.subcategory;
     }
     recipe += this.splitter;
-    if (this.title === null || this.title === '') {
+    if (this.title === null || this.title === undefined|| this.title === '') {
       recipe += this.empty;
     } else {
       recipe += this.title;
     }
     recipe += this.splitter;
-    if (this.author === null || this.author === '') {
+    if (this.author === null || this.author === undefined || this.author === '') {
       recipe += this.empty;
     } else {
       recipe += this.author;
     }
     recipe += this.splitter;
-    if (this.bookmark === null) {
+    if (this.bookmark === undefined) {
       recipe += this.empty;
     } else {
       recipe += this.bookmark.toString();
     }
     recipe += this.splitter;
-    if (this.duration === null) {
+    if (this.duration === undefined) {
       recipe += this.empty;
     } else {
       recipe += this.duration.toString();
@@ -80,13 +80,13 @@ export class Recipe {
       recipe += this.calory;
     }
     recipe += this.splitter;
-    if (this.difficultyLevel === null || this.difficultyLevel === 0) {
+    if (this.difficultyLevel === null || this.difficultyLevel === undefined ||this.difficultyLevel === 0) {
       recipe += this.empty;
     } else {
       recipe += this.difficultyLevel.toString();
     }
     recipe += this.splitter;
-    if (this.ingredients === null || this.ingredients.length === 0) {
+    if (this.ingredients === null || this.ingredients === undefined || this.ingredients.length === 0) {
       recipe += this.empty;
     } else {
       for (let i = 0; i < this.ingredients.length; i++) {
@@ -102,7 +102,7 @@ export class Recipe {
       }
     }
     recipe += this.splitter;
-    if (this.material === null || this.material.length === 0) {
+    if (this.material === null || this.material === undefined || this.material.length === 0) {
       recipe += this.empty;
     } else {
       for (let i = 0; i < this.material.length; i++) {
@@ -118,7 +118,7 @@ export class Recipe {
       }
     }
     recipe += this.splitter;
-    if (this.steps === null || this.steps.length === 0) {
+    if (this.steps === null || this.steps === undefined || this.steps.length === 0) {
       recipe += this.empty;
     } else {
       for (let i = 0; i < this.steps.length; i++) {
@@ -134,13 +134,13 @@ export class Recipe {
       }
     }
     recipe += this.splitter;
-    if (this.link === null || this.link === '') {
+    if (this.link === null || this.link === undefined || this.link === '') {
       recipe += this.empty;
     } else {
       recipe += this.link;
     }
     recipe += this.splitter;
-    if (this.other === null || this.other === '') {
+    if (this.other === undefined || this.other === '') {
       recipe += this.empty;
     } else {
       recipe += this.other;
@@ -153,7 +153,7 @@ export class Recipe {
     if (bigSplit[0] != this.empty) {
       this.id = +bigSplit[0];
     } else {
-      this.id = 0;
+      this.setId(0);
     }
     if (bigSplit[1] != this.empty) {
       this.category = bigSplit[1];
@@ -168,32 +168,32 @@ export class Recipe {
     if (bigSplit[3] != this.empty) {
       this.title = bigSplit[3];
     } else {
-      this.title = '';
+      this.setTitle('');
     }
     if (bigSplit[4] != this.empty) {
       this.author = bigSplit[4];
     } else {
-      this.author = '';
+      this.setAuthor('');
     }
     if (bigSplit[5] != this.empty) {
       this.bookmark = (bigSplit[5] === 'true');
     } else {
-      this.bookmark = false;
+      this.setBookmark(false);
     }
     if (bigSplit[6] != this.empty) {
       this.duration = +bigSplit[6];
     } else {
-      this.duration = 0;
+      this.setDuration(0);
     }
     if (bigSplit[7] != this.empty) {
       this.calory = bigSplit[7];
     } else {
-      this.calory = '';
+      this.setCalory('');
     }
     if (bigSplit[8] != this.empty) {
       this.difficultyLevel = +bigSplit[8];
     } else {
-      this.difficultyLevel = 1;
+      this.setDifficulty(1);
     }
     var ingredients = bigSplit[9].split(this.attribute);
     this.ingredients = [];
@@ -219,12 +219,12 @@ export class Recipe {
     if (bigSplit[12] != this.empty) {
       this.link = bigSplit[12];
     } else {
-      this.link = '';
+      this.setLink('');
     }
     if (bigSplit[13] != this.empty) {
       this.other = bigSplit[13];
     } else {
-      this.other = '';
+      this.setOther('');
     }
   }
 

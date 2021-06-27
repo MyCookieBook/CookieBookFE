@@ -22,7 +22,7 @@ module.exports = function (config) {
       dir: require('path').join(__dirname, './coverage/angular-de-tutorial'),
       subdir: '.',
       reporters: [
-        { type: 'html' },
+        { type: 'cobertura' },
         { type: 'text-summary' }
       ]
     },
@@ -31,8 +31,14 @@ module.exports = function (config) {
     colors: true,
     logLevel: config.LOG_INFO,
     autoWatch: true,
-    browsers: ['Chrome'],
-    singleRun: false,
+    customLaunchers: {
+  	ChromeHeadlessNoSandbox: {
+    		base: "ChromeHeadless",
+    		flags: ["--no-sandbox"]
+    	}
+    },
+    browsers: ['Chrome', 'ChromeHeadlessNoSandbox'],
+    singleRun: true,
     restartOnFileChange: true
   });
 };
